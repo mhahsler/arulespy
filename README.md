@@ -30,4 +30,4 @@ arules functions can also be directly called using
 Transactions, itemsets and rules can manually be converted to Python
 classes using `a2p()`.
 
-Usage examples can be found [here](howto.html).
+Usage examples can be found [here](howto.ipynb).
