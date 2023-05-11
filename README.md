@@ -32,9 +32,9 @@ This example package is inspired by / based on the [official sample project pypa
 
 ### Package, module name
 
-Many use a same package and module name, you could definitely do that. But this example package and its module's names are different: `example_pypi_package` and `examplepy`.
+Many use a same package and module name, you could definitely do that. But this example package and its module's names are different: `example_pypi_package` and `arules`.
 
-Open `example_pypi_package` folder with Visual Studio Code, <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> (Windows / Linux) or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> (MacOS) to find all occurrences of both names and replace them with your package and module's names. Also remember to change the name of the folder **src/examplepy**.
+Open `example_pypi_package` folder with Visual Studio Code, <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> (Windows / Linux) or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> (MacOS) to find all occurrences of both names and replace them with your package and module's names. Also remember to change the name of the folder **src/arules**.
 
 Simply and very roughly speaking, package name is used in `pip install <PACKAGENAME>` and module name is used in `import <MODULENAME>`. Both names should consist of lowercase basic letters (a-z). They may have underscores (`_`) if you really need them. Hyphen-minus (`-`) should not be used.
 
@@ -56,7 +56,7 @@ There's also [namespace](https://packaging.python.org/guides/packaging-namespace
 
 Make necessary changes in **setup.py**.
 
-The package's version number `__version__` is in **src/examplepy/\_\_init\_\_.py**. You may want to change that.
+The package's version number `__version__` is in **src/arules/\_\_init\_\_.py**. You may want to change that.
 
 The example package is designed to be compatible with Python 3.6, 3.7, 3.8, 3.9, and will be tested against these versions. If you need to change the version range, you should change:
 
@@ -96,7 +96,7 @@ In VS Code, you can go to File -> Preferences -> Settings, type "Python Formatti
 
 ### Write your package
 
-In **src/examplepy/** (`examplepy` should have been replaced by your module name) folder, rename **module1.py** and write your code in it. Add more module .py files if you need to.
+In **src/arules/** (`arules` should have been replaced by your module name) folder, rename **module1.py** and write your code in it. Add more module .py files if you need to.
 
 ### Write your tests
 
@@ -228,7 +228,7 @@ python -m twine upload --repository pypi dist/*
 
 When you finished developing a newer version of your package, do the following things.
 
-Modify the version number `__version__` in **src\examplepy\_\_init\_\_.py**.
+Modify the version number `__version__` in **src\arules\_\_init\_\_.py**.
 
 Delete all old versions in **dist**.
 
