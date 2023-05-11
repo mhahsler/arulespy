@@ -1,6 +1,7 @@
 """The arules module provides an interface to R's arules package."""
 
 import pandas as pd
+import numpy as np
 
 import rpy2.robjects as ro
 import rpy2.robjects.packages as packages
@@ -15,13 +16,12 @@ loc = ro.r("Sys.getenv('R_LIBS_USER')")[0]
 print("looking in ", str(loc))
 if not packages.isinstalled('arules', lib_loc=loc):
     print("Installing arules package")
+    # create the personal library directory if it doesn't exist
     ro.r('dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)')
-    utils = packages.importr('utils')
-    utils.chooseCRANmirror(ind=1)
-    utils.install_packages('arules', dep=True, lib=loc)
+    # install arules. The R version finds R_LIBS_USER automatically
+    ro.r('chooseCRANmirror(ind=1); install.packages("arules")')
 else:
     print("arules package found")
-
 
 ### import the R arules package
 r = packages.importr('arules', lib_loc=loc)
