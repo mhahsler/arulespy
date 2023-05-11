@@ -10,21 +10,23 @@ from rpy2.robjects import pandas2ri
 ### activate automatic conversion of pandas dataframes to R dataframes
 #pandas2ri.activate()
 
-# install arules if necessary
-print("checking for arules package")
-loc = ro.r("Sys.getenv('R_LIBS_USER')")[0]
-print("looking in", str(loc))
-if not packages.isinstalled('arules', lib_loc=loc):
-    print("Installing arules package")
-    # create the personal library directory if it doesn't exist
-    ro.r('dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)')
-    # install arules. The R version finds R_LIBS_USER automatically
-    ro.r('chooseCRANmirror(ind=1); install.packages("arules", dependencies=TRUE, lib=Sys.getenv("R_LIBS_USER"))')
-else:
-    print("arules package found")
+# install arules if necessary. Note: the system path is probably not writable for the user.
+ro.r('''
+        pkg <- "arules"
+        repos <- "https://cloud.r-project.org/"
 
+        if (!requireNamespace(pkg, quietly = TRUE)) {
+            cat("Installing R package arules.")
+            # create the personal library directory if it doesn't exist
+            dir.create(Sys.getenv("R_LIBS_USER"),  showWarnings = FALSE, recursive = TRUE)
+    
+            chooseCRANmirror(ind=1)
+            install.packages(pkg, repos = repos, lib = Sys.getenv("R_LIBS_USER"))
+        }
+    ''')
+     
 ### import the R arules package
-r = packages.importr('arules', lib_loc=loc)
+r = packages.importr('arules', lib_loc=ro.r("Sys.getenv('R_LIBS_USER')")[0])
 methods = packages.importr('methods')
 
 def parameters(x):
