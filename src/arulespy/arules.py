@@ -178,6 +178,9 @@ quality.__doc__ = r.quality.__doc__
 info = r2df_decor(r.info)
 info.__doc__ = r.info.__doc__   
 
+itemInfo = r2df_decor(r.itemInfo)
+itemInfo.__doc__ = r.itemInfo.__doc__
+
 interestMeasure = r2df_decor(r.interestMeasure)
 interestMeasure.__doc__ = r.interestMeasure.__doc__
 
