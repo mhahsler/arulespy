@@ -1,12 +1,12 @@
 import unittest
 
 import pandas as pd
-import arules
+from arulespy import arules
 
 
-class TestSimple(unittest.TestCase):
+class TestArules(unittest.TestCase):
 
-    def test_add(self):
+    def test_transactions(self):
         df = pd.DataFrame (
             [
                 [True,True, True],
@@ -26,6 +26,8 @@ class TestSimple(unittest.TestCase):
 
         self.assertEqual(len(trans), 10)
 
+    def test_fails(self):
+        self.assertFalse(True)
 
 if __name__ == '__main__':
     unittest.main()

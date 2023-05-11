@@ -5,9 +5,10 @@ import numpy as np
 
 import rpy2.robjects as ro
 from rpy2.robjects.packages import importr
+from rpy2.robjects import pandas2ri
 
 ### activate automatic conversion of pandas dataframes to R dataframes
-#ro.pandas2ri.activate()
+#pandas2ri.activate()
 
 ### import the R arules package
 r = importr("arules")
@@ -23,7 +24,7 @@ class ItemMatrix(ro.RS4):
     def as_df(self):
         if type(self) != ro.vectors.DataFrame:
             self  = r.DATAFRAME(self)
-        with (ro.default_converter + ro.pandas2ri.converter).context():
+        with (ro.default_converter + pandas2ri.converter).context():
             pd_df = ro.conversion.get_conversion().rpy2py(self)
         return pd_df
     

@@ -4,7 +4,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='arules',
+    name='arulespy',
     author='Michael Hahsler',
     author_email='mhahsler@lyle.smu.edu',
     description='Python interface to the R package arules',
