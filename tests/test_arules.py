@@ -6,7 +6,7 @@ from arulespy import arules
 
 class TestArules(unittest.TestCase):
 
-    def test_transactions(self):
+    def test_transactions(self):       
         df = pd.DataFrame (
             [
                 [True,True, True],
@@ -25,9 +25,6 @@ class TestArules(unittest.TestCase):
         trans = arules.transactions(df)
 
         self.assertEqual(len(trans), 10)
-
-    def test_fails(self):
-        self.assertFalse(True)
 
 if __name__ == '__main__':
     unittest.main()

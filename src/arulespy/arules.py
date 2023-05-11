@@ -1,18 +1,30 @@
 """The arules module provides an interface to R's arules package."""
 
 import pandas as pd
-import numpy as np
 
 import rpy2.robjects as ro
-from rpy2.robjects.packages import importr
+import rpy2.robjects.packages as packages
 from rpy2.robjects import pandas2ri
 
 ### activate automatic conversion of pandas dataframes to R dataframes
 #pandas2ri.activate()
 
+# install arules if necessary
+print("checking for arules package")
+loc = ro.r("Sys.getenv('R_LIBS_USER')")[0]
+print("looking in ", str(list(loc)))
+if not packages.isinstalled('arules', lib_loc=loc):
+    print("Installing arules package")
+    utils = packages.importr('utils')
+    utils.chooseCRANmirror(ind=1)
+    utils.install_packages('arules', dep=True, lib=loc)
+else:
+    print("arules package found")
+
+
 ### import the R arules package
-r = importr("arules")
-methods = importr('methods')
+r = packages.importr('arules', lib_loc=loc)
+methods = packages.importr('methods')
 
 def parameters(x):
     """"define parameters for apriori and eclat"""
