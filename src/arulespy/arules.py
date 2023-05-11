@@ -154,6 +154,12 @@ addComplement.__doc__ = r.addComplement.__doc__
 sort = a2p_decor(r.sort)
 sort.__doc__ = r.sort.__doc__
 
+sample = a2p_decor(r.sample)
+sample.__doc__ = r.sample.__doc__
+
+unique = a2p_decor(r.unique)
+unique.__doc__ = r.unique.__doc__
+
 itemFrequency = r2l_decor(r.itemFrequency)
 itemFrequency.__doc__ = r.itemFrequency.__doc__
 
