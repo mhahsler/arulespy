@@ -12,9 +12,10 @@ from rpy2.robjects import pandas2ri
 # install arules if necessary
 print("checking for arules package")
 loc = ro.r("Sys.getenv('R_LIBS_USER')")[0]
-print("looking in ", str(list(loc)))
+print("looking in ", str(loc))
 if not packages.isinstalled('arules', lib_loc=loc):
     print("Installing arules package")
+    ro.r('dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)')
     utils = packages.importr('utils')
     utils.chooseCRANmirror(ind=1)
     utils.install_packages('arules', dep=True, lib=loc)
