@@ -13,13 +13,13 @@ from rpy2.robjects import pandas2ri
 # install arules if necessary
 print("checking for arules package")
 loc = ro.r("Sys.getenv('R_LIBS_USER')")[0]
-print("looking in ", str(loc))
+print("looking in", str(loc))
 if not packages.isinstalled('arules', lib_loc=loc):
     print("Installing arules package")
     # create the personal library directory if it doesn't exist
     ro.r('dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)')
     # install arules. The R version finds R_LIBS_USER automatically
-    ro.r('chooseCRANmirror(ind=1); install.packages("arules")')
+    ro.r('chooseCRANmirror(ind=1); install.packages("arules", dependencies=TRUE, lib=Sys.getenv("R_LIBS_USER"))')
 else:
     print("arules package found")
 
