@@ -1,5 +1,6 @@
 include pyproject.toml
 include *.md
 include LICENSE
-include *.ipynb
 recursive-include tests test*.py
+
+recursive-exclude examples
