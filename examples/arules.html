@@ -15121,6 +15121,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This document is also avaialble as a IPython notebook: <a href="https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb">https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb</a></p>
 <h2 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h2><p>The package can be installed using pip.</p>
 <pre><code>pip install arulespy
 </code></pre>
@@ -15586,9 +15587,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
       <td>2</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>{B,C}</td>
-      <td>8</td>
+      <th>1</th>
+      <td>{A,B,C}</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
@@ -16397,120 +16398,6 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>support</th>
-      <th>confidence</th>
-      <th>coverage</th>
-      <th>lift</th>
-      <th>count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>0.8</td>
-      <td>0.8</td>
-      <td>1.0</td>
-      <td>1.00</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.8</td>
-      <td>0.8</td>
-      <td>1.0</td>
-      <td>1.00</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.4</td>
-      <td>0.8</td>
-      <td>0.5</td>
-      <td>1.00</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.5</td>
-      <td>1.0</td>
-      <td>0.5</td>
-      <td>1.25</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.4</td>
-      <td>1.0</td>
-      <td>0.4</td>
-      <td>1.25</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.4</td>
-      <td>0.8</td>
-      <td>0.5</td>
-      <td>1.00</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
@@ -16896,7 +16783,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Calculate-Interest-Measures">Calculate Interest Measures<a class="anchor-link" href="#Calculate-Interest-Measures">&#182;</a></h2><p>Additional interest measures can be calculates. See all <a href="https://mhahsler.github.io/arules/docs/measures">available meassures</a>.</p>
+<h2 id="Work-With-Interest-Measures">Work With Interest Measures<a class="anchor-link" href="#Work-With-Interest-Measures">&#182;</a></h2><p>Interest measures are stored as the quality attribute in rules and itemsets.</p>
 
 </div>
 </div>
@@ -16909,7 +16796,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">interestMeasure</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;lift&quot;</span><span class="p">,</span> <span class="s2">&quot;confidence&quot;</span><span class="p">],</span> <span class="n">transactions</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16948,40 +16835,61 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>lift</th>
+      <th>support</th>
       <th>confidence</th>
+      <th>coverage</th>
+      <th>lift</th>
+      <th>count</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
-      <td>1.00</td>
       <td>0.8</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>8</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1.00</td>
       <td>0.8</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>8</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1.00</td>
+      <td>0.4</td>
       <td>0.8</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1.25</td>
+      <td>0.5</td>
       <td>1.0</td>
+      <td>0.5</td>
+      <td>1.25</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>1.25</td>
+      <td>0.4</td>
       <td>1.0</td>
+      <td>0.4</td>
+      <td>1.25</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>1.00</td>
+      <td>0.4</td>
       <td>0.8</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>4</td>
     </tr>
   </tbody>
 </table>
@@ -17001,8 +16909,257 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Redundant and maximal rules.</p>
+<p>Additional interest measures can be calculated with <code>interestMeasure()</code> and added to rules or itemsets using <code>addQuality()</code>. See all <a href="https://mhahsler.github.io/arules/docs/measures">available meassures</a>. To calculate some measures, transactions need to
+be specified.</p>
 
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">interestMeasure</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;chiSquared&quot;</span><span class="p">,</span> <span class="s2">&quot;phi&quot;</span><span class="p">],</span> <span class="n">transactions</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
+<span class="n">im</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chiSquared</th>
+      <th>phi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.500000</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.666667</td>
+      <td>0.408248</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">addQuality</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+<span class="n">rules</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LHS</th>
+      <th>RHS</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>coverage</th>
+      <th>lift</th>
+      <th>count</th>
+      <th>chiSquared</th>
+      <th>phi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{}</td>
+      <td>{A}</td>
+      <td>0.8</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{}</td>
+      <td>{C}</td>
+      <td>0.8</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{B}</td>
+      <td>{A}</td>
+      <td>0.4</td>
+      <td>0.8</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>4</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>{B}</td>
+      <td>{C}</td>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>0.5</td>
+      <td>1.25</td>
+      <td>5</td>
+      <td>2.500000</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>{A,B}</td>
+      <td>{C}</td>
+      <td>0.4</td>
+      <td>1.0</td>
+      <td>0.4</td>
+      <td>1.25</td>
+      <td>4</td>
+      <td>1.666667</td>
+      <td>0.408248</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>{B,C}</td>
+      <td>{A}</td>
+      <td>0.4</td>
+      <td>0.8</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>4</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Filter-Redundant-Rules">Filter Redundant Rules<a class="anchor-link" href="#Filter-Redundant-Rules">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -17060,6 +17217,8 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
       <th>coverage</th>
       <th>lift</th>
       <th>count</th>
+      <th>chiSquared</th>
+      <th>phi</th>
     </tr>
   </thead>
   <tbody>
@@ -17072,6 +17231,8 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
       <td>1.0</td>
       <td>1.00</td>
       <td>8</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
@@ -17082,6 +17243,8 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
       <td>1.0</td>
       <td>1.00</td>
       <td>8</td>
+      <td>NaN</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
@@ -17092,6 +17255,8 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
       <td>0.5</td>
       <td>1.25</td>
       <td>5</td>
+      <td>2.5</td>
+      <td>0.5</td>
     </tr>
   </tbody>
 </table>
@@ -17104,6 +17269,18 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Find maximal rules.</p>
+
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -17869,6 +18046,9 @@ FUNCTIONS
            complementLabels :  character strings; labels for the artificial
           complement-items. If omitted then the original label is
           prepended by &#34;!&#34; to form the complement-item label.
+    
+    addQuality(x, df)
+        add quality measures to a rules or itemsets object
     
     apriori = wrapper(*args, **kwargs)
         Wrapper around an R function.
@@ -18996,7 +19176,7 @@ FUNCTIONS
          object with the duplicate elements removed.
 
 DATA
-    install_pkg = &lt;rpy2.robjects.functions.SignatureTranslatedFunc...953d6...
+    install_pkg = &lt;rpy2.robjects.functions.SignatureTranslatedFunc...f753e...
     is_subset = &lt;rpy2.robjects.functions.DocumentedSTFunction ob...&gt; [RTYP...
         Wrapper around an R function.
         
@@ -19151,7 +19331,7 @@ classes using.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
 
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...95b3180&gt; [RTYPES.CLOSXP]
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...f7af240&gt; [RTYPES.CLOSXP]
 R classes: (&#39;function&#39;,)
     Wrapper around an R function.
     
@@ -19276,7 +19456,7 @@ R classes: (&#39;function&#39;,)
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f7a42a3a980&gt; [RTYPES.S4SXP]
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f18b9a09a40&gt; [RTYPES.S4SXP]
 R classes: (&#39;itemsets&#39;,)</pre>
 </div>
 
@@ -19354,63 +19534,63 @@ R classes: (&#39;itemsets&#39;,)</pre>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{item5,item50,item57}</td>
-      <td>0.031873</td>
-      <td>0.481106</td>
+      <td>{item13,item34,item62,item65,item75}</td>
+      <td>0.285427</td>
+      <td>0.399945</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{item5,item50,item57,item58,item62,item81}</td>
-      <td>0.020962</td>
-      <td>0.290044</td>
+      <td>{item13,item29,item34,item65,item71}</td>
+      <td>0.209006</td>
+      <td>0.328576</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{item29,item50,item58,item62}</td>
-      <td>0.014584</td>
-      <td>1.000000</td>
+      <td>{item6,item14,item33}</td>
+      <td>0.066198</td>
+      <td>0.970666</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{item9,item75,item80}</td>
-      <td>0.122690</td>
-      <td>0.816118</td>
+      <td>{item1,item6,item9,item24}</td>
+      <td>0.107078</td>
+      <td>0.338132</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>{item7,item9,item80}</td>
-      <td>0.302317</td>
-      <td>0.175814</td>
+      <td>{item99}</td>
+      <td>0.011776</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>{item7,item9,item33,item69,item80,item82,item95}</td>
-      <td>0.250982</td>
-      <td>0.257147</td>
+      <td>{item9,item47,item71,item78,item99}</td>
+      <td>0.068686</td>
+      <td>0.282781</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>{item9,item33,item69,item80,item95}</td>
-      <td>0.072895</td>
-      <td>0.506119</td>
+      <td>{item9}</td>
+      <td>0.062520</td>
+      <td>0.995714</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{item44,item97}</td>
-      <td>0.076554</td>
-      <td>0.197721</td>
+      <td>{item14,item36}</td>
+      <td>0.070943</td>
+      <td>0.271807</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{item25,item72}</td>
-      <td>0.099036</td>
-      <td>0.660232</td>
+      <td>{item1,item14,item36,item71}</td>
+      <td>0.001034</td>
+      <td>0.525510</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>{item3,item19,item81,item83}</td>
-      <td>0.008108</td>
-      <td>0.920024</td>
+      <td>{item7,item9,item36,item38,item72,item79}</td>
+      <td>0.117334</td>
+      <td>0.833119</td>
     </tr>
   </tbody>
 </table>
