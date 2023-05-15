@@ -8,15 +8,19 @@ number](https://img.shields.io/pypi/v/arulespy?color=green&label=version)](https
 Status](https://github.com/mhahsler/arulespy/workflows/Test/badge.svg)](https://github.com/mhahsler/arulespy/actions)
 [![License](https://img.shields.io/github/license/mhahsler/arulespy)](https://github.com/mhahsler/arulespy/blob/main/LICENSE)
 
-NOTE: This package is currently available for testing  on `testpypi` at https://test.pypi.org/project/arulespy
-
 The `arules` module in `arulespy` provides an easy to install Python interface to the 
-[R package arules](https://github.com/mhahsler/arules) for association rule mining built with [`rpy2`](https://pypi.org/project/rpy2/). 
-The package provides fast optimized C/C++ code for 
+[R package arules](https://github.com/mhahsler/arules) for association rule mining built 
+with [`rpy2`](https://pypi.org/project/rpy2/). 
+
+The R arules package implements a comprehensive
+infrastructure for representing, manipulating and analyzing transaction data and patterns using frequent itemsets and association rules. 
+The package also provides a wide range of interest measures and mining algorithms including the code of Christian Borgelt’s popular 
+and efficient C implementations of the association mining algorithms Apriori and Eclat,
+and optimized C/C++ code for 
 mining and manipulating association rules using sparse matrix representation. 
+
 The `arulesViz` module provides `plot()` for visualizing association rules using
 the [R package arulesViz](https://github.com/mhahsler/arulesViz).
-
 
 `arulespy` provides Python classes
 for
@@ -44,10 +48,12 @@ classes using the helper function `a2p()`.
 1. Install R from https://www.r-project.org/
 2. Install `arulespy` which will automatically install `rpy2` and `pandas`.
     ``` sh
-    pip install -i https://test.pypi.org/simple/ arulespy
+    pip install arulespy
     ```
 3. Optional: Set the environment variable `R_LIBS` to decide where R packages are stored. If not set then 
   R will determine a suitable location.
+
+Note: `libcurl` needs to be installed on Linux-based systems.
 
 ## Example
 
