@@ -176,6 +176,14 @@ rhs.__doc__ = r.rhs.__doc__
 quality = r2df_decor(r.quality)
 quality.__doc__ = r.quality.__doc__ 
 
+def addQuality(x, df):
+    """add quality measures to a rules or itemsets object"""
+    pd_df = pd.concat([quality(x), df], axis=1)
+    with (ro.default_converter + pandas2ri.converter).context():
+        r_from_pd_df = ro.conversion.get_conversion().py2rpy(pd_df)
+
+    x.slots['quality'] = r_from_pd_df
+
 info = r2df_decor(r.info)
 info.__doc__ = r.info.__doc__   
 
