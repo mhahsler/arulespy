@@ -83,16 +83,16 @@ rules.as_df()
 1	{}      {A}	    1.0     1.0	        1.0	        1.000000	5
 2	{B}     {C}	    0.6	    1.0	        0.6	        1.666667	3
 3	{C}     {B}	    0.6	    1.0	        0.6	        1.666667	3
-4	{B}	    {A}	    0.6	    1.0	        0.6	        1.000000	3
-5	{C}	    {A}	    0.6	    1.0	        0.6	        1.000000	3
+4	{B}     {A}	    0.6	    1.0	        0.6	        1.000000	3
+5	{C}     {A}	    0.6	    1.0	        0.6	        1.000000	3
 6	{B,C}   {A}	    0.6	    1.0	        0.6	        1.000000	3
 7	{A,B}   {C}	    0.6	    1.0	        0.6	        1.666667	3
 8	{A,C}   {B}	    0.6	    1.0	        0.6	        1.666667	3
 ```
 
 Complete examples:
-  * [Using arules]()
-  * [Using arulesViz]()
+  * [Using arules](https://mhahsler.github.io/arulespy/examples/arules.html)
+  * [Using arulesViz](https://mhahsler.github.io/arulespy/examples/arulesViz.html)
 
 
 ## References
