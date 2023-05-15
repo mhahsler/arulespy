@@ -4,4 +4,4 @@ include *.svg
 include LICENSE
 recursive-include tests test*.py
 
-exclude examples
+prune examples
