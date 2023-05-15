@@ -10,10 +10,13 @@ Status](https://github.com/mhahsler/arulespy/workflows/Test/badge.svg)](https://
 
 NOTE: This package is currently available for testing  on `testpypi` at https://test.pypi.org/project/arulespy
 
-The `arules` modul in `arulespy` provides an easy to install Python interface to the 
+The `arules` module in `arulespy` provides an easy to install Python interface to the 
 [R package arules](https://github.com/mhahsler/arules) for association rule mining built with [`rpy2`](https://pypi.org/project/rpy2/). 
 The package provides fast optimized C/C++ code for 
 mining and manipulating association rules using sparse matrix representation. 
+The `arulesViz` module provides `plot()` for visualizing association rules using
+the [R package arulesViz](https://github.com/mhahsler/arulesViz).
+
 
 `arulespy` provides Python classes
 for
@@ -25,12 +28,7 @@ for
 with Phyton-style slicing and `len()`. 
 
 Most arules functions are
-interfaced with conversion from the R data structures to Python. These
-are: ‘addComplement’, ‘apriori’, ‘discretizeDF’, ‘eclat’, ‘info’,
-‘interestMeasure’, ‘is_closed’, ‘is_generator’, ‘is_maximal’,
-‘is_redundant’, ‘is_significant’, ‘is_subset’, ‘is_superset’,
-‘itemFrequency’, ‘items’, ‘labels’, ‘lhs’, ‘parameters’, ‘quality’,
-‘random_transactions’, ‘rhs’, ‘sort’, ‘transactions’.
+interfaced with conversion from the R data structures to Python.
 Documentation is avaialible in Python via `help()`. Detailed online documentation
 for the R package is available [here](https://mhahsler.r-universe.dev/arules/doc/manual.html). 
 
@@ -41,9 +39,15 @@ classes using the helper function `a2p()`.
 
 ## Installation
 
-``` sh
-pip install -i https://test.pypi.org/simple/ arulespy
-```
+`arulespy` is based on the python package `rpy2` which requires a R installation.
+
+1. Install R from https://www.r-project.org/
+2. Install `arulespy` which will automatically install `rpy2` and `pandas`.
+    ``` sh
+    pip install -i https://test.pypi.org/simple/ arulespy
+    ```
+3. Optional: Set the environment variable `R_LIBS` to decide where R packages are stored. If not set then 
+  R will determine a suitable location.
 
 ## Example
 
@@ -86,7 +90,10 @@ rules.as_df()
 8	{A,C}   {B}	    0.6	    1.0	        0.6	        1.666667	3
 ```
 
-More examples can be found [here](howto.ipynb).
+Complete examples:
+  * [Using arules]()
+  * [Using arulesViz]()
+
 
 ## References
 

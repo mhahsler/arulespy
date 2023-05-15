@@ -11,19 +11,20 @@ from rpy2.robjects import pandas2ri
 #pandas2ri.activate()
 
 # install arules if necessary. Note: the system path is probably not writable for the user.
-ro.r('''
-        pkg <- "arules"
-        repos <- "https://cloud.r-project.org/"
-
+install_pkg = ro.r('''
+    function(pkg, repos = "https://cloud.r-project.org/", lib = Sys.getenv("R_LIBS_USER")) {
         if (!requireNamespace(pkg, quietly = TRUE)) {
             cat("Installing R package arules.")
             # create the personal library directory if it doesn't exist
-            dir.create(Sys.getenv("R_LIBS_USER"),  showWarnings = FALSE, recursive = TRUE)
+            dir.create(lib,  showWarnings = FALSE, recursive = TRUE)
     
-            chooseCRANmirror(ind=1)
-            install.packages(pkg, repos = repos, lib = Sys.getenv("R_LIBS_USER"))
+            install.packages(pkg, repos = repos, lib = lib)
         }
-    ''')
+    }
+''')
+     
+install_pkg("arules")
+
      
 ### import the R arules package
 r = packages.importr('arules', lib_loc=ro.r("Sys.getenv('R_LIBS_USER')")[0])
