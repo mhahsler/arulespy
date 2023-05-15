@@ -1,4 +1,4 @@
-# Python interface to the R package arules
+# <img src="arulespy.svg" align="right" height="139" /> Python interface to the R package arules
 
 [![PyPI
 package](https://img.shields.io/badge/pip%20install-arulespy-brightgreen)](https://pypi.org/project/arulespy/)
