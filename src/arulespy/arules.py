@@ -11,10 +11,13 @@ from rpy2.robjects import pandas2ri
 #pandas2ri.activate()
 
 # install arules if necessary. Note: the system path is probably not writable for the user.
+# we try to create the directory so install.packages does not ask
+
+base = packages.importr('base')
+print(list(base._libsPaths()))
+
 ro.r('dir.create(Sys.getenv("R_LIBS_USER")[1], showWarnings = FALSE, recursive = TRUE)')
 
-import rpy2.robjects as ro
-print(tuple(ro.packages.InstalledPackages()))
 
 utils = packages.importr('utils')
 if not ro.packages.isinstalled('arules'):
@@ -25,6 +28,9 @@ if not ro.packages.isinstalled('arules'):
 ### import the R arules package
 r = packages.importr('arules')
 methods = packages.importr('methods')
+
+
+### arules interface code
 
 def parameters(x):
     """"define parameters for apriori and eclat"""
