@@ -1,4 +1,4 @@
-# <img src="arulespy.svg" align="right" height="139" /> Python interface to the R package arules
+# Python interface to the R package arules
 
 [![PyPI
 package](https://img.shields.io/badge/pip%20install-arulespy-brightgreen)](https://pypi.org/project/arulespy/)
@@ -8,6 +8,7 @@ number](https://img.shields.io/pypi/v/arulespy?color=green&label=version)](https
 Status](https://github.com/mhahsler/arulespy/workflows/Test/badge.svg)](https://github.com/mhahsler/arulespy/actions)
 [![License](https://img.shields.io/github/license/mhahsler/arulespy)](https://github.com/mhahsler/arulespy/blob/main/LICENSE)
 
+`arulespy` is a Python module available from [PyPI](https://pypi.org/project/arulespy/).
 The `arules` module in `arulespy` provides an easy to install Python interface to the 
 [R package arules](https://github.com/mhahsler/arules) for association rule mining built 
 with [`rpy2`](https://pypi.org/project/rpy2/). 
@@ -43,17 +44,29 @@ classes using the helper function `a2p()`.
 
 ## Installation
 
-`arulespy` is based on the python package `rpy2` which requires a R installation.
+`arulespy` is based on the python package `rpy2` which requires an R installation. Here are the installation steps:
 
-1. Install R from https://www.r-project.org/
-2. Install `arulespy` which will automatically install `rpy2` and `pandas`.
+1. Install the latest version of R from https://www.r-project.org/
+
+2. Install required libraries/set path depending on your OS:
+   - libcurl is needed by R package [curl](https://cran.r-project.org/web/packages/curl/index.html).
+      - Ubuntu: `sudo apt-get install libcurl4-openssl-dev`
+      - MacOS: `brew install curl`
+      - Windows: no installation necessary
+   - Environment variable `R_HOME` needs to be set for Windows
+
+3. Install `arulespy` which will automatically install `rpy2` and `pandas`.
     ``` sh
     pip install arulespy
     ```
-3. Optional: Set the environment variable `R_LIBS` to decide where R packages are stored. If not set then 
+
+4. Optional: Set the environment variable `R_LIBS` to decide where R packages are stored. If not set then 
   R will determine a suitable location.
 
-Note: `libcurl` needs to be installed on Linux-based systems.
+
+The most likely issue is `rpy2`. Check `python -m rpy2.situation` to see if R and R's libraries are found.
+Details can be found [here](https://pypi.org/project/rpy2/).
+
 
 ## Example
 

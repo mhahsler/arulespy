@@ -25,9 +25,8 @@ install_pkg = ro.r('''
      
 install_pkg("arules")
 
-     
 ### import the R arules package
-r = packages.importr('arules', lib_loc=ro.r("Sys.getenv('R_LIBS_USER')")[0])
+r = packages.importr('arules')
 methods = packages.importr('methods')
 
 def parameters(x):

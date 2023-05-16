@@ -15136,6 +15136,38 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The following may be necessary on Windows to set the 'R_HOME' for <code>rpy2</code> correctly:</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from rpy2 import situation</span>
+<span class="c1"># import os</span>
+<span class="c1">#</span>
+<span class="c1"># os.environ[&#39;R_HOME&#39;] = situation.r_home_from_registry()</span>
+<span class="c1"># situation.get_r_home()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h2><p>Import the <code>arules</code> module from package <code>arulespy</code>.</p>
 
 </div>
@@ -15577,14 +15609,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   </thead>
   <tbody>
     <tr>
-      <th>2</th>
-      <td>{A}</td>
-      <td>1</td>
-    </tr>
-    <tr>
       <th>3</th>
       <td>{A,B,C}</td>
       <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>{A,B,C}</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>1</th>
@@ -19176,7 +19208,7 @@ FUNCTIONS
          object with the duplicate elements removed.
 
 DATA
-    install_pkg = &lt;rpy2.robjects.functions.SignatureTranslatedFunc...f753e...
+    install_pkg = &lt;rpy2.robjects.functions.SignatureTranslatedFunc...b97f9...
     is_subset = &lt;rpy2.robjects.functions.DocumentedSTFunction ob...&gt; [RTYP...
         Wrapper around an R function.
         
@@ -19331,7 +19363,7 @@ classes using.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
 
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...f7af240&gt; [RTYPES.CLOSXP]
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...79a4180&gt; [RTYPES.CLOSXP]
 R classes: (&#39;function&#39;,)
     Wrapper around an R function.
     
@@ -19456,7 +19488,7 @@ R classes: (&#39;function&#39;,)
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f18b9a09a40&gt; [RTYPES.S4SXP]
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f9fc0150b40&gt; [RTYPES.S4SXP]
 R classes: (&#39;itemsets&#39;,)</pre>
 </div>
 
@@ -19534,63 +19566,63 @@ R classes: (&#39;itemsets&#39;,)</pre>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{item13,item34,item62,item65,item75}</td>
-      <td>0.285427</td>
-      <td>0.399945</td>
+      <td>{item23,item39,item64}</td>
+      <td>0.011428</td>
+      <td>0.631184</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{item13,item29,item34,item65,item71}</td>
-      <td>0.209006</td>
-      <td>0.328576</td>
+      <td>{item14,item64}</td>
+      <td>0.073338</td>
+      <td>0.536863</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{item6,item14,item33}</td>
-      <td>0.066198</td>
-      <td>0.970666</td>
+      <td>{item14,item33,item65,item66,item75,item90}</td>
+      <td>0.027022</td>
+      <td>0.535124</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{item1,item6,item9,item24}</td>
-      <td>0.107078</td>
-      <td>0.338132</td>
+      <td>{item4,item33}</td>
+      <td>0.354958</td>
+      <td>0.720795</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>{item99}</td>
-      <td>0.011776</td>
-      <td>0.000000</td>
+      <td>{item4,item30,item33}</td>
+      <td>0.013711</td>
+      <td>0.641465</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>{item9,item47,item71,item78,item99}</td>
-      <td>0.068686</td>
-      <td>0.282781</td>
+      <td>{item5,item17,item49,item66,item81}</td>
+      <td>0.055756</td>
+      <td>0.229567</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>{item9}</td>
-      <td>0.062520</td>
-      <td>0.995714</td>
+      <td>{item5,item30,item37,item77}</td>
+      <td>0.080936</td>
+      <td>0.099891</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{item14,item36}</td>
-      <td>0.070943</td>
-      <td>0.271807</td>
+      <td>{item30,item37,item64,item97}</td>
+      <td>0.162775</td>
+      <td>0.832028</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{item1,item14,item36,item71}</td>
-      <td>0.001034</td>
-      <td>0.525510</td>
+      <td>{item1,item18,item30,item37,item64,item96,item...</td>
+      <td>0.147970</td>
+      <td>0.684572</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>{item7,item9,item36,item38,item72,item79}</td>
-      <td>0.117334</td>
-      <td>0.833119</td>
+      <td>{item5,item13,item64,item68,item96,item99}</td>
+      <td>0.072106</td>
+      <td>0.451945</td>
     </tr>
   </tbody>
 </table>
