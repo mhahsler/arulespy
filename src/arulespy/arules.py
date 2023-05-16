@@ -13,7 +13,9 @@ from rpy2.robjects import pandas2ri
 # install arules if necessary. Note: the system path is probably not writable for the user.
 # we try to create the directory so install.packages does not ask
 
-ro.r('dir.create(Sys.getenv("R_LIBS_USER")[1], showWarnings = FALSE, recursive = TRUE)')
+import os
+os.makedirs(ro.r('Sys.getenv("R_LIBS_USER")')[0], exist_ok=True)
+ro.r('.libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))')
 
 utils = packages.importr('utils')
 if not ro.packages.isinstalled('arules'):
