@@ -11,6 +11,7 @@ from rpy2.robjects import pandas2ri
 #pandas2ri.activate()
 
 # install arules if necessary. Note: the system path is probably not writable for the user.
+ro.r('dir.create(Sys.getenv("R_LIBS_USER")[1], showWarnings = FALSE, recursive = TRUE)')
 
 import rpy2.robjects as ro
 print(tuple(ro.packages.InstalledPackages()))
@@ -19,15 +20,7 @@ utils = packages.importr('utils')
 if not ro.packages.isinstalled('arules'):
     print("Installing R package arules.")
     utils.install_packages('arules', 
-                           repos='https://cloud.r-project.org/', 
-                           lib = ro.r('Sys.getenv("R_LIBS_USER")')[0])
-
-
-#import os
-#os.environ['R_LIBS_USER'] = ro.r('Sys.getenv("R_LIBS_USER")')[0]
-
-
-#install_pkg("arules")
+                           repos='https://cloud.r-project.org/')
 
 ### import the R arules package
 r = packages.importr('arules')

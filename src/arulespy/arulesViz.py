@@ -10,16 +10,17 @@ from rpy2.robjects import pandas2ri
 ### activate automatic conversion of pandas dataframes to R dataframes
 #pandas2ri.activate()
 
+
+
+
 # install arules if necessary. Note: the system path is probably not writable for the user.
+ro.r('dir.create(Sys.getenv("R_LIBS_USER")[1], showWarnings = FALSE, recursive = TRUE)')
+
 utils = packages.importr('utils')
 if not ro.packages.isinstalled('arulesViz'):
     print("Installing R package arulesViz.")
     utils.install_packages('arulesViz', 
-                           repos='https://cloud.r-project.org/', 
-                           lib = ro.r('Sys.getenv("R_LIBS_USER")')[0])
-
-#import os
-#os.environ['R_LIBS_USER'] = ro.r('Sys.getenv("R_LIBS_USER")')[0]
+                           repos='https://cloud.r-project.org/')
 
 r = packages.importr('arulesViz')
 
