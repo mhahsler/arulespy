@@ -25,7 +25,9 @@ install_pkg = ro.r('''
      
 install_pkg("arulesViz")
 
-### import the R arules package
+import os
+os.environ['R_LIBS_USER'] = ro.r('Sys.getenv("R_LIBS_USER")')[0]
+
 r = packages.importr('arulesViz')
 
 # get the generic for plot

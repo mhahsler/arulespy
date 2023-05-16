@@ -14,15 +14,21 @@ from rpy2.robjects import pandas2ri
 install_pkg = ro.r('''
     function(pkg, repos = "https://cloud.r-project.org/", lib = Sys.getenv("R_LIBS_USER")) {
         if (!requireNamespace(pkg, quietly = TRUE)) {
-            cat("Installing R package arules.")
+            cat("Installing R package arules to", lib, ".")
             # create the personal library directory if it doesn't exist
-            dir.create(lib,  showWarnings = FALSE, recursive = TRUE)
+            dir.create(lib, showWarnings = FALSE, recursive = TRUE)
     
             install.packages(pkg, repos = repos, lib = lib)
         }
+        else {
+            cat("arules found.")
+        }
     }
 ''')
-     
+
+import os
+os.environ['R_LIBS_USER'] = ro.r('Sys.getenv("R_LIBS_USER")')[0]
+
 install_pkg("arules")
 
 ### import the R arules package
