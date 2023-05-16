@@ -20,7 +20,8 @@ utils = packages.importr('utils')
 if not ro.packages.isinstalled('arulesViz'):
     print("Installing R package arulesViz.")
     utils.install_packages('arulesViz', 
-                           repos='https://cloud.r-project.org/')
+                           repos='https://cloud.r-project.org/',
+                           lib = ro.r('Sys.getenv("R_LIBS_USER")[1]'))
 
 r = packages.importr('arulesViz')
 
