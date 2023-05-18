@@ -20,7 +20,7 @@ ro.r('.libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))')
 
 utils = packages.importr('utils')
 if not ro.packages.isinstalled('arulesViz'):
-    print("Installing R package arulesViz.")
+    print("Installing R package arulesViz (plus dependencies).")
     utils.install_packages('arulesViz', 
                            repos='https://cloud.r-project.org/',
                            lib = ro.r('Sys.getenv("R_LIBS_USER")[1]'))
@@ -32,6 +32,7 @@ base = packages.importr('base')
 plot = base.plot
 #plot.__doc__ = r.plot.__doc__
 
+### FIXME: Not quite sure why I cannot set __doc__ here
 inspectDT = r.inspectDT
 #inspectDT.__doc__ = r.inspectDT.__doc__
 

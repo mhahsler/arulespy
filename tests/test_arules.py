@@ -1,8 +1,8 @@
 import unittest
 
 import pandas as pd
-from arulespy import arules
 
+from arulespy import arules
 
 class TestArules(unittest.TestCase):
 

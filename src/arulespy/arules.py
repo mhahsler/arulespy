@@ -27,15 +27,16 @@ if not ro.packages.isinstalled('arules'):
 ### import the R arules package
 r = packages.importr('arules')
 methods = packages.importr('methods')
+base = packages.importr('base')
 
 
 ### arules interface code 
 
 def parameters(x):
-    """"define parameters for apriori and eclat"""
+    """define parameters for apriori and eclat"""
+
     return ro.ListVector(x)
 
-### define mirror classes for arules S4 classes
 class ItemMatrix(ro.RS4):
     """Class for arules itemMatrix object"""
     def as_df(self):
@@ -86,31 +87,32 @@ class ItemMatrix(ro.RS4):
 
 class Rules(ItemMatrix):
     """Class for arules rules object"""
+    
     def as_matrix(self, what = "items"):
         return ItemMatrix(ro.r('function(x) ' + what + '(x)')(self)).as_matrix()
     def as_dict(self, what = "items"):
         return ItemMatrix(ro.r('function(x) ' + what + '(x)')(self)).as_dict()
 
+def new_Rules(lhs, rhs):
+    return a2p(methods.new("rules", lhs, rhs))
+
 class Itemsets(ItemMatrix):
     """Class for arules itemsets object"""
     pass
+
+def new_Itemsets(items):
+    return a2p(methods.new("itemsets", items))
 
 class Transactions(ItemMatrix):
     """Class for arules transactions object"""
     pass
 
-
-def transactions(x):
-    """convert python data into an arules transactions object"""
+def new_Transactions(items):
+    return a2p(methods.new("transactions", items))
     
-    with (ro.default_converter + ro.pandas2ri.converter).context():
-        x_r = ro.conversion.get_conversion().py2rpy(x)
-    
-    return Transactions(r.transactions(x_r))
-    
-
 def a2p(x):
     """convert arules S4 object to python object"""
+
     if x.rclass[0] == "rules":
         return Rules(x)
     elif x.rclass[0] == "itemsets":
@@ -122,14 +124,16 @@ def a2p(x):
     else:
         return x
 
-
-### decorators to convert R objects to python objects
 def a2p_decor(function):
+    """decorator to convert arules S4 objects to python objects"""
+
     def wrapper(*args, **kwargs):
         return a2p(function(*args, **kwargs))
     return wrapper
 
 def r2df_decor(function):
+    """decorator to convert R dataframes to pandas dataframes"""
+
     def wrapper(*args, **kwargs):
         df = function(*args, **kwargs)
         with (ro.default_converter + ro.pandas2ri.converter).context():
@@ -138,17 +142,42 @@ def r2df_decor(function):
     return wrapper
 
 def r2l_decor(function):
+    """decorator to convert R lists to Python lists"""
+
     def wrapper(*args, **kwargs):
         l = function(*args, **kwargs)
         return list(l)
     return wrapper
 
 
+def transactions(x, itemLabels = None):
+    """convert python data into an arules transactions object"""
+    
+    with (ro.default_converter + ro.pandas2ri.converter).context():
+        x_r = ro.conversion.get_conversion().py2rpy(x)
+    
+    if itemLabels == None:
+        return Transactions(r.transactions(x_r))
+    else:
+        return Transactions(r.transactions(x_r, itemLabels))
+
 apriori = a2p_decor(r.apriori)
 apriori.__doc__ = r.apriori.__doc__
 
 eclat = a2p_decor(r.eclat)
 eclat.__doc__ = r.eclat.__doc__
+
+def set(x):
+    """define a set of items"""
+
+    return ro.StrVector(x)
+
+encode = a2p_decor(r.encode)
+encode.__doc__ = r.encode.__doc__
+
+def concat(list):
+    conc = methods.selectMethod("c", tuple(list[0].rclass)[0])
+    return a2p(conc(*list))
 
 addComplement = a2p_decor(r.addComplement)
 addComplement.__doc__ = r.addComplement.__doc__
@@ -179,6 +208,7 @@ quality.__doc__ = r.quality.__doc__
 
 def addQuality(x, df):
     """add quality measures to a rules or itemsets object"""
+
     pd_df = pd.concat([quality(x), df], axis=1)
     with (ro.default_converter + pandas2ri.converter).context():
         r_from_pd_df = ro.conversion.get_conversion().py2rpy(pd_df)
@@ -212,9 +242,12 @@ is_redundant.__doc__ = r.is_redundant.__doc__
 is_significant = r2l_decor(r.is_significant)
 is_significant.__doc__ = r.is_significant.__doc__   
 
+### FIXME: Not quite sure why I cannot set __doc__ here
 is_superset = r.is_superset
+#is_superset.__doc__ = r.is_superset.__doc__
 
 is_subset = r.is_subset
+#is_subset.__doc__ = r.is_subset.__doc__
 
 labels = r2l_decor(r.labels)
 #labels.__doc__ = r.labels.__doc__   
