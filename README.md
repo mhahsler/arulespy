@@ -29,6 +29,7 @@ for
 -   `Transactions`: Convert pandas dataframes into transaction data
 -   `Rules`: Association rules
 -   `Itemsets`: Itemsets
+-   `ItemMatrix`: sparse matrix representation of sets of items.
 
 with Phyton-style slicing and `len()`. 
 
@@ -53,18 +54,24 @@ classes using the helper function `a2p()`.
       - Ubuntu: `sudo apt-get install libcurl4-openssl-dev`
       - MacOS: `brew install curl`
       - Windows: no installation necessary
-   - Environment variable `R_HOME` needs to be set for Windows
+   - Environment variable `R_HOME` may need to be set for Windows
 
 3. Install `arulespy` which will automatically install `rpy2` and `pandas`.
     ``` sh
     pip install arulespy
     ```
 
-4. Optional: Set the environment variable `R_LIBS` to decide where R packages are stored. If not set then 
-  R will determine a suitable location.
+4. Optional: Set the environment variable `R_LIBS_USER` to decide where R packages are stored 
+    (see [libPaths()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/libPaths.html) for details). If not set then R will determine a suitable location.
+
+5. Optional: `arulespy` will install the needed R packages when it is imported for the first time.
+    This may take a while. R packages can also be preinstalled. Start R and run 
+    `install.packages(c("arules", "arulesViz"))`
 
 
-The most likely issue is `rpy2`. Check `python -m rpy2.situation` to see if R and R's libraries are found.
+The most likely issue is that `rpy2` does not find R. 
+This will lead the python kernel to die or exit without explanation when the package `arulespy` is imported.
+Check `python -m rpy2.situation` to see if R and R's libraries are found.
 Details can be found [here](https://pypi.org/project/rpy2/).
 
 
@@ -72,9 +79,9 @@ Details can be found [here](https://pypi.org/project/rpy2/).
 
 ``` python
 from arulespy import arules
-
 import pandas as pd
 
+# define the data as a pandas dataframe
 df = pd.DataFrame (
     [
         [True,True, True],
@@ -93,7 +100,7 @@ rules = arules.apriori(trans,
                     parameter = arules.parameters({"supp": 0.1, "conf": 0.8}), 
                     control = arules.parameters({"verbose": False}))  
 
-# display the rules
+# display the rules as a pandas dataframe
 rules.as_df()
 ```
 
