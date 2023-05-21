@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from arulespy import arules
+from arulespy.arules import Transactions, apriori, parameters
 
 class TestArules(unittest.TestCase):
 
@@ -22,14 +22,14 @@ class TestArules(unittest.TestCase):
             ],
         columns=list ('ABC')) 
         
-        trans = arules.transactions(df)
+        trans = Transactions.from_df(df)
         self.assertEqual(len(trans), 10)
 
-        self.assertEqual(len(arules.unique(trans)), 5)
+        self.assertEqual(len(trans.unique()), 5)
 
-        rules = arules.apriori(trans,
-                    parameter = arules.parameters({"supp": 0.1, "conf": 0.8}), 
-                    control = arules.parameters({"verbose": False})) 
+        rules = apriori(trans,
+                    parameter = parameters({"supp": 0.1, "conf": 0.8}), 
+                    control = parameters({"verbose": False})) 
         self.assertEqual(len(rules), 6)
 
         self.assertEqual(len(rules[1:4]), 3)

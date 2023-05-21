@@ -13,22 +13,11 @@ from rpy2.robjects import pandas2ri
 # install arules if necessary. Note: the system path is probably not writable for the user.
 # we try to create the directory so install.packages does not ask
 
-import os
-os.makedirs(ro.r('Sys.getenv("R_LIBS_USER")')[0], exist_ok=True)
-ro.r('.libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))')
-
-utils = packages.importr('utils')
-if not ro.packages.isinstalled('arules'):
-    print("Installing R package arules.")
-    utils.install_packages('arules', 
-                           repos='https://cloud.r-project.org/',
-                           lib = ro.r('Sys.getenv("R_LIBS_USER")[1]'))
 
 ### import the R arules package
-r = packages.importr('arules')
+R = packages.importr('arules')
 methods = packages.importr('methods')
 base = packages.importr('base')
-
 
 ### arules interface code 
 
@@ -37,26 +26,51 @@ def parameters(x):
 
     return ro.ListVector(x)
 
+def set(x):
+    """define a set of items"""
+
+    return ro.StrVector(x)
+
 class ItemMatrix(ro.RS4):
     """Class for arules itemMatrix object"""
+    
     def as_df(self):
+        """convert to pandas dataframe"""
         if type(self) != ro.vectors.DataFrame:
-            self  = r.DATAFRAME(self)
+            self  = R.DATAFRAME(self)
         with (ro.default_converter + pandas2ri.converter).context():
             pd_df = ro.conversion.get_conversion().rpy2py(self)
         return pd_df
     
-    ### convert arules associations (rules/itemsets) into a binary numpy matrix (what can be "items", "lhs", "rhs")
     def as_matrix(self):
+        """convert to numpy matrix
+        
+        Args:
+            what: can be "items", "lhs", "rhs"
+        """
         return np.array(ro.r('function(x) as(x, "matrix")')(self))
 
     ### convert arules associations (rules/itemsets) into a dictionary (what can be "items", "lhs", "rhs")
     def as_dict(self):
+        """convert to dictionary
+        
+        Args:
+            what can be "items", "lhs", "rhs"
+        """
+
         l = ro.r('function(x) as(x, "list")')(self)
         l.names = [*range(0, len(l))]
         return dict(zip(l.names, map(list,list(l))))
+      
+    def as_list(self):
+        """convert to list"""
+        return list(self.as_dict().values())  
+    
+    @staticmethod
+    def from_list(items, itemLabels):
+        items = [ro.StrVector(x) for x in items]
+        return ItemMatrix(R.encode(items, itemLabels))
 
-    ### make subset work on arules S4 classes        
     def __getitem__(self, key):
         # prepare subset selection
         if isinstance(key, slice):
@@ -83,33 +97,203 @@ class ItemMatrix(ro.RS4):
         return ret
     
     def __len__(self):
-        return ro.r('function(x) length(x)')(self)[0]
+        """return number of elements in the set"""
 
-class Rules(ItemMatrix):
+        return ro.r('function(x) length(x)')(self)[0]
+    
+    def sort(self, by = "lift", decreasing = True):
+        """sort
+        
+        Args:
+            by: the interest measure from the quality slot
+            decreasing: sort decreasingly?
+        """
+        if decreasing:
+            decreasing = "TRUE"
+        else:
+            decreasing = "FALSE"
+
+        return a2p(ro.r('function(x) sort(x, by = "' + by + '", decreasing = ' + decreasing + ')')(self))
+
+    def unique(self):
+        """return unique elements"""
+        return a2p(ro.r('function(x) unique(x)')(self))
+    
+    def sample(self, size = 1):
+        """sample from the set
+        
+        Args:
+            size: number of samples
+        """
+        return a2p(ro.r('function(x) sample(x, size = ' + str(size) + ')')(self))
+    
+    def items(self):
+        """return items"""
+        return a2p(ro.r('function(x) items(x)')(self))
+    
+    def itemFrequency(self, type = "absolute"):
+        """return item frequency
+        
+        Args:
+            type: "absolute" or "relative"
+        """
+        return np.array(a2p(ro.r('function(x, type) itemFrequency(x, type)')(self, type)))
+    
+    def itemInfo(self):
+        """return item info as dataframe"""
+        return r2df(ro.r('function(x) itemInfo(x)')(self))
+    
+    def labels(self):
+        """returns a list of labels for the sets"""
+        return r2list(ro.r('function(x) labels(x)')(self))
+    
+    def is_subset(self, x, sparse = False):
+        """check if x is a subset of self
+        
+        Args:
+            x: the other set
+            sparse: return sparse matrix representation?
+        """    
+        if sparse:
+            sparse = "TRUE"
+        else:
+            sparse = "FALSE"
+        return ro.r('function(x, y, sparse) is.subset(x, y, sparse)')(self, x, sparse)
+    
+    def is_superset(self, x, sparse = False):
+        """check if x is a superset of self
+        
+        Args:
+            x: the other set
+            sparse: return sparse matrix representation?
+        """
+        if sparse:
+            sparse = "TRUE"
+        else:
+            sparse = "FALSE"
+        return ro.r('function(x, y, sparse) is.superset(x, y, sparse)')(self, x, sparse)
+            
+
+class Associations(ItemMatrix):
+    """Superclass for arules associations (rules/itemsets)"""
+
+    def quality(self):
+        """return quality measures as dataframe"""
+        return r2df(ro.r('function(x) quality(x)')(self))
+
+    def is_closed(self):
+        """return closedness as boolean vector"""
+        return r2list(ro.r('function(x) is.closed(x)')(self))
+    
+    def is_maximal(self):
+        """return maximality as boolean vector"""
+        return r2list(ro.r('function(x) is.maximal(x)')(self))
+    
+    def is_generator(self):
+        """return generator as boolean vector"""
+        return r2list(ro.r('function(x) is.generator(x)')(self))
+    
+    def is_redundant(self):
+        """return redundent rules as boolean vector"""
+        return r2list(ro.r('function(x) is.redundant(x)')(self))
+    
+    def is_significant(self):
+        """return significant rules as boolean vector"""
+        return r2list(ro.r('function(x) is.significant(x)')(self))
+    
+    def interestMeasure(self, measure = ["support", "confidence", "lift"], 
+                        transactions = None):
+        """calculate additional interest measures
+        
+        Args:
+            measure: a list of interest measures (see: https://mhahsler.github.io/arules/docs/measures)
+            transactions: the transactions to use (optional)
+        """
+        if transactions == None:
+            transactions = ro.r('NULL')
+        return r2df(ro.r('function(x, measure, transactions) interestMeasure(x, measure, transactions)')
+                    (self, measure, transactions), column_names=measure)
+
+    def addQuality(self, df):
+        """add quality measures to the associations.
+        
+        Args:
+            df: a pandas dataframe with the same number of rows as the associations
+        """
+        pd_df = pd.concat([self.quality(), df], axis=1)
+        with (ro.default_converter + pandas2ri.converter).context():
+            r_from_pd_df = ro.conversion.get_conversion().py2rpy(pd_df)
+
+        self.slots['quality'] = r_from_pd_df
+
+class Rules(Associations):
     """Class for arules rules object"""
     
+    @staticmethod
+    def new(lhs, rhs, quality = None):
+        
+        if quality == None:
+            return Rules(methods.new("rules", lhs, rhs))
+        else:
+            return Rules(methods.new("rules", lhs, rhs, quality))
+    
+    def lhs(self):
+        """return lhs as an itemMatrix"""
+        return ItemMatrix(ro.r('function(x) lhs(x)')(self))
+    
+    def rhs(self):
+        """return rhs as an itemMatrix"""
+        return ItemMatrix(ro.r('function(x) rhs(x)')(self))
+
     def as_matrix(self, what = "items"):
+        """return lhs/rhs as numpy matrix
+        
+        Args:
+            what: "lhs", "rhs", or "items"
+        """
         return ItemMatrix(ro.r('function(x) ' + what + '(x)')(self)).as_matrix()
+    
     def as_dict(self, what = "items"):
+        """return lhs/rhs as a dictionary
+        
+        Args:
+            what: "lhs", "rhs", or "items"
+        """
         return ItemMatrix(ro.r('function(x) ' + what + '(x)')(self)).as_dict()
+    
 
-def new_Rules(lhs, rhs):
-    return a2p(methods.new("rules", lhs, rhs))
 
-class Itemsets(ItemMatrix):
+class Itemsets(Associations):
     """Class for arules itemsets object"""
-    pass
+    
+    @staticmethod
+    def new(items, quality = None):
 
-def new_Itemsets(items):
-    return a2p(methods.new("itemsets", items))
+        if quality == None:
+             return a2p(methods.new("itemsets", items))
+        else:
+            return a2p(methods.new("itemsets", items, quality))
 
 class Transactions(ItemMatrix):
     """Class for arules transactions object"""
-    pass
-
-def new_Transactions(items):
-    return a2p(methods.new("transactions", items))
     
+    @staticmethod
+    def new(items):
+        return Transactions(methods.new("transactions", items))
+    
+    def from_df(x, itemLabels = None):
+        """convert pandas dataframe into an arules transactions object"""
+    
+        with (ro.default_converter + ro.pandas2ri.converter).context():
+            x_r = ro.conversion.get_conversion().py2rpy(x)
+    
+        if itemLabels == None:
+            return Transactions(R.transactions(x_r))
+        else:
+            return Transactions(R.transactions(x_r, itemLabels))
+
+### Conversion functions
+
 def a2p(x):
     """convert arules S4 object to python object"""
 
@@ -124,6 +308,33 @@ def a2p(x):
     else:
         return x
 
+def r2df(x, column_names = None):
+    """convert R dataframe to pandas dataframe"""
+
+    with (ro.default_converter + ro.pandas2ri.converter).context():
+        pd_df = ro.conversion.get_conversion().rpy2py(x)
+
+    if type(pd_df) != pd.core.frame.DataFrame:
+        pd_df = pd.DataFrame(pd_df, columns= column_names)   ### set column name!
+    return pd_df   
+
+def r2list(x):  
+    return list(x) 
+
+def r2df_decor(function):
+    """decorator to convert R dataframes to pandas dataframes"""
+
+    def wrapper(*args, **kwargs):
+        return r2df(function(*args, **kwargs))
+    return wrapper
+
+def r2list_decor(function):
+    """decorator to convert R lists to Python lists"""
+
+    def wrapper(*args, **kwargs):
+        return r2list(function(*args, **kwargs))
+    return wrapper
+
 def a2p_decor(function):
     """decorator to convert arules S4 objects to python objects"""
 
@@ -131,127 +342,25 @@ def a2p_decor(function):
         return a2p(function(*args, **kwargs))
     return wrapper
 
-def r2df_decor(function):
-    """decorator to convert R dataframes to pandas dataframes"""
 
-    def wrapper(*args, **kwargs):
-        df = function(*args, **kwargs)
-        with (ro.default_converter + ro.pandas2ri.converter).context():
-            pd_df = ro.conversion.get_conversion().rpy2py(df)
-        return pd_df
-    return wrapper
+apriori = a2p_decor(R.apriori)
+apriori.__doc__ = R.apriori.__doc__
 
-def r2l_decor(function):
-    """decorator to convert R lists to Python lists"""
-
-    def wrapper(*args, **kwargs):
-        l = function(*args, **kwargs)
-        return list(l)
-    return wrapper
+eclat = a2p_decor(R.eclat)
+eclat.__doc__ = R.eclat.__doc__
 
 
-def transactions(x, itemLabels = None):
-    """convert python data into an arules transactions object"""
-    
-    with (ro.default_converter + ro.pandas2ri.converter).context():
-        x_r = ro.conversion.get_conversion().py2rpy(x)
-    
-    if itemLabels == None:
-        return Transactions(r.transactions(x_r))
-    else:
-        return Transactions(r.transactions(x_r, itemLabels))
-
-apriori = a2p_decor(r.apriori)
-apriori.__doc__ = r.apriori.__doc__
-
-eclat = a2p_decor(r.eclat)
-eclat.__doc__ = r.eclat.__doc__
-
-def set(x):
-    """define a set of items"""
-
-    return ro.StrVector(x)
-
-encode = a2p_decor(r.encode)
-encode.__doc__ = r.encode.__doc__
+### static functions
+encode = a2p_decor(R.encode)
+encode.__doc__ = R.encode.__doc__
 
 def concat(list):
     conc = methods.selectMethod("c", tuple(list[0].rclass)[0])
     return a2p(conc(*list))
 
-addComplement = a2p_decor(r.addComplement)
-addComplement.__doc__ = r.addComplement.__doc__
+discretizeDF = r2df_decor(R.discretizeDF)
+discretizeDF.__doc__ = R.discretizeDF.__doc__   
 
-sort = a2p_decor(r.sort)
-sort.__doc__ = r.sort.__doc__
-
-sample = a2p_decor(r.sample)
-sample.__doc__ = r.sample.__doc__
-
-unique = a2p_decor(r.unique)
-unique.__doc__ = r.unique.__doc__
-
-itemFrequency = r2l_decor(r.itemFrequency)
-itemFrequency.__doc__ = r.itemFrequency.__doc__
-
-items = a2p_decor(r.items)
-items.__doc__ = r.items.__doc__
-
-lhs = a2p_decor(r.lhs)
-lhs.__doc__ = r.lhs.__doc__
-
-rhs = a2p_decor(r.rhs)
-rhs.__doc__ = r.rhs.__doc__
-
-quality = r2df_decor(r.quality)
-quality.__doc__ = r.quality.__doc__ 
-
-def addQuality(x, df):
-    """add quality measures to a rules or itemsets object"""
-
-    pd_df = pd.concat([quality(x), df], axis=1)
-    with (ro.default_converter + pandas2ri.converter).context():
-        r_from_pd_df = ro.conversion.get_conversion().py2rpy(pd_df)
-
-    x.slots['quality'] = r_from_pd_df
-
-info = r2df_decor(r.info)
-info.__doc__ = r.info.__doc__   
-
-itemInfo = r2df_decor(r.itemInfo)
-itemInfo.__doc__ = r.itemInfo.__doc__
-
-interestMeasure = r2df_decor(r.interestMeasure)
-interestMeasure.__doc__ = r.interestMeasure.__doc__
-
-discretizeDF = r2df_decor(r.discretizeDF)
-discretizeDF.__doc__ = r.discretizeDF.__doc__   
-
-is_closed = r2l_decor(r.is_closed)
-is_closed.__doc__ = r.is_closed.__doc__   
-
-is_maximal = r2l_decor(r.is_maximal)
-is_maximal.__doc__ = r.is_maximal.__doc__
-
-is_generator = r2l_decor(r.is_generator)
-is_generator.__doc__ = r.is_generator.__doc__
-
-is_redundant = r2l_decor(r.is_redundant)
-is_redundant.__doc__ = r.is_redundant.__doc__   
-
-is_significant = r2l_decor(r.is_significant)
-is_significant.__doc__ = r.is_significant.__doc__   
-
-### FIXME: Not quite sure why I cannot set __doc__ here
-is_superset = r.is_superset
-#is_superset.__doc__ = r.is_superset.__doc__
-
-is_subset = r.is_subset
-#is_subset.__doc__ = r.is_subset.__doc__
-
-labels = r2l_decor(r.labels)
-#labels.__doc__ = r.labels.__doc__   
-
-random_transactions = a2p_decor(r.random_transactions)
-random_transactions.__doc__ = r.random_transactions.__doc__
+random_transactions = a2p_decor(R.random_transactions)
+random_transactions.__doc__ = R.random_transactions.__doc__
 

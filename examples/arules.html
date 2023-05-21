@@ -15181,7 +15181,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy</span> <span class="kn">import</span> <span class="n">arules</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">Transactions</span><span class="p">,</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">concat</span>
 </pre></div>
 
      </div>
@@ -15384,7 +15384,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">transactions</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
 
 <span class="n">trans</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
@@ -15525,7 +15525,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">itemFrequency</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">itemFrequency</span><span class="p">(</span><span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;relative&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15547,7 +15547,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[0.8, 0.5, 0.8]</pre>
+<pre>array([0.8, 0.5, 0.8])</pre>
 </div>
 
 </div>
@@ -15564,7 +15564,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15609,19 +15609,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   </thead>
   <tbody>
     <tr>
-      <th>3</th>
-      <td>{A,B,C}</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>{A,B,C}</td>
-      <td>4</td>
-    </tr>
-    <tr>
       <th>1</th>
       <td>{A,B,C}</td>
       <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>{A,B,C}</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{A,B,C}</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -15642,7 +15642,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15729,6 +15729,293 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Create new data that uses the same encoding as an existing transaction set. Note that the following dataframe
+has the columns (items) in reverse order and <code>transactions()</code> copies the itemcoding from <code>trans</code>.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="nb">list</span> <span class="p">(</span><span class="s1">&#39;CBA&#39;</span><span class="p">))</span> 
+
+<span class="n">df2</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>B</th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>items</th>
+      <th>transactionID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{B,C}</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Add the new transaction to the existing transactions.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">concat</span><span class="p">([</span><span class="n">trans</span><span class="p">,</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">trans</span><span class="p">)])</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>items</th>
+      <th>transactionID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{A,B,C}</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{A}</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{A,B,C}</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>{A}</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>{A,B,C}</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>{A,C}</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>{A,B,C}</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>{C}</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>{B,C}</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>{A,C}</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>{B,C}</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Converting a dataframe with nominal and numeric variables. The nominal variables are converted into the form <code>variable=value</code> and
 numeric variables are first discretized (see <code>arules.discretizeDF()</code>).</p>
 
@@ -15754,7 +16041,7 @@ numeric variables are first discretized (see <code>arules.discretizeDF()</code>)
     <span class="p">],</span>
     <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">([</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">]))</span> 
 
-<span class="n">trans2</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">transactions</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="n">trans2</span> <span class="o">=</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
 <span class="n">trans2</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
@@ -15860,7 +16147,7 @@ numeric variables are first discretized (see <code>arules.discretizeDF()</code>)
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">itemInfo</span><span class="p">(</span><span class="n">trans2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans2</span><span class="o">.</span><span class="n">itemInfo</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15979,13 +16266,10 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">apriori</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span>
-                    <span class="n">parameter</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">parameters</span><span class="p">({</span><span class="s2">&quot;supp&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;conf&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}),</span> 
-                    <span class="n">control</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">parameters</span><span class="p">({</span><span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}))</span>  
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span>
+                    <span class="n">parameter</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">({</span><span class="s2">&quot;supp&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;conf&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">}),</span> 
+                    <span class="n">control</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">({</span><span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}))</span>  
 
-<span class="nb">print</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">rules</span><span class="p">))</span>
 
 <span class="n">rules</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
@@ -16001,18 +16285,6 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>set of 6 rules 
-
-&lt;class &#39;arulespy.arules.Rules&#39;&gt;
-</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
@@ -16102,6 +16374,120 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
       <th>6</th>
       <td>{B,C}</td>
       <td>{A}</td>
+      <td>0.4</td>
+      <td>0.8</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">quality</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>coverage</th>
+      <th>lift</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.8</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.8</td>
+      <td>0.8</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.4</td>
+      <td>0.8</td>
+      <td>0.5</td>
+      <td>1.00</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.5</td>
+      <td>1.0</td>
+      <td>0.5</td>
+      <td>1.25</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.4</td>
+      <td>1.0</td>
+      <td>0.4</td>
+      <td>1.25</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
       <td>0.4</td>
       <td>0.8</td>
       <td>0.5</td>
@@ -16386,7 +16772,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">labels</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">labels</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16430,7 +16816,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16516,7 +16902,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">lhs</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">lhs</span><span class="p">()</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16602,7 +16988,46 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">rhs</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">lhs</span><span class="p">()</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[[], [], [&#39;B&#39;], [&#39;B&#39;], [&#39;A&#39;, &#39;B&#39;], [&#39;B&#39;, &#39;C&#39;]]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">rhs</span><span class="p">()</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16688,7 +17113,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;lift&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;lift&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16828,7 +17253,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">quality</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">quality</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -16955,7 +17380,7 @@ be specified.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">interestMeasure</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;chiSquared&quot;</span><span class="p">,</span> <span class="s2">&quot;phi&quot;</span><span class="p">],</span> <span class="n">transactions</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">interestMeasure</span><span class="p">([</span><span class="s2">&quot;phi&quot;</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">])</span>
 <span class="n">im</span>
 </pre></div>
 
@@ -16995,40 +17420,40 @@ be specified.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>chiSquared</th>
       <th>phi</th>
+      <th>support</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>1</th>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>0.8</td>
     </tr>
     <tr>
       <th>2</th>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>0.8</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.4</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2.500000</td>
       <td>0.500000</td>
+      <td>0.5</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>1.666667</td>
       <td>0.408248</td>
+      <td>0.4</td>
     </tr>
     <tr>
       <th>6</th>
       <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.4</td>
     </tr>
   </tbody>
 </table>
@@ -17049,7 +17474,7 @@ be specified.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">addQuality</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">addQuality</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
 <span class="n">rules</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
@@ -17096,7 +17521,6 @@ be specified.</p>
       <th>coverage</th>
       <th>lift</th>
       <th>count</th>
-      <th>chiSquared</th>
       <th>phi</th>
     </tr>
   </thead>
@@ -17111,7 +17535,6 @@ be specified.</p>
       <td>1.00</td>
       <td>8</td>
       <td>NaN</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
@@ -17122,7 +17545,6 @@ be specified.</p>
       <td>1.0</td>
       <td>1.00</td>
       <td>8</td>
-      <td>NaN</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -17135,7 +17557,6 @@ be specified.</p>
       <td>1.00</td>
       <td>4</td>
       <td>0.000000</td>
-      <td>0.000000</td>
     </tr>
     <tr>
       <th>4</th>
@@ -17146,7 +17567,6 @@ be specified.</p>
       <td>0.5</td>
       <td>1.25</td>
       <td>5</td>
-      <td>2.500000</td>
       <td>0.500000</td>
     </tr>
     <tr>
@@ -17158,7 +17578,6 @@ be specified.</p>
       <td>0.4</td>
       <td>1.25</td>
       <td>4</td>
-      <td>1.666667</td>
       <td>0.408248</td>
     </tr>
     <tr>
@@ -17170,7 +17589,6 @@ be specified.</p>
       <td>0.5</td>
       <td>1.00</td>
       <td>4</td>
-      <td>0.000000</td>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -17203,7 +17621,7 @@ be specified.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[[</span><span class="ow">not</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arules</span><span class="o">.</span><span class="n">is_redundant</span><span class="p">(</span><span class="n">rules</span><span class="p">)]]</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[[</span><span class="ow">not</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">rules</span><span class="o">.</span><span class="n">is_redundant</span><span class="p">()]]</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -17249,7 +17667,6 @@ be specified.</p>
       <th>coverage</th>
       <th>lift</th>
       <th>count</th>
-      <th>chiSquared</th>
       <th>phi</th>
     </tr>
   </thead>
@@ -17264,7 +17681,6 @@ be specified.</p>
       <td>1.00</td>
       <td>8</td>
       <td>NaN</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
@@ -17276,7 +17692,6 @@ be specified.</p>
       <td>1.00</td>
       <td>8</td>
       <td>NaN</td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
@@ -17287,12 +17702,50 @@ be specified.</p>
       <td>0.5</td>
       <td>1.25</td>
       <td>5</td>
-      <td>2.5</td>
       <td>0.5</td>
     </tr>
   </tbody>
 </table>
 </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">is_redundant</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[False, False, True, False, True, True]</pre>
 </div>
 
 </div>
@@ -17321,7 +17774,7 @@ be specified.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">arules</span><span class="o">.</span><span class="n">is_maximal</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="o">.</span><span class="n">is_maximal</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -17371,7 +17824,7 @@ be specified.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">arules</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">apriori</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -17391,1925 +17844,101 @@ be specified.</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Help on module arulespy.arules in arulespy:
+<pre>Help on function wrapper in module arulespy.arules:
 
-NAME
-    arulespy.arules - The arules module provides an interface to R&#39;s arules package.
+wrapper(*args, **kwargs)
+    Wrapper around an R function.
+    
+    The docstring below is built from the R documentation.
+    
+    description
+    -----------
+    
+    
+     Mine frequent itemsets, association rules or association hyperedges using
+     the Apriori algorithm.
+     
+    
+    
+    apriori(
+        data,
+        parameter = rinterface.NULL,
+        appearance = rinterface.NULL,
+        control = rinterface.NULL,
+        ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
+    )
+    
+    Args:
+       data :  object of class transactions. Any data structure which can be
+      coerced into transactions (e.g., a binary matrix, a
+      data.frame or a tibble) can also be specified and will be
+      internally coerced to transactions.
+    
+       parameter :  object of class APparameter or named list.  The default
+      behavior is to mine rules with minimum support of 0.1,
+      minimum confidence of 0.8, maximum of 10 items (maxlen), and
+      a maximal time for subset checking of 5 seconds (‘maxtime’).
+    
+       appearance :  object of class APappearance or named list.  With this
+      argument item appearance can be restricted (implements rule
+      templates).  By default all items can appear unrestricted.
+    
+       control :  object of class APcontrol or named list. Controls the
+      algorithmic performance of the mining algorithm (item
+      sorting, report progress (verbose), etc.)
+    
+       ... :  Additional arguments are for convenience added to the
+      parameter list.
+    
+    details
+    -------
+    
+    
+     The Apriori algorithm (Agrawal et al, 1993) employs level-wise search for
+     frequent itemsets. The used C implementation of Apriori by Christian
+     Borgelt (2003) includes some improvements (e.g., a prefix tree and item sorting).
+     
+     Warning about automatic conversion of matrices or data.frames to transactions. 
+     It is preferred to create transactions manually before
+     calling  apriori()  to have control over item coding. This is especially
+     important when you are working with multiple datasets or several subsets of
+     the same dataset. To read about item coding, see  itemCoding .
+     
+     If a data.frame is specified as  x , then the data is automatically
+     converted into transactions by discretizing numeric data using
+     discretizeDF()  and then coercion to transactions. The discretization
+     may fail if the data is not well behaved.
+     
+     Apriori only creates rules with one item in the RHS (Consequent). 
+     The default value in  APparameter  for  minlen  is 1.
+     This meains that rules with only one item (i.e., an empty antecedent/LHS)
+     like
+     
+     \{\} =&gt; \{beer\} {} =&gt; {beer} 
+     
+     will be created.  These rules mean that no matter what other items are
+     involved, the item in the RHS will appear with the probability given by the
+     rule&#39;s confidence (which equals the support).  If you want to avoid these
+     rules then use the argument  parameter = list(minlen = 2) .
+     
+     Notes on run time and memory usage: 
+     If the minimum  support  is
+     chosen too low for the dataset, then the algorithm will try to create an
+     extremely large set of itemsets/rules. This will result in very long run
+     time and eventually the process will run out of memory.  To prevent this,
+     the default maximal length of itemsets/rules is restricted to 10 items (via
+     the parameter element  maxlen = 10 ) and the time for checking subsets is
+     limited to 5 seconds (via  maxtime = 5 ). The output will show if you hit
+     these limits in the &#34;checking subsets&#34; line of the output. The time limit is
+     only checked when the subset size increases, so it may run significantly
+     longer than what you specify in maxtime.  Setting  maxtime = 0  disables
+     the time limit.
+     
+     Interrupting execution with  Control-C/Esc  is not recommended.  Memory
+     cleanup will be prevented resulting in a memory leak. Also, interrupts are
+     only checked when the subset size increases, so it may take some time till
+     the execution actually stops.
 
-CLASSES
-    rpy2.robjects.methods.RS4(rpy2.robjects.robject.RObjectMixin, rpy2.rinterface.SexpS4)
-        ItemMatrix
-            Itemsets
-            Rules
-            Transactions
-    
-    class ItemMatrix(rpy2.robjects.methods.RS4)
-     |  ItemMatrix(sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |  
-     |  Class for arules itemMatrix object
-     |  
-     |  Method resolution order:
-     |      ItemMatrix
-     |      rpy2.robjects.methods.RS4
-     |      rpy2.robjects.robject.RObjectMixin
-     |      abc.ABC
-     |      rpy2.rinterface.SexpS4
-     |      rpy2.rinterface_lib.sexp.Sexp
-     |      rpy2.rinterface_lib._rinterface_capi.SupportsSEXP
-     |      builtins.object
-     |  
-     |  Methods defined here:
-     |  
-     |  __getitem__(self, key)
-     |      ### make subset work on arules S4 classes
-     |  
-     |  __len__(self)
-     |  
-     |  as_df(self)
-     |  
-     |  as_dict(self)
-     |      ### convert arules associations (rules/itemsets) into a dictionary (what can be &#34;items&#34;, &#34;lhs&#34;, &#34;rhs&#34;)
-     |  
-     |  as_matrix(self)
-     |      ### convert arules associations (rules/itemsets) into a binary numpy matrix (what can be &#34;items&#34;, &#34;lhs&#34;, &#34;rhs&#34;)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data and other attributes defined here:
-     |  
-     |  __abstractmethods__ = frozenset()
-     |  
-     |  __annotations__ = {}
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  do_slot(self, name)
-     |  
-     |  extends(self)
-     |      Return the R classes this extends.
-     |      
-     |      This calls the R function methods::extends().
-     |  
-     |  slotnames(self)
-     |      Return the &#39;slots&#39; defined for this object
-     |  
-     |  validobject(self, test=False, complete=False)
-     |      Return whether the instance is &#39;valid&#39; for its class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  isclass(name)
-     |      Return whether the given name is a defined class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __getstate__(self)
-     |  
-     |  __repr__(self)
-     |      Return repr(self).
-     |  
-     |  __setstate__(self, state)
-     |  
-     |  __str__(self)
-     |      Return str(self).
-     |  
-     |  r_repr(self)
-     |      String representation for an object that can be
-     |      directly evaluated as R code.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  slots
-     |      Attributes of the underlying R object as a Python mapping.
-     |      
-     |      The attributes can accessed and assigned by name (as if they
-     |      were in a Python `dict`).
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __dict__
-     |      dictionary for instance variables (if defined)
-     |  
-     |  __weakref__
-     |      list of weak references to the object (if defined)
-     |  
-     |  rclass
-     |      R class for the object, stored as an R string vector.
-     |      
-     |      When setting the rclass, the new value will be:
-     |      
-     |      - wrapped in a Python tuple if a string (the R class
-     |        is a vector of strings, and this is made for convenience)
-     |      - wrapped in a StrSexpVector
-     |      
-     |      Note that when setting the class R may make a copy of
-     |      the whole object (R is mostly a functional language).
-     |      If this must be avoided, and if the number of parent
-     |      classes before and after the change are compatible,
-     |      the class name can be changed in-place by replacing
-     |      vector elements.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data and other attributes inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __rname__ = None
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __init__(self, sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |      Initialize self.  See help(type(self)) for accurate signature.
-     |  
-     |  do_slot_assign(self, name: str, value) -&gt; None
-     |  
-     |  get_attrib = _(*args, **kwargs)
-     |  
-     |  list_attrs = _(*args, **kwargs)
-     |  
-     |  rsame(self, sexp) -&gt; bool
-     |      # TODO: deprecate this (and implement __eq__) ?
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp_refcount__
-     |      Count the number of independent Python references to
-     |      the underlying R object.
-     |  
-     |  named
-     |  
-     |  names_from_c_attribute
-     |  
-     |  rid
-     |      ID of the underlying R object (memory address).
-     |  
-     |  typeof
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp__
-     |      Access to the underlying C pointer to the R object.
-     |      
-     |      When assigning a new SexpCapsule to this attribute, the
-     |      R C-level type of the new capsule must be equal to the
-     |      type of the old capsule. A ValueError is raised otherwise.
-     |  
-     |  names
-    
-    class Itemsets(ItemMatrix)
-     |  Itemsets(sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |  
-     |  Class for arules itemsets object
-     |  
-     |  Method resolution order:
-     |      Itemsets
-     |      ItemMatrix
-     |      rpy2.robjects.methods.RS4
-     |      rpy2.robjects.robject.RObjectMixin
-     |      abc.ABC
-     |      rpy2.rinterface.SexpS4
-     |      rpy2.rinterface_lib.sexp.Sexp
-     |      rpy2.rinterface_lib._rinterface_capi.SupportsSEXP
-     |      builtins.object
-     |  
-     |  Data and other attributes defined here:
-     |  
-     |  __abstractmethods__ = frozenset()
-     |  
-     |  __annotations__ = {}
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from ItemMatrix:
-     |  
-     |  __getitem__(self, key)
-     |      ### make subset work on arules S4 classes
-     |  
-     |  __len__(self)
-     |  
-     |  as_df(self)
-     |  
-     |  as_dict(self)
-     |      ### convert arules associations (rules/itemsets) into a dictionary (what can be &#34;items&#34;, &#34;lhs&#34;, &#34;rhs&#34;)
-     |  
-     |  as_matrix(self)
-     |      ### convert arules associations (rules/itemsets) into a binary numpy matrix (what can be &#34;items&#34;, &#34;lhs&#34;, &#34;rhs&#34;)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  do_slot(self, name)
-     |  
-     |  extends(self)
-     |      Return the R classes this extends.
-     |      
-     |      This calls the R function methods::extends().
-     |  
-     |  slotnames(self)
-     |      Return the &#39;slots&#39; defined for this object
-     |  
-     |  validobject(self, test=False, complete=False)
-     |      Return whether the instance is &#39;valid&#39; for its class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  isclass(name)
-     |      Return whether the given name is a defined class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __getstate__(self)
-     |  
-     |  __repr__(self)
-     |      Return repr(self).
-     |  
-     |  __setstate__(self, state)
-     |  
-     |  __str__(self)
-     |      Return str(self).
-     |  
-     |  r_repr(self)
-     |      String representation for an object that can be
-     |      directly evaluated as R code.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  slots
-     |      Attributes of the underlying R object as a Python mapping.
-     |      
-     |      The attributes can accessed and assigned by name (as if they
-     |      were in a Python `dict`).
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __dict__
-     |      dictionary for instance variables (if defined)
-     |  
-     |  __weakref__
-     |      list of weak references to the object (if defined)
-     |  
-     |  rclass
-     |      R class for the object, stored as an R string vector.
-     |      
-     |      When setting the rclass, the new value will be:
-     |      
-     |      - wrapped in a Python tuple if a string (the R class
-     |        is a vector of strings, and this is made for convenience)
-     |      - wrapped in a StrSexpVector
-     |      
-     |      Note that when setting the class R may make a copy of
-     |      the whole object (R is mostly a functional language).
-     |      If this must be avoided, and if the number of parent
-     |      classes before and after the change are compatible,
-     |      the class name can be changed in-place by replacing
-     |      vector elements.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data and other attributes inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __rname__ = None
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __init__(self, sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |      Initialize self.  See help(type(self)) for accurate signature.
-     |  
-     |  do_slot_assign(self, name: str, value) -&gt; None
-     |  
-     |  get_attrib = _(*args, **kwargs)
-     |  
-     |  list_attrs = _(*args, **kwargs)
-     |  
-     |  rsame(self, sexp) -&gt; bool
-     |      # TODO: deprecate this (and implement __eq__) ?
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp_refcount__
-     |      Count the number of independent Python references to
-     |      the underlying R object.
-     |  
-     |  named
-     |  
-     |  names_from_c_attribute
-     |  
-     |  rid
-     |      ID of the underlying R object (memory address).
-     |  
-     |  typeof
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp__
-     |      Access to the underlying C pointer to the R object.
-     |      
-     |      When assigning a new SexpCapsule to this attribute, the
-     |      R C-level type of the new capsule must be equal to the
-     |      type of the old capsule. A ValueError is raised otherwise.
-     |  
-     |  names
-    
-    class Rules(ItemMatrix)
-     |  Rules(sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |  
-     |  Class for arules rules object
-     |  
-     |  Method resolution order:
-     |      Rules
-     |      ItemMatrix
-     |      rpy2.robjects.methods.RS4
-     |      rpy2.robjects.robject.RObjectMixin
-     |      abc.ABC
-     |      rpy2.rinterface.SexpS4
-     |      rpy2.rinterface_lib.sexp.Sexp
-     |      rpy2.rinterface_lib._rinterface_capi.SupportsSEXP
-     |      builtins.object
-     |  
-     |  Methods defined here:
-     |  
-     |  as_dict(self, what=&#39;items&#39;)
-     |  
-     |  as_matrix(self, what=&#39;items&#39;)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data and other attributes defined here:
-     |  
-     |  __abstractmethods__ = frozenset()
-     |  
-     |  __annotations__ = {}
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from ItemMatrix:
-     |  
-     |  __getitem__(self, key)
-     |      ### make subset work on arules S4 classes
-     |  
-     |  __len__(self)
-     |  
-     |  as_df(self)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  do_slot(self, name)
-     |  
-     |  extends(self)
-     |      Return the R classes this extends.
-     |      
-     |      This calls the R function methods::extends().
-     |  
-     |  slotnames(self)
-     |      Return the &#39;slots&#39; defined for this object
-     |  
-     |  validobject(self, test=False, complete=False)
-     |      Return whether the instance is &#39;valid&#39; for its class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  isclass(name)
-     |      Return whether the given name is a defined class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __getstate__(self)
-     |  
-     |  __repr__(self)
-     |      Return repr(self).
-     |  
-     |  __setstate__(self, state)
-     |  
-     |  __str__(self)
-     |      Return str(self).
-     |  
-     |  r_repr(self)
-     |      String representation for an object that can be
-     |      directly evaluated as R code.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  slots
-     |      Attributes of the underlying R object as a Python mapping.
-     |      
-     |      The attributes can accessed and assigned by name (as if they
-     |      were in a Python `dict`).
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __dict__
-     |      dictionary for instance variables (if defined)
-     |  
-     |  __weakref__
-     |      list of weak references to the object (if defined)
-     |  
-     |  rclass
-     |      R class for the object, stored as an R string vector.
-     |      
-     |      When setting the rclass, the new value will be:
-     |      
-     |      - wrapped in a Python tuple if a string (the R class
-     |        is a vector of strings, and this is made for convenience)
-     |      - wrapped in a StrSexpVector
-     |      
-     |      Note that when setting the class R may make a copy of
-     |      the whole object (R is mostly a functional language).
-     |      If this must be avoided, and if the number of parent
-     |      classes before and after the change are compatible,
-     |      the class name can be changed in-place by replacing
-     |      vector elements.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data and other attributes inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __rname__ = None
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __init__(self, sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |      Initialize self.  See help(type(self)) for accurate signature.
-     |  
-     |  do_slot_assign(self, name: str, value) -&gt; None
-     |  
-     |  get_attrib = _(*args, **kwargs)
-     |  
-     |  list_attrs = _(*args, **kwargs)
-     |  
-     |  rsame(self, sexp) -&gt; bool
-     |      # TODO: deprecate this (and implement __eq__) ?
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp_refcount__
-     |      Count the number of independent Python references to
-     |      the underlying R object.
-     |  
-     |  named
-     |  
-     |  names_from_c_attribute
-     |  
-     |  rid
-     |      ID of the underlying R object (memory address).
-     |  
-     |  typeof
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp__
-     |      Access to the underlying C pointer to the R object.
-     |      
-     |      When assigning a new SexpCapsule to this attribute, the
-     |      R C-level type of the new capsule must be equal to the
-     |      type of the old capsule. A ValueError is raised otherwise.
-     |  
-     |  names
-    
-    class Transactions(ItemMatrix)
-     |  Transactions(sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |  
-     |  Class for arules transactions object
-     |  
-     |  Method resolution order:
-     |      Transactions
-     |      ItemMatrix
-     |      rpy2.robjects.methods.RS4
-     |      rpy2.robjects.robject.RObjectMixin
-     |      abc.ABC
-     |      rpy2.rinterface.SexpS4
-     |      rpy2.rinterface_lib.sexp.Sexp
-     |      rpy2.rinterface_lib._rinterface_capi.SupportsSEXP
-     |      builtins.object
-     |  
-     |  Data and other attributes defined here:
-     |  
-     |  __abstractmethods__ = frozenset()
-     |  
-     |  __annotations__ = {}
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from ItemMatrix:
-     |  
-     |  __getitem__(self, key)
-     |      ### make subset work on arules S4 classes
-     |  
-     |  __len__(self)
-     |  
-     |  as_df(self)
-     |  
-     |  as_dict(self)
-     |      ### convert arules associations (rules/itemsets) into a dictionary (what can be &#34;items&#34;, &#34;lhs&#34;, &#34;rhs&#34;)
-     |  
-     |  as_matrix(self)
-     |      ### convert arules associations (rules/itemsets) into a binary numpy matrix (what can be &#34;items&#34;, &#34;lhs&#34;, &#34;rhs&#34;)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  do_slot(self, name)
-     |  
-     |  extends(self)
-     |      Return the R classes this extends.
-     |      
-     |      This calls the R function methods::extends().
-     |  
-     |  slotnames(self)
-     |      Return the &#39;slots&#39; defined for this object
-     |  
-     |  validobject(self, test=False, complete=False)
-     |      Return whether the instance is &#39;valid&#39; for its class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods inherited from rpy2.robjects.methods.RS4:
-     |  
-     |  isclass(name)
-     |      Return whether the given name is a defined class.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __getstate__(self)
-     |  
-     |  __repr__(self)
-     |      Return repr(self).
-     |  
-     |  __setstate__(self, state)
-     |  
-     |  __str__(self)
-     |      Return str(self).
-     |  
-     |  r_repr(self)
-     |      String representation for an object that can be
-     |      directly evaluated as R code.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  slots
-     |      Attributes of the underlying R object as a Python mapping.
-     |      
-     |      The attributes can accessed and assigned by name (as if they
-     |      were in a Python `dict`).
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __dict__
-     |      dictionary for instance variables (if defined)
-     |  
-     |  __weakref__
-     |      list of weak references to the object (if defined)
-     |  
-     |  rclass
-     |      R class for the object, stored as an R string vector.
-     |      
-     |      When setting the rclass, the new value will be:
-     |      
-     |      - wrapped in a Python tuple if a string (the R class
-     |        is a vector of strings, and this is made for convenience)
-     |      - wrapped in a StrSexpVector
-     |      
-     |      Note that when setting the class R may make a copy of
-     |      the whole object (R is mostly a functional language).
-     |      If this must be avoided, and if the number of parent
-     |      classes before and after the change are compatible,
-     |      the class name can be changed in-place by replacing
-     |      vector elements.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data and other attributes inherited from rpy2.robjects.robject.RObjectMixin:
-     |  
-     |  __rname__ = None
-     |  
-     |  ----------------------------------------------------------------------
-     |  Methods inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __init__(self, sexp: Union[rpy2.rinterface_lib._rinterface_capi.SupportsSEXP, ForwardRef(&#39;_rinterface.SexpCapsule&#39;), ForwardRef(&#39;_rinterface.UninitializedRCapsule&#39;)])
-     |      Initialize self.  See help(type(self)) for accurate signature.
-     |  
-     |  do_slot_assign(self, name: str, value) -&gt; None
-     |  
-     |  get_attrib = _(*args, **kwargs)
-     |  
-     |  list_attrs = _(*args, **kwargs)
-     |  
-     |  rsame(self, sexp) -&gt; bool
-     |      # TODO: deprecate this (and implement __eq__) ?
-     |  
-     |  ----------------------------------------------------------------------
-     |  Readonly properties inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp_refcount__
-     |      Count the number of independent Python references to
-     |      the underlying R object.
-     |  
-     |  named
-     |  
-     |  names_from_c_attribute
-     |  
-     |  rid
-     |      ID of the underlying R object (memory address).
-     |  
-     |  typeof
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors inherited from rpy2.rinterface_lib.sexp.Sexp:
-     |  
-     |  __sexp__
-     |      Access to the underlying C pointer to the R object.
-     |      
-     |      When assigning a new SexpCapsule to this attribute, the
-     |      R C-level type of the new capsule must be equal to the
-     |      type of the old capsule. A ValueError is raised otherwise.
-     |  
-     |  names
-
-FUNCTIONS
-    a2p(x)
-        convert arules S4 object to python object
-    
-    a2p_decor(function)
-        ### decorators to convert R objects to python objects
-    
-    addComplement = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  addComplement()  and a method for
-         transactions  to add complement items. That is,
-         it adds an artificial item to each transaction which does not contain the
-         original item. Such items are also called negative items (Antonie et al,
-         2014).
-         
-        
-        
-        addComplement(
-            x,
-            labels,
-            complementLabels = rinterface.NULL,
-        )
-        
-        Args:
-           x :  an object of class transactions.
-        
-           labels :  character strings; item labels for which complements should
-          be created.
-        
-           complementLabels :  character strings; labels for the artificial
-          complement-items. If omitted then the original label is
-          prepended by &#34;!&#34; to form the complement-item label.
-    
-    addQuality(x, df)
-        add quality measures to a rules or itemsets object
-    
-    apriori = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Mine frequent itemsets, association rules or association hyperedges using
-         the Apriori algorithm.
-         
-        
-        
-        apriori(
-            data,
-            parameter = rinterface.NULL,
-            appearance = rinterface.NULL,
-            control = rinterface.NULL,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           data :  object of class transactions. Any data structure which can be
-          coerced into transactions (e.g., a binary matrix, a
-          data.frame or a tibble) can also be specified and will be
-          internally coerced to transactions.
-        
-           parameter :  object of class APparameter or named list.  The default
-          behavior is to mine rules with minimum support of 0.1,
-          minimum confidence of 0.8, maximum of 10 items (maxlen), and
-          a maximal time for subset checking of 5 seconds (‘maxtime’).
-        
-           appearance :  object of class APappearance or named list.  With this
-          argument item appearance can be restricted (implements rule
-          templates).  By default all items can appear unrestricted.
-        
-           control :  object of class APcontrol or named list. Controls the
-          algorithmic performance of the mining algorithm (item
-          sorting, report progress (verbose), etc.)
-        
-           ... :  Additional arguments are for convenience added to the
-          parameter list.
-        
-        details
-        -------
-        
-        
-         The Apriori algorithm (Agrawal et al, 1993) employs level-wise search for
-         frequent itemsets. The used C implementation of Apriori by Christian
-         Borgelt (2003) includes some improvements (e.g., a prefix tree and item sorting).
-         
-         Warning about automatic conversion of matrices or data.frames to transactions. 
-         It is preferred to create transactions manually before
-         calling  apriori()  to have control over item coding. This is especially
-         important when you are working with multiple datasets or several subsets of
-         the same dataset. To read about item coding, see  itemCoding .
-         
-         If a data.frame is specified as  x , then the data is automatically
-         converted into transactions by discretizing numeric data using
-         discretizeDF()  and then coercion to transactions. The discretization
-         may fail if the data is not well behaved.
-         
-         Apriori only creates rules with one item in the RHS (Consequent). 
-         The default value in  APparameter  for  minlen  is 1.
-         This meains that rules with only one item (i.e., an empty antecedent/LHS)
-         like
-         
-         \{\} =&gt; \{beer\} {} =&gt; {beer} 
-         
-         will be created.  These rules mean that no matter what other items are
-         involved, the item in the RHS will appear with the probability given by the
-         rule&#39;s confidence (which equals the support).  If you want to avoid these
-         rules then use the argument  parameter = list(minlen = 2) .
-         
-         Notes on run time and memory usage: 
-         If the minimum  support  is
-         chosen too low for the dataset, then the algorithm will try to create an
-         extremely large set of itemsets/rules. This will result in very long run
-         time and eventually the process will run out of memory.  To prevent this,
-         the default maximal length of itemsets/rules is restricted to 10 items (via
-         the parameter element  maxlen = 10 ) and the time for checking subsets is
-         limited to 5 seconds (via  maxtime = 5 ). The output will show if you hit
-         these limits in the &#34;checking subsets&#34; line of the output. The time limit is
-         only checked when the subset size increases, so it may run significantly
-         longer than what you specify in maxtime.  Setting  maxtime = 0  disables
-         the time limit.
-         
-         Interrupting execution with  Control-C/Esc  is not recommended.  Memory
-         cleanup will be prevented resulting in a memory leak. Also, interrupts are
-         only checked when the subset size increases, so it may take some time till
-         the execution actually stops.
-    
-    discretizeDF = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         This function implements several basic unsupervised methods to convert a
-         continuous variable into a categorical variable (factor) using different
-         binning strategies. For convenience, a whole data.frame can be discretized
-         (i.e., all numeric columns are discretized).
-         
-        
-        
-        discretizeDF(
-            df,
-            methods = rinterface.NULL,
-            default = rinterface.NULL,
-        )
-        
-        Args:
-           x :  a numeric vector (continuous variable).
-        
-           method :  discretization method. Available are: ‘&#34;interval&#34;’ (equal
-          interval width), ‘&#34;frequency&#34;’ (equal frequency), ‘&#34;cluster&#34;’
-          (k-means clustering) and ‘&#34;fixed&#34;’ (categories specifies
-          interval boundaries).  Note that equal frequency does not
-          achieve perfect equally sized groups if the data contains
-          duplicated values.
-        
-           labels :  character vector; labels for the levels of the resulting
-          category. By default, labels are constructed using &#34;(a,b]&#34;
-          interval notation. If ‘labels = FALSE’, simple integer codes
-          are returned instead of a factor..
-        
-           include.lowest :  logical; should the first interval be closed to the
-          left?
-        
-           right :  logical; should the intervals be closed on the right (and
-          open on the left) or vice versa?
-        
-           dig.lab :  integer; number of digits used to create labels.
-        
-           ordered_result :  logical; return a ordered factor?
-        
-           infinity :  logical; should the first/last break boundary changed to
-          +/-Inf?
-        
-           onlycuts :  logical; return only computed interval boundaries?
-        
-           ... :  for method &#34;cluster&#34; further arguments are passed on to
-          ‘kmeans’.
-        
-           df :  data.frame; each numeric column in the data.frame is
-          discretized.
-        
-           methods :  named list of lists or a data.frame; the named list contains
-          lists of discretization parameters (see parameters of
-          ‘discretize()’) for each numeric column (see details). If no
-          discretization is specified for a column, then the default
-          settings for ‘discretize()’ are used.  Note: the names have
-          to match exactly.  If a data.frame is specified, then the
-          discretization breaks in this data.frame are applied to ‘df’.
-        
-           default :  named list; parameters for ‘discretize()’ used for all
-          columns not specified in ‘methods’.
-        
-        details
-        -------
-        
-        
-         Discretize calculates breaks between intervals using various methods and
-         then uses  base::cut()  to convert the numeric values into intervals
-         represented as a factor.
-         
-         Discretization may fail for several reasons. Some reasons are
-         
-          A variable contains only a single value. In this case, the variable
-         should be dropped or directly converted into a factor with a single level
-         (see  factor ).
-          Some calculated breaks are not unique.
-         This can happen for method frequency with very skewed data (e.g., a large
-         portion of the values is 0). In this case, non-unique breaks are dropped
-         with a warning. It would be probably better to look at the histogram of the
-         data and decide on breaks for the method fixed.  
-         
-         discretize  only implements unsupervised discretization. See
-         arulesCBA::discretizeDF.supervised()  in package  arulesCBA 
-         for supervised discretization.
-         
-         discretizeDF()  applies discretization to each numeric column.
-         Individual discretization parameters can be specified in the form:
-         methods = list(column_name1 = list(method = ,...), column_name2 = list(...)) .
-         If no discretization method is specified for a column, then the
-         discretization in default is applied ( NULL  invokes the default method
-         in  discretize() ). The special method  &#34;none&#34;  can be specified
-         to suppress discretization for a column.
-    
-    eclat = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Mine frequent itemsets with the Eclat algorithm.  This algorithm uses simple
-         intersection operations for equivalence class clustering along with
-         bottom-up lattice traversal.
-         
-        
-        
-        eclat(
-            data,
-            parameter = rinterface.NULL,
-            control = rinterface.NULL,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           data :  object of class transactions or any data structure which can
-          be coerced into transactions (e.g., binary matrix,
-          data.frame).
-        
-           parameter :  object of class ECparameter or named list (default values
-          are: support 0.1 and maxlen 5)
-        
-           control :  object of class ECcontrol or named list for algorithmic
-          controls.
-        
-           ... :  Additional arguments are added for convenience to the
-          parameter list.
-        
-        details
-        -------
-        
-        
-         Calls the C implementation of the Eclat algorithm by Christian Borgelt for
-         mining frequent itemsets.
-         
-         Eclat can also return the transaction IDs for each found itemset using
-         tidLists = TRUE  as a parameter and the result can be retrieved as a
-         tidLists  object with method  tidLists()  for class
-         itemsets .  Note that storing transaction ID lists is
-         very memory intensive, creating transaction ID lists only works for minimum
-         support values which create a relatively small number of itemsets.  See also
-         supportingTransactions() .
-         
-         ruleInduction()  can be used to generate rules from the found
-         itemsets.
-         
-         A weighted version of ECLAT is available as function  weclat() .
-         This version can be used to perform weighted association rule mining (WARM).
-    
-    info = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         The  associations  class is a virtual class which is extended to
-         represent mining result (e.g., sets of  itemsets  or
-         rules ). The class defines some common methods for its subclasses.
-         
-        
-        
-        info(
-            x,
-        )
-        
-        Args:
-           value :  the replacement value.
-        
-           n :  number of elements
-        
-           by :  sort by this interest measure
-        
-           decreasing :  sort in decreasing order?
-        
-           ... :  further arguments.
-        
-        details
-        -------
-        
-        
-         The implementations of  associations  store itemsets (e.g., the LHS and
-         RHS of a rule) as objects of class  itemMatrix  (i.e., sparse
-         binary matrices). Quality measures (e.g., support) are stored in a
-         data.frame accessible via method  quality() .
-         
-         See Sections Functions and See Also to see all available methods.
-         
-         Note:  Associations can store multisets with duplicated elements. Duplicated
-         elements can result from combining several sets of associations.  Use
-         unique()  to remove duplicate associations.
-    
-    interestMeasure = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  interestMeasure()  and the
-         methods to calculate various additional interest measures for existing sets
-         of  itemsets  or  rules .
-         
-        
-        
-        interestMeasure(
-            x,
-            measure,
-            transactions = rinterface.NULL,
-            reuse = True,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  a set of itemsets or rules.
-        
-           measure :  name or vector of names of the desired interest measures (see
-          the Details section for available measures). If measure is
-          missing then all available measures are calculated.
-        
-           transactions :  the transactions used to mine the associations or a set
-          of different transactions to calculate interest measures from
-          (Note: you need to set ‘reuse = FALSE’ in the later case).
-        
-           reuse :  logical indicating if information in the quality slot should
-          be reuse for calculating the measures. This speeds up the
-          process significantly since only very little (or no)
-          transaction counting is necessary if support, confidence and
-          lift are already available. Use ‘reuse = FALSE’ to force
-          counting (might be very slow but is necessary if you use a
-          different set of transactions than was used for mining).
-        
-           ... :  further arguments for the measure calculation. Many measures
-          are based on contingency table counts and zero counts can
-          produce ‘NaN’ values (division by zero). This issue can be
-          resolved by using the additional parameter ‘smoothCounts’
-          which performs additive smoothing by adds a &#34;pseudo count&#34; of
-          ‘smoothCounts’ to each cell in the contingency table. Use
-          ‘smoothCounts = 1’ or larger values for Laplace smoothing.
-          Use ‘smoothCounts = .5’ for Haldane-Anscombe correction
-          (Haldan, 1940; Anscombe, 1956) which is often used for
-          chi-squared, phi correlation and related measures.
-        
-        details
-        -------
-        
-        
-         A searchable list of definitions, equations and
-         references for all available interest measures can be found at
-         https://mhahsler.github.io/arules/docs/measures . The descriptions
-         are also linked in the list below.
-         
-         The following measures are implemented for  itemsets :
-         
-          &#34;support&#34;:  https://mhahsler.github.io/arules/docs/measures#support Support. 
-          &#34;count&#34;:  https://mhahsler.github.io/arules/docs/measures#count Support Count. 
-          &#34;allConfidence&#34;:  https://mhahsler.github.io/arules/docs/measures#allconfidence All-Confidence. 
-          &#34;crossSupportRatio&#34;:  https://mhahsler.github.io/arules/docs/measures#crosssupportratio Cross-Support Ratio. 
-          &#34;lift&#34;:  https://mhahsler.github.io/arules/docs/measures#lift Lift. 
-         
-         
-         The following measures are implemented for  rules :
-         
-          &#34;support&#34;:  https://mhahsler.github.io/arules/docs/measures#support Support. 
-          &#34;confidence&#34;:  https://mhahsler.github.io/arules/docs/measures#confidence Confidence. 
-          &#34;lift&#34;:  https://mhahsler.github.io/arules/docs/measures#lift Lift. 
-          &#34;count&#34;:  https://mhahsler.github.io/arules/docs/measures#count Support Count. 
-          &#34;addedValue&#34;:  https://mhahsler.github.io/arules/docs/measures#addedvalue Added Value. 
-          &#34;boost&#34;:  https://mhahsler.github.io/arules/docs/measures#boost Confidence Boost. 
-          &#34;casualConfidence&#34;:  https://mhahsler.github.io/arules/docs/measures#casualconfidence Casual Confidence. 
-          &#34;casualSupport&#34;:  https://mhahsler.github.io/arules/docs/measures#casualsupport Casual Support. 
-          &#34;centeredConfidence&#34;:  https://mhahsler.github.io/arules/docs/measures#centeredconfidence Centered Confidence. 
-          &#34;certainty&#34;:  https://mhahsler.github.io/arules/docs/measures#certainty Certainty Factor. 
-          &#34;chiSquared&#34;:  https://mhahsler.github.io/arules/docs/measures#chisquared Chi-Squared.  Additional parameters are:  significance = TRUE  returns the p-value of the test for independence instead of the chi-squared statistic. For p-values, substitution effects (the occurrence of one item makes the occurrence of another item less likely) can be tested using the parameter  complements = FALSE .  Note: Correction for multiple comparisons can be done using  stats::p.adjust() .
-          &#34;collectiveStrength&#34;:  https://mhahsler.github.io/arules/docs/measures#collectivestrength Collective Strength. 
-          &#34;confirmedConfidence&#34;:  https://mhahsler.github.io/arules/docs/measures#confirmedconfidence Descriptive Confirmed Confidence. 
-          &#34;conviction&#34;:  https://mhahsler.github.io/arules/docs/measures#conviction Conviction. 
-          &#34;cosine&#34;:  https://mhahsler.github.io/arules/docs/measures#cosine Cosine. 
-          &#34;counterexample&#34;:  https://mhahsler.github.io/arules/docs/measures#counterexample Example and Counter-Example Rate. 
-          &#34;coverage&#34;:  https://mhahsler.github.io/arules/docs/measures#coverage Coverage. 
-          &#34;doc&#34;:  https://mhahsler.github.io/arules/docs/measures#doc Difference of Confidence. 
-          &#34;fishersExactTest&#34;:  https://mhahsler.github.io/arules/docs/measures#fishersexacttest Fisher&#39;s Exact Test.  By default complementary effects are mined, substitutes can be found by using the parameter  complements = FALSE . Note that Fisher&#39;s exact test is equal to hyper-confidence with  significance = TRUE . Correction for multiple comparisons can be done using  stats::p.adjust() .
-          &#34;gini&#34;:  https://mhahsler.github.io/arules/docs/measures#gini Gini Index. 
-          &#34;hyperConfidence&#34;:  https://mhahsler.github.io/arules/docs/measures#hyperconfidence Hyper-Confidence.  Reports the confidence level by default and the significance level if  significance = TRUE  is used. By default complementary effects are mined, substitutes (too low co-occurrence counts) can be found by using the parameter  complements = FALSE .
-          &#34;hyperLift&#34;:  https://mhahsler.github.io/arules/docs/measures#hyperlift Hyper-Lift.  The used quantile can be changed using parameter  level  (default:  level = 0.99 ).
-          &#34;imbalance&#34;:  https://mhahsler.github.io/arules/docs/measures#imbalance Imbalance Ratio. 
-          &#34;implicationIndex&#34;:  https://mhahsler.github.io/arules/docs/measures#implicationindex Implication Index. 
-          &#34;importance&#34;:  https://mhahsler.github.io/arules/docs/measures#importance Importance. 
-          &#34;improvement&#34;:  https://mhahsler.github.io/arules/docs/measures#improvement Improvement. 
-          &#34;jaccard&#34;:  https://mhahsler.github.io/arules/docs/measures#jaccard Jaccard Coefficient. 
-          &#34;jMeasure&#34;:  https://mhahsler.github.io/arules/docs/measures#jmeasure J-Measure. 
-          &#34;kappa&#34;:  https://mhahsler.github.io/arules/docs/measures#kappa Kappa. 
-          &#34;kulczynski&#34;:  https://mhahsler.github.io/arules/docs/measures#kulczynski Kulczynski. 
-          &#34;lambda&#34;:  https://mhahsler.github.io/arules/docs/measures#lambda Lambda. 
-          &#34;laplace&#34;:  https://mhahsler.github.io/arules/docs/measures#laplace Laplace Corrected Confidence.  Parameter  k  can be used to specify the number of classes (default is 2).
-          &#34;leastContradiction&#34;:  https://mhahsler.github.io/arules/docs/measures#leastcontradiction Least Contradiction. 
-          &#34;lerman&#34;:  https://mhahsler.github.io/arules/docs/measures#lerman Lerman Similarity. 
-          &#34;leverage&#34;:  https://mhahsler.github.io/arules/docs/measures#leverage Leverage. 
-          &#34;maxconfidence&#34;:  https://mhahsler.github.io/arules/docs/measures#maxconfidence MaxConfidence. 
-          &#34;mutualInformation&#34;:  https://mhahsler.github.io/arules/docs/measures#mutualinformation Mutual Information. 
-          &#34;oddsRatio&#34;:  https://mhahsler.github.io/arules/docs/measures#oddsratio Odds Ratio. 
-          &#34;phi&#34;:  https://mhahsler.github.io/arules/docs/measures#phi Phi Correlation Coefficient. 
-          &#34;ralambondrainy&#34;:  https://mhahsler.github.io/arules/docs/measures#ralambondrainy Ralambondrainy. 
-          &#34;relativeRisk&#34;:  https://mhahsler.github.io/arules/docs/measures#relativerisk Relative Risk. 
-          &#34;rhsSupport&#34;:  https://mhahsler.github.io/arules/docs/measures#rhssupport Right-Hand-Side Support. 
-          &#34;RLD&#34;:  https://mhahsler.github.io/arules/docs/measures#rld Relative Linkage Disequilibrium. 
-          &#34;rulePowerFactor&#34;:  https://mhahsler.github.io/arules/docs/measures#rulepowerfactor Rule Power Factor. 
-          &#34;sebag&#34;:  https://mhahsler.github.io/arules/docs/measures#sebag Sebag-Schoenauer. 
-          &#34;stdLift&#34;:  https://mhahsler.github.io/arules/docs/measures#stdlift Standardized Lift. 
-          &#34;table&#34;:  https://mhahsler.github.io/arules/docs/measures#table Contingency Table.  Returns the four counts for the contingency table. The entries are labeled  n11 ,  n01 ,  n10 , and  n00  (the first subscript is for X and the second is for Y; 1 indicated presence and 0 indicates absence). If several measures are specified, then the counts have the prefix  table. 
-          &#34;varyingLiaison&#34;:  https://mhahsler.github.io/arules/docs/measures#varyingliaison Varying Rates Liaison. 
-          &#34;yuleQ&#34;:  https://mhahsler.github.io/arules/docs/measures#yuleq Yule&#39;s Q. 
-          &#34;yuleY&#34;:  https://mhahsler.github.io/arules/docs/measures#yuley Yule&#39;s Y.
-    
-    is_closed = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function and the method  is.closed()  for finding
-         closed itemsets.
-         Closed itemsets are used as a concise representation of
-         frequent itemsets. The closure of an itemset is its largest proper superset
-         which has the same support (is contained in exactly the same transactions).
-         An itemset is closed, if it is its own closure (Pasquier et al. 1999).
-         
-        
-        
-        is.closed(
-            x,
-        )
-        
-        Args:
-           x :  a set of itemsets.
-        
-        details
-        -------
-        
-        
-         Closed frequent itemsets can also be mined directly using
-         apriori()  or  eclat()  with target  &#34;closed frequent itemsets&#34; .
-    
-    is_generator = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function and the method `is.generator() for
-         finding generator itemsets. Generators are part of concise representations
-         for frequent itemsets.  A generator in a set of itemsets is an itemset that
-         has no subset with the same support (Liu et al, 2008). Note that the empty
-         set is by definition a generator, but it is typically not stored in the
-         itemsets in  arules .
-         
-        
-        
-        is.generator(
-            x,
-        )
-        
-        Args:
-           x :  a set of itemsets.
-    
-    is_maximal = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  is.maximal()  and methods for
-         finding maximal itemsets. Maximal frequent itemsets are used as a concise
-         representation of frequent itemsets. An itemset is maximal in a set if no
-         proper superset of the itemset is contained in the set (Zaki et al., 1997).
-         
-        
-        
-        is.maximal(
-            x,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  the set of itemsets, rules or an itemMatrix object.
-        
-           ... :  further arguments.
-        
-        details
-        -------
-        
-        
-         Maximally frequent itemsets can also be mined directly using
-         apriori()  or  eclat()  with target &#34;maximally frequent
-         itemsets&#34;.
-         
-         We define here maximal rules, as the rules generated by maximal itemsets.
-    
-    is_redundant = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  is.redundant()  and the method  to find
-         redundant rules.
-         
-        
-        
-        is.redundant(
-            x,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  a set of rules.
-        
-           ... :  additional arguments are passed on to ‘interestMeasure()’,
-          or, for ‘confint = TRUE’ to ‘confint()’.
-        
-           measure :  measure used to check for redundancy.
-        
-           confint :  should confidence intervals be used to the redundancy check?
-        
-           level :  confidence level for the confidence interval. Only used when
-          ‘confint = TRUE’.
-        
-           smoothCounts :  adds a &#34;pseudo count&#34; to each count in the used
-          contingency table. This implements addaptive smoothing
-          (Laplace smoothing) for counts and avoids zero counts.
-        
-        details
-        -------
-        
-        
-         Simple improvement-based redundancy:  ( confint = FALSE ) A rule
-         can be defined as redundant if a more general rules with the same or a
-         higher confidence exists. That is, a more specific rule is redundant if it
-         is only equally or even less predictive than a more general rule. A rule is
-         more general if it has the same RHS but one or more items removed from the
-         LHS. Formally, a rule  X \Rightarrow Y X -&gt; Y  is redundant if
-         
-         \exists X&#39; \subset X \quad conf(X&#39; \Rightarrow Y) \ge conf(X
-         \Rightarrow Y).  for some X&#39; subset X, conf(X&#39; -&gt; Y) &gt;= conf(X -&gt; Y). 
-         
-         This is equivalent to a negative or zero  improvement  as defined by
-         Bayardo et al. (2000).
-         
-         The idea of improvement can be extended other measures besides confidence.
-         Any other measure available for function  interestMeasure()  (e.g.,
-         lift or the odds ratio) can be specified in  measure .
-         
-         Confidence interval-based redundancy:  ( confint = TRUE ) Li et
-         al (2014) propose to use the confidence interval (CI) of the odds ratio (OR)
-         of rules to define redundancy. A more specific rule is redundant if it does
-         not provide a significantly higher OR than any more general rule.  Using
-         confidence intervals as error bounds, a more specific rule is redundant if
-         its OR CI overlaps with the CI of any more general rule (i.e., the lower
-         bound of the more specific rule&#39;s CI is lower than the upper bound of any
-         more general rule&#39;s CI). This type of redundancy detection is more powerful
-         than improvement since it takes differences in counts due to randomness in
-         the dataset into account.
-         
-         The odds ratio and the CI are based on counts which can be zero and which
-         leads to numerical problems. In addition to the method described by Li et al
-         (2014), we use additive smoothing (Laplace smoothing) to alleviate this
-         problem. The default setting adds 1 to each count (see
-         confint() ). A different pseudocount (smoothing parameter) can be
-         defined using the additional parameter  smoothCounts . Smoothing can be
-         disabled using  smoothCounts = 0 .
-         
-         Confidence interval-based redundancy checks can also be used for other
-         measures with a confidence interval like confidence (see
-         confint() ).
-    
-    is_significant = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic functions  is.significant()  and the method to
-         find significant  rules .
-         
-        
-        
-        is.significant(
-            x,
-            transactions,
-            method = fisher,
-            alpha = 0.01,
-            adjust = bonferroni,
-        )
-        
-        Args:
-           x :  a set of rules.
-        
-           transactions :  set of transactions used to mine the rules.
-        
-           method :  test to use. Options are ‘&#34;fisher&#34;’, ‘&#34;chisq&#34;’. Note that the
-          contingency table is likely to have cells with low expected
-          values and that thus Fisher&#39;s Exact Test might be more
-          appropriate than the chi-squared test.
-        
-           alpha :  required significance level.
-        
-           adjust :  method to adjust for multiple comparisons. Options are
-          ‘&#34;none&#34;’, ‘&#34;bonferroni&#34;’, ‘&#34;holm&#34;’, ‘&#34;fdr&#34;’, etc. (see
-          ‘stats::p.adjust()’)
-        
-        details
-        -------
-        
-        
-         The implementation for association rules uses Fisher&#39;s exact test with
-         correction for multiple comparisons to test the null hypothesis that the LHS
-         and the RHS of the rule are independent.  Significant rules have a p-value
-         less then the specified significance level alpha (the null hypothesis of
-         independence is rejected). See Hahsler and Hornik (2007) for details.
-    
-    itemFrequency = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  itemFrequency()  and methods to get the
-         frequency/support for all single items in an objects based on
-         itemMatrix .  For example, it is used to get the single
-         item support from an object of class  transactions 
-         without mining.
-         
-        
-        
-        itemFrequency(
-            x,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  an object of class itemMatrix or tidLists.
-        
-           ... :  further arguments are passed on.
-        
-           type :  a character string specifying if ‘&#34;relative&#34;’
-          frequency/support or ‘&#34;absolute&#34;’ frequency/support (item
-          counts) is returned. (default: ‘&#34;relative&#34;’).
-        
-           weighted :  should support be weighted by transactions weights stored as
-          column ‘&#34;weight&#34;’ in transactionInfo?
-    
-    itemInfo = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         The  itemMatrix  class is the basic building block for  transactions ,
-         and  associations .  The class contains a sparse
-         Matrix representation of a set of itemsets and the
-         corresponding item labels.
-         
-        
-        
-        itemInfo(
-            object,
-        )
-        
-        Args:
-           maxsum :  integer, how many items should be shown for the summary?
-        
-           ... :  further parameters
-        
-           cols :  columns for the long format.
-        
-           decode :  decode item IDs to item labels.
-        
-           itemSep :  item separator symbol.
-        
-           setStart :  set start symbol.
-        
-           setEnd :  set end symbol.
-        
-           value :  replacement value
-        
-        details
-        -------
-        
-        
-         Representation 
-         
-         Sets of itemsets are represented as a compressed sparse
-         binary matrix. Conceptually, columns represent items and rows are the sets/transactions.
-         In the compressed form, each itemset is a vector of column indices (called item
-         IDs) representing the items.
-         
-         Warning:  Ideally, we would store the matrix as a row-oriented sparse
-         matrix ( ngRMatrix ), but the  Matrix  package provides better support for
-         column-oriented sparse classes ( ngCMatrix ). The matrix is therefore internally stored
-         in transposed form.
-         
-         Working with several  itemMatrix  objects 
-         
-         If you work with several  itemMatrix  objects at the same time (e.g.,
-         several transaction sets, lhs and rhs of a rule, etc.), then the encoding
-         (itemLabes and order of the items in the binary matrix) in the different
-         itemMatrices is important and needs to conform. See  itemCoding 
-         to learn how to encode and recode  itemMatrix  objects.
-    
-    items = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         The  associations  class is a virtual class which is extended to
-         represent mining result (e.g., sets of  itemsets  or
-         rules ). The class defines some common methods for its subclasses.
-         
-        
-        
-        items(
-            x,
-        )
-        
-        Args:
-           value :  the replacement value.
-        
-           n :  number of elements
-        
-           by :  sort by this interest measure
-        
-           decreasing :  sort in decreasing order?
-        
-           ... :  further arguments.
-        
-        details
-        -------
-        
-        
-         The implementations of  associations  store itemsets (e.g., the LHS and
-         RHS of a rule) as objects of class  itemMatrix  (i.e., sparse
-         binary matrices). Quality measures (e.g., support) are stored in a
-         data.frame accessible via method  quality() .
-         
-         See Sections Functions and See Also to see all available methods.
-         
-         Note:  Associations can store multisets with duplicated elements. Duplicated
-         elements can result from combining several sets of associations.  Use
-         unique()  to remove duplicate associations.
-    
-    labels = wrapper(*args, **kwargs)
-    
-    lhs = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Defines the  rules  class to represent a set of association rules and methods to work
-         with  rules .
-         
-        
-        
-        lhs(
-            x,
-        )
-        
-        Args:
-           itemLabels :  a vector of all possible item labels (character) or a
-          transactions object to copy the item coding used for
-          ‘encode()’ (see itemCoding for details).
-        
-           quality :  a data.frame with quality information (one row per rule).
-        
-           ... :  further arguments
-        
-           ruleSep :  rule separation symbol
-        
-           value :  replacement value
-        
-        details
-        -------
-        
-        
-         Mined rule sets typically contain several interest measures accessible with
-         the  quality()  method. Additional measures can be calculated via
-         interestMeasure() .
-         
-         To create rules manually, the itemMatrix for the LHS and the RHS of the
-         rules need to be compatible. See  itemCoding  for details.
-    
-    parameters(x)
-        &#34;define parameters for apriori and eclat
-    
-    quality = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         The  associations  class is a virtual class which is extended to
-         represent mining result (e.g., sets of  itemsets  or
-         rules ). The class defines some common methods for its subclasses.
-         
-        
-        
-        quality(
-            x,
-        )
-        
-        Args:
-           value :  the replacement value.
-        
-           n :  number of elements
-        
-           by :  sort by this interest measure
-        
-           decreasing :  sort in decreasing order?
-        
-           ... :  further arguments.
-        
-        details
-        -------
-        
-        
-         The implementations of  associations  store itemsets (e.g., the LHS and
-         RHS of a rule) as objects of class  itemMatrix  (i.e., sparse
-         binary matrices). Quality measures (e.g., support) are stored in a
-         data.frame accessible via method  quality() .
-         
-         See Sections Functions and See Also to see all available methods.
-         
-         Note:  Associations can store multisets with duplicated elements. Duplicated
-         elements can result from combining several sets of associations.  Use
-         unique()  to remove duplicate associations.
-    
-    r2df_decor(function)
-    
-    r2l_decor(function)
-    
-    random_transactions = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Simulate random  transactions  using different methods.
-         
-        
-        
-        random.transactions(
-            nItems,
-            nTrans,
-            method = independent,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-            verbose = False,
-        )
-        
-        Args:
-           nItems :  an integer. Number of items to simulate
-        
-           nTrans :  an integer. Number of transactions to simulate
-        
-           method :  name of the simulation method used (see Details Section).
-        
-           ... :  further arguments used for the specific simulation method
-          (see details).
-        
-           verbose :  report progress?
-        
-           nPats :  number of patterns (potential maximal frequent itemsets)
-          used.
-        
-           lPats :  average length of patterns.
-        
-           corr :  correlation between consecutive patterns.
-        
-           cmean :  mean of the corruption level (normal distribution).
-        
-           cvar :  variance of the corruption level.
-        
-           iWeight :  item selection weights to build patterns.
-        
-        details
-        -------
-        
-        
-         Currently two simulation methods are implemented:
-         
-           &#34;independent&#34;  (Hahsler et al, 2006): All items
-         are treated as independent. The transaction size is determined by
-         rpois(lambda - 1) + 1 , where  lambda  can be specified (defaults to 3).
-         Note that one subtracted from lambda and added to the size to avoid
-         empty transactions. The items in the transactions are randomly chosen using
-         the numeric probability vector  iProb  of length  nItems 
-         (default: 0.01 for each item).
-           &#34;agrawal&#34;  (see Agrawal and Srikant, 1994): This
-         method creates transactions with correlated items using  random.patters() .
-         The simulation is a two-stage process. First, a set of  nPats  patterns
-         (potential maximal frequent itemsets) is generated.  The length of the
-         patterns is Poisson distributed with mean  lPats  and consecutive
-         patterns share some items controlled by the correlation parameter
-         corr .  For later use, for each pattern a pattern weight is generated
-         by drawing from an exponential distribution with a mean of 1 and a
-         corruption level is chosen from a normal distribution with mean  cmean 
-         and variance  cvar .
-         The function returns the patterns as an  itemsets  objects which can be
-         supplied to  random.transactions()  as the argument  patterns .  If
-         no argument  patterns  is supplied, the default values given above are
-         used.
-         
-         In the second step, the transactions are generated using the patterns.  The
-         length the transactions follows a Poisson distribution with mean
-         lPats . For each transaction, patterns are randomly chosen using the
-         pattern weights till the transaction length is reached. For each chosen
-         pattern, the associated corruption level is used to drop some items before
-         adding the pattern to the transaction.
-    
-    rhs = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Defines the  rules  class to represent a set of association rules and methods to work
-         with  rules .
-         
-        
-        
-        rhs(
-            x,
-        )
-        
-        Args:
-           itemLabels :  a vector of all possible item labels (character) or a
-          transactions object to copy the item coding used for
-          ‘encode()’ (see itemCoding for details).
-        
-           quality :  a data.frame with quality information (one row per rule).
-        
-           ... :  further arguments
-        
-           ruleSep :  rule separation symbol
-        
-           value :  replacement value
-        
-        details
-        -------
-        
-        
-         Mined rule sets typically contain several interest measures accessible with
-         the  quality()  method. Additional measures can be calculated via
-         interestMeasure() .
-         
-         To create rules manually, the itemMatrix for the LHS and the RHS of the
-         rules need to be compatible. See  itemCoding  for details.
-    
-    sample = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  sample()  and methods to sample from  transactions  and
-         associations .
-         
-        
-        
-        sample(
-            x,
-            size,
-            replace = False,
-            prob = rinterface.NULL,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  object to be sampled from (a set of associations or
-          transactions).
-        
-           size :  sample size.
-        
-           replace :  a logical. Sample with replacement?
-        
-           prob :  a numeric vector of probability weights.
-        
-           ... :  further arguments.
-    
-    sort = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the method  sort  to sort elements in class
-         associations  (e.g., itemsets or rules) according to the
-         value of measures stored in the association&#39;s slot  quality  (e.g.,
-         support).
-         
-        
-        
-        sort(
-            x,
-            decreasing = False,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  an object to be sorted.
-        
-           decreasing :  a logical. Should the sort be increasing or decreasing?
-          (default is decreasing)
-        
-           na.last :  na.last is not supported for associations.  NAs are always
-          put last.
-        
-           by :  a character string specifying the quality measure stored in
-          ‘x’ to be used to sort ‘x’. If a vector of character strings
-          is specified then the additional strings are used to sort ‘x’
-          in case of ties.
-        
-           order :  should a order vector (a permutation like ‘order()’) be
-          returned instead of the sorted associations?
-        
-           ... :  Further arguments are ignored.
-        
-        details
-        -------
-        
-        
-         sort  is relatively slow for large sets of associations since it has
-         to copy and rearrange a large data structure.
-         With  order = TRUE  an integer vector with the
-         order is returned instead of the reordered associations.
-         
-         If only the top  n  associations are needed then  head()  using
-         by  performs this faster than calling  sort()  and then  head() 
-         since it does it without copying and rearranging all the data.   tail() 
-         works in the same way.
-    
-    transactions(x)
-        convert python data into an arules transactions object
-    
-    unique = wrapper(*args, **kwargs)
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic function  unique()  and the methods for
-         itemMatrix   transactions , and  associations .
-         
-        
-        
-        unique(
-            x,
-            incomparables = False,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           x :  an object of class itemMatrix or associations.
-        
-           incomparables :  currently unused.
-        
-           ... :  further arguments (currently unused).
-        
-        details
-        -------
-        
-        
-         unique()  uses  duplicated()  to return an
-         object with the duplicate elements removed.
-
-DATA
-    install_pkg = &lt;rpy2.robjects.functions.SignatureTranslatedFunc...b97f9...
-    is_subset = &lt;rpy2.robjects.functions.DocumentedSTFunction ob...&gt; [RTYP...
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic functions  is.subset()  and  is.superset() , and the methods
-         for finding super or subsets in  associations  and
-         itemMatrix  objects.
-         
-        
-        
-        is.subset(
-            x,
-            y = rinterface.NULL,
-            proper = False,
-            sparse = True,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           proper :  a logical indicating if all or just proper super or subsets.
-        
-           sparse :  a logical indicating if a sparse ‘ngCMatrix’ rather than a
-          dense logical matrix should be returned. Sparse computation
-          requires a significantly smaller amount of memory and is much
-          faster for large sets.
-        
-           ... :  currently unused.
-        
-        details
-        -------
-        
-        
-         Determines for each element in  x  which elements in  y  are supersets
-         or subsets. Note that the method can be very slow and memory intensive if
-         x  and/or  y  are very dense (contain many items).
-         
-         For rules, the union of lhs and rhs is used a the set of items.
-    
-    is_superset = &lt;rpy2.robjects.functions.DocumentedSTFunction ob...&gt; [RT...
-        Wrapper around an R function.
-        
-        The docstring below is built from the R documentation.
-        
-        description
-        -----------
-        
-        
-         Provides the generic functions  is.subset()  and  is.superset() , and the methods
-         for finding super or subsets in  associations  and
-         itemMatrix  objects.
-         
-        
-        
-        is.superset(
-            x,
-            y = rinterface.NULL,
-            proper = False,
-            sparse = True,
-            ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-        )
-        
-        Args:
-           proper :  a logical indicating if all or just proper super or subsets.
-        
-           sparse :  a logical indicating if a sparse ‘ngCMatrix’ rather than a
-          dense logical matrix should be returned. Sparse computation
-          requires a significantly smaller amount of memory and is much
-          faster for large sets.
-        
-           ... :  currently unused.
-        
-        details
-        -------
-        
-        
-         Determines for each element in  x  which elements in  y  are supersets
-         or subsets. Note that the method can be very slow and memory intensive if
-         x  and/or  y  are very dense (contain many items).
-         
-         For rules, the union of lhs and rhs is used a the set of items.
-
-FILE
-    /home/hahsler/.virtualenvs/r-reticulate/lib/python3.10/site-packages/arulespy/arules.py
-
-
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/home/hahsler/.virtualenvs/r-reticulate/lib/python3.10/site-packages/rpy2/robjects/help.py:184: UserWarning: Section of the R doc duplicated: \concept
-  warnings.warn(&#39;Section of the R doc duplicated: %s&#39; % rd_tag)
 </pre>
 </div>
 </div>
@@ -19333,6 +17962,22 @@ classes using.</p>
 </div>
 </div>
 </div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">Itemsets</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -19341,7 +17986,7 @@ classes using.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">arules</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -19363,7 +18008,7 @@ classes using.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
 
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...79a4180&gt; [RTYPES.CLOSXP]
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...584c340&gt; [RTYPES.CLOSXP]
 R classes: (&#39;function&#39;,)
     Wrapper around an R function.
     
@@ -19465,7 +18110,7 @@ R classes: (&#39;function&#39;,)
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_r</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">r</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_r</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">its_r</span>
 </pre></div>
 
@@ -19488,7 +18133,7 @@ R classes: (&#39;function&#39;,)
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f9fc0150b40&gt; [RTYPES.S4SXP]
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7fc4e5924480&gt; [RTYPES.S4SXP]
 R classes: (&#39;itemsets&#39;,)</pre>
 </div>
 
@@ -19518,7 +18163,7 @@ R classes: (&#39;itemsets&#39;,)</pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_p</span> <span class="o">=</span> <span class="n">arules</span><span class="o">.</span><span class="n">Itemsets</span><span class="p">(</span><span class="n">its_r</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_p</span> <span class="o">=</span> <span class="n">Itemsets</span><span class="p">(</span><span class="n">its_r</span><span class="p">)</span>
 <span class="n">its_p</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
@@ -19566,63 +18211,294 @@ R classes: (&#39;itemsets&#39;,)</pre>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{item23,item39,item64}</td>
-      <td>0.011428</td>
-      <td>0.631184</td>
+      <td>{item3,item45,item95}</td>
+      <td>0.083077</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{item14,item64}</td>
-      <td>0.073338</td>
-      <td>0.536863</td>
+      <td>{item3,item26,item45,item69,item95}</td>
+      <td>0.016724</td>
+      <td>0.080780</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{item14,item33,item65,item66,item75,item90}</td>
-      <td>0.027022</td>
-      <td>0.535124</td>
+      <td>{item26,item45,item66}</td>
+      <td>0.111347</td>
+      <td>0.639278</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{item4,item33}</td>
-      <td>0.354958</td>
-      <td>0.720795</td>
+      <td>{item55,item76,item95}</td>
+      <td>0.124167</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>{item4,item30,item33}</td>
-      <td>0.013711</td>
-      <td>0.641465</td>
+      <td>{item76,item78,item95}</td>
+      <td>0.362323</td>
+      <td>0.301740</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>{item5,item17,item49,item66,item81}</td>
-      <td>0.055756</td>
-      <td>0.229567</td>
+      <td>{item26,item76,item78,item80,item95}</td>
+      <td>0.033535</td>
+      <td>0.823192</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>{item5,item30,item37,item77}</td>
-      <td>0.080936</td>
-      <td>0.099891</td>
+      <td>{item14,item54,item64,item78}</td>
+      <td>0.132565</td>
+      <td>0.493145</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{item30,item37,item64,item97}</td>
-      <td>0.162775</td>
-      <td>0.832028</td>
+      <td>{item4,item64,item78}</td>
+      <td>0.070367</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{item1,item18,item30,item37,item64,item96,item...</td>
-      <td>0.147970</td>
-      <td>0.684572</td>
+      <td>{item4,item7,item9,item25,item64,item76,item78...</td>
+      <td>0.037956</td>
+      <td>0.338507</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>{item5,item13,item64,item68,item96,item99}</td>
-      <td>0.072106</td>
-      <td>0.451945</td>
+      <td>{item4,item7,item9,item25,item55,item62,item80...</td>
+      <td>0.027938</td>
+      <td>0.572680</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Create-Rules-Objects">Create Rules Objects<a class="anchor-link" href="#Create-Rules-Objects">&#182;</a></h2><p>To import rules from other tools or to create rules manually, rules for <code>arules</code> can be created from lists 
+of sets of items. The item labels (i.e., the sparse representation) is
+taken from the transactions <code>trans</code>.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">Rules</span><span class="p">,</span> <span class="n">ItemMatrix</span>
+
+
+
+
+<span class="n">lhs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="p">[]</span>
+<span class="p">]</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<span class="p">]</span>
+                          
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">Rules</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LHS</th>
+      <th>RHS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{A,B}</td>
+      <td>{C}</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{A,C}</td>
+      <td>{B}</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{}</td>
+      <td>{A}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Next, we add interest measures calculated on the transactions.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">addQuality</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">interestMeasure</span><span class="p">([</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="s1">&#39;lift&#39;</span><span class="p">],</span> <span class="n">trans</span><span class="p">))</span>
+<span class="n">r</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LHS</th>
+      <th>RHS</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{A,B}</td>
+      <td>{C}</td>
+      <td>0.4</td>
+      <td>1.000000</td>
+      <td>1.250000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{A,C}</td>
+      <td>{B}</td>
+      <td>0.4</td>
+      <td>0.666667</td>
+      <td>1.333333</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{}</td>
+      <td>{A}</td>
+      <td>0.8</td>
+      <td>0.800000</td>
+      <td>1.000000</td>
     </tr>
   </tbody>
 </table>
