@@ -34,12 +34,12 @@ for
 with Phyton-style slicing and `len()`. 
 
 Most arules functions are
-interfaced with conversion from the R data structures to Python.
+interfaced as methods for the four classes with conversion from the R data structures to Python.
 Documentation is avaialible in Python via `help()`. Detailed online documentation
 for the R package is available [here](https://mhahsler.r-universe.dev/arules/doc/manual.html). 
 
 Low-level `arules` functions can also be directly used in the form 
-`arules.r.<arules R function>()`. The result will be a `rpy2` data type.
+`R.<arules R function>()`. The result will be a `rpy2` data type.
 Transactions, itemsets and rules can manually be converted to Python
 classes using the helper function `a2p()`.
 
@@ -77,8 +77,8 @@ Details can be found [here](https://pypi.org/project/rpy2/).
 
 ## Example
 
-``` python
-from arulespy import arules
+```python
+from arulespy.arules import Transactions, apriori, parameters
 import pandas as pd
 
 # define the data as a pandas dataframe
@@ -93,28 +93,25 @@ df = pd.DataFrame (
     columns=list ('ABC')) 
 
 # convert dataframe to transactions
-trans = arules.transactions(df)
+trans = transactions.from_df(df)
 
 # mine association rules
-rules = arules.apriori(trans,
-                    parameter = arules.parameters({"supp": 0.1, "conf": 0.8}), 
-                    control = arules.parameters({"verbose": False}))  
+rules = apriori(trans,
+                    parameter = parameters({"supp": 0.1, "conf": 0.8}), 
+                    control = parameters({"verbose": False}))  
 
 # display the rules as a pandas dataframe
 rules.as_df()
 ```
 
-```
-	LHS	    RHS     support	confidence	coverage	lift	count
-1	{}      {A}	    1.0     1.0	        1.0	        1.000000	5
-2	{B}     {C}	    0.6	    1.0	        0.6	        1.666667	3
-3	{C}     {B}	    0.6	    1.0	        0.6	        1.666667	3
-4	{B}     {A}	    0.6	    1.0	        0.6	        1.000000	3
-5	{C}     {A}	    0.6	    1.0	        0.6	        1.000000	3
-6	{B,C}   {A}	    0.6	    1.0	        0.6	        1.000000	3
-7	{A,B}   {C}	    0.6	    1.0	        0.6	        1.666667	3
-8	{A,C}   {B}	    0.6	    1.0	        0.6	        1.666667	3
-```
+|    | LHS   | RHS   |   support |   confidence |   coverage |   lift |   count |
+|---:|:------|:------|----------:|-------------:|-----------:|-------:|--------:|
+|  1 | {}    | {A}   |       0.8 |          0.8 |        1   |   1    |       8 |
+|  2 | {}    | {C}   |       0.8 |          0.8 |        1   |   1    |       8 |
+|  3 | {B}   | {A}   |       0.4 |          0.8 |        0.5 |   1    |       4 |
+|  4 | {B}   | {C}   |       0.5 |          1   |        0.5 |   1.25 |       5 |
+|  5 | {A,B} | {C}   |       0.4 |          1   |        0.4 |   1.25 |       4 |
+|  6 | {B,C} | {A}   |       0.4 |          0.8 |        0.5 |   1    |       4 |
 
 Complete examples:
   * [Using arules](https://mhahsler.github.io/arulespy/examples/arules.html)

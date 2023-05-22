@@ -15173,7 +15173,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15187,28 +15187,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/home/hahsler/.virtualenvs/r-reticulate/lib/python3.10/site-packages/rpy2/robjects/help.py:184: UserWarning: Section of the R doc duplicated: \concept
-  warnings.warn(&#39;Section of the R doc duplicated: %s&#39; % rd_tag)
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -15609,19 +15587,19 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   </thead>
   <tbody>
     <tr>
-      <th>1</th>
-      <td>{A,B,C}</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>{A,B,C}</td>
-      <td>6</td>
+      <th>6</th>
+      <td>{A,C}</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>3</th>
       <td>{A,B,C}</td>
       <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>{B,C}</td>
+      <td>8</td>
     </tr>
   </tbody>
 </table>
@@ -17743,9 +17721,41 @@ be specified.</p>
 
 
 
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[False, False, True, False, True, True]</pre>
+        <span>BoolVector with 6 elements.</span>
+        <table>
+        <tbody>
+          <tr>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   1
+            </td>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   1
+            </td>
+          
+            <td>
+                   1
+            </td>
+          
+          </tr>
+        </tbody>
+        </table>
+        
 </div>
 
 </div>
@@ -17794,9 +17804,41 @@ be specified.</p>
 
 
 
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[False, False, False, False, True, True]</pre>
+        <span>BoolVector with 6 elements.</span>
+        <table>
+        <tbody>
+          <tr>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   0
+            </td>
+          
+            <td>
+                   1
+            </td>
+          
+            <td>
+                   1
+            </td>
+          
+          </tr>
+        </tbody>
+        </table>
+        
 </div>
 
 </div>
@@ -17955,14 +17997,14 @@ wrapper(*args, **kwargs)
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Low-level-R-arules-interface">Low-level R arules interface<a class="anchor-link" href="#Low-level-R-arules-interface">&#182;</a></h2><p>arules functions can also be directly called using
-<code>arules.r.&lt;arules R function&gt;()</code>. The result will be a <code>rpy2</code> data type.
+<code>R.&lt;arules R function&gt;()</code>. The result will be a <code>rpy2</code> data type.
 Transactions, itemsets and rules can manually be converted to Python
 classes using.</p>
 
 </div>
 </div>
 </div>
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -17970,12 +18012,38 @@ classes using.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">Itemsets</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">Itemsets</span><span class="p">,</span> <span class="n">a2py</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[31], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> from arulespy.arules import R, Itemsets, a2py
+
+<span class="ansi-red-fg">ImportError</span>: cannot import name &#39;a2py&#39; from &#39;arulespy.arules&#39; (/home/hahsler/.virtualenvs/r-reticulate/lib/python3.10/site-packages/arulespy/arules.py)</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -18008,7 +18076,7 @@ classes using.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
 
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...584c340&gt; [RTYPES.CLOSXP]
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...e914240&gt; [RTYPES.CLOSXP]
 R classes: (&#39;function&#39;,)
     Wrapper around an R function.
     
@@ -18133,7 +18201,7 @@ R classes: (&#39;function&#39;,)
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7fc4e5924480&gt; [RTYPES.S4SXP]
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7fac5e992fc0&gt; [RTYPES.S4SXP]
 R classes: (&#39;itemsets&#39;,)</pre>
 </div>
 
@@ -18211,67 +18279,120 @@ R classes: (&#39;itemsets&#39;,)</pre>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{item3,item45,item95}</td>
-      <td>0.083077</td>
-      <td>0.000000</td>
+      <td>{item7,item69,item88}</td>
+      <td>0.034279</td>
+      <td>0.824851</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{item3,item26,item45,item69,item95}</td>
-      <td>0.016724</td>
-      <td>0.080780</td>
+      <td>{item7,item44,item64,item69}</td>
+      <td>0.111544</td>
+      <td>0.381124</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{item26,item45,item66}</td>
-      <td>0.111347</td>
-      <td>0.639278</td>
+      <td>{item7,item61,item64,item69,item91}</td>
+      <td>0.087359</td>
+      <td>0.499736</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{item55,item76,item95}</td>
-      <td>0.124167</td>
-      <td>0.000000</td>
+      <td>{item14,item27,item61}</td>
+      <td>0.061234</td>
+      <td>0.389394</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>{item76,item78,item95}</td>
-      <td>0.362323</td>
-      <td>0.301740</td>
+      <td>{item23,item27,item61,item85}</td>
+      <td>0.052248</td>
+      <td>0.370380</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>{item26,item76,item78,item80,item95}</td>
-      <td>0.033535</td>
-      <td>0.823192</td>
+      <td>{item23,item27,item32,item60,item62,item91,ite...</td>
+      <td>0.094193</td>
+      <td>0.444020</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>{item14,item54,item64,item78}</td>
-      <td>0.132565</td>
-      <td>0.493145</td>
+      <td>{item8,item60}</td>
+      <td>0.065692</td>
+      <td>0.562331</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{item4,item64,item78}</td>
-      <td>0.070367</td>
-      <td>1.000000</td>
+      <td>{item8,item10,item12,item30,item37,item60}</td>
+      <td>0.342727</td>
+      <td>0.169058</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{item4,item7,item9,item25,item64,item76,item78...</td>
-      <td>0.037956</td>
-      <td>0.338507</td>
+      <td>{item8,item30,item47,item75}</td>
+      <td>0.103304</td>
+      <td>0.470661</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>{item4,item7,item9,item25,item55,item62,item80...</td>
-      <td>0.027938</td>
-      <td>0.572680</td>
+      <td>{item1,item43,item60,item71,item73,item75,item...</td>
+      <td>0.047421</td>
+      <td>1.000000</td>
     </tr>
   </tbody>
 </table>
 </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans_random</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">random_transactions</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">trans</span> <span class="o">=</span> <span class="n">Transactions</span><span class="p">(</span><span class="n">trans_random</span><span class="p">)</span>
+<span class="n">trans</span>
+
+<span class="n">a2py</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">crossTable</span><span class="p">(</span><span class="n">trans</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>array([[306,  80,  84,  86, 101, 104, 102, 101,  94,  95],
+       [ 80, 315,  97,  84,  91,  82,  97,  88,  97,  98],
+       [ 84,  97, 310,  87,  94,  81, 104,  96,  87,  93],
+       [ 86,  84,  87, 274,  83,  73,  90,  91,  86,  78],
+       [101,  91,  94,  83, 299,  88,  74,  89,  92,  94],
+       [104,  82,  81,  73,  88, 297,  94,  86,  88, 104],
+       [102,  97, 104,  90,  74,  94, 316,  90,  95, 102],
+       [101,  88,  96,  91,  89,  86,  90, 306,  87,  86],
+       [ 94,  97,  87,  86,  92,  88,  95,  87, 301,  98],
+       [ 95,  98,  93,  78,  94, 104, 102,  86,  98, 315]], dtype=int32)</pre>
 </div>
 
 </div>
@@ -18302,20 +18423,21 @@ taken from the transactions <code>trans</code>.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">Rules</span><span class="p">,</span> <span class="n">ItemMatrix</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">rpy2.robjects</span> <span class="k">as</span> <span class="nn">ro</span>
+<span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">Rules</span><span class="p">,</span> <span class="n">ItemMatrix</span>
 
-
+<span class="n">trans</span> <span class="o">=</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://mhahsler.github.io/arulespy/examples/Zoo.csv&quot;</span><span class="p">))</span>
 
 
 <span class="n">lhs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">],</span>
-    <span class="p">[]</span>
+    <span class="p">[</span><span class="s1">&#39;hair&#39;</span><span class="p">,</span> <span class="s1">&#39;milk&#39;</span><span class="p">,</span> <span class="s1">&#39;predator&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;hair&#39;</span><span class="p">,</span> <span class="s1">&#39;tail&#39;</span><span class="p">,</span> <span class="s1">&#39;predator&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;fins&#39;</span><span class="p">]</span>
 <span class="p">]</span>
 <span class="n">rhs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+    <span class="p">[</span><span class="s1">&#39;type=mammal&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;type=mammal&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;type=fish&#39;</span><span class="p">]</span>
 <span class="p">]</span>
                           
 <span class="n">lhs</span> <span class="o">=</span> <span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
@@ -18368,18 +18490,18 @@ taken from the transactions <code>trans</code>.</p>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{A,B}</td>
-      <td>{C}</td>
+      <td>{hair,milk,predator}</td>
+      <td>{type=mammal}</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{A,C}</td>
-      <td>{B}</td>
+      <td>{hair,predator,tail}</td>
+      <td>{type=mammal}</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{}</td>
-      <td>{A}</td>
+      <td>{fins}</td>
+      <td>{type=fish}</td>
     </tr>
   </tbody>
 </table>
@@ -18390,22 +18512,6 @@ taken from the transactions <code>trans</code>.</p>
 
 </div>
 
-</div>
-
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div>
@@ -18429,7 +18535,8 @@ taken from the transactions <code>trans</code>.</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">addQuality</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">interestMeasure</span><span class="p">([</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="s1">&#39;lift&#39;</span><span class="p">],</span> <span class="n">trans</span><span class="p">))</span>
-<span class="n">r</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -18478,27 +18585,27 @@ taken from the transactions <code>trans</code>.</p>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{A,B}</td>
-      <td>{C}</td>
-      <td>0.4</td>
-      <td>1.000000</td>
-      <td>1.250000</td>
+      <td>{hair,milk,predator}</td>
+      <td>{type=mammal}</td>
+      <td>0.20</td>
+      <td>1.00</td>
+      <td>2.46</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>{A,C}</td>
-      <td>{B}</td>
-      <td>0.4</td>
-      <td>0.666667</td>
-      <td>1.333333</td>
+      <td>{hair,predator,tail}</td>
+      <td>{type=mammal}</td>
+      <td>0.16</td>
+      <td>1.00</td>
+      <td>2.46</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>{}</td>
-      <td>{A}</td>
-      <td>0.8</td>
-      <td>0.800000</td>
-      <td>1.000000</td>
+      <td>{fins}</td>
+      <td>{type=fish}</td>
+      <td>0.13</td>
+      <td>0.76</td>
+      <td>5.94</td>
     </tr>
   </tbody>
 </table>

@@ -1,4 +1,4 @@
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 import rpy2.robjects as ro
 import rpy2.robjects.packages as packages
@@ -21,6 +21,6 @@ if not ro.packages.isinstalled('arulesViz'):
                            repos='https://cloud.r-project.org/',
                            lib = ro.r('Sys.getenv("R_LIBS_USER")[1]'))
 
-
-from .arules import parameters, set, Associations, ItemMatrix, Rules, Itemsets, Transactions, R, a2p, encode, concat, apriori, eclat, discretizeDF, random_transactions                 
+              
+from .arules import parameters, Associations, ItemMatrix, Rules, Itemsets, Transactions, R, a2py, concat, apriori, eclat, discretizeDF
 from .arulesViz import plot, inspectDT

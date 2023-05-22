@@ -5,3 +5,4 @@ include LICENSE
 recursive-include tests test*.py
 
 prune examples
+prune paper
