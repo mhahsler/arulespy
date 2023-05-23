@@ -29,7 +29,9 @@ highlight: pygments
 ---
 
 
-
+```{r, echo=FALSE}
+options(tinytex.clean=FALSE)
+```
 
 # Statement of Need
 
@@ -67,8 +69,7 @@ and available infrastructure.
 `arulespy` is based on the Python package `rpy2`, which requires an R installation.
 `arulespy` is easily installed from the Python Package Index using pip:
 
-
-```sh
+```{sh, eval = FALSE}
 pip install arulespy
 ```
 
@@ -104,14 +105,9 @@ sparse matrices representing sets of itemsets as with the class `itemMatrix`.
 <!-- Figure \@ref(fig:classes) shows the implemented classes divided by module. -->
 Figure 1 shows the implemented classes divided by module.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{classes} 
-
-}
-
-\caption{arulespy modules with Python classes.}\label{fig:classes}
-\end{figure}
+```{r classes, echo=FALSE, out.width="90%", fig.cap="arulespy modules with Python classes.", fig.align = 'center'}
+knitr::include_graphics("classes.png")
+```
 
 All classes provide Pythonic slicing using `[]`, ranges, `len()`,
 methods for `sort()`, `unique()`, `sample()`, and methods to convert the 
@@ -138,8 +134,7 @@ To prepare transaction data, arulespy provides `discretizeDF()` to prepare a pan
 dataframe with numeric attributes by discretization and `Transactions.from_df()`
 to convert pandas dataframes into sparse transaction representation.
 
-
-```python
+```{python, eval = FALSE}
 from arulespy.arules import Transactions, apriori, parameters
 ```
 
@@ -247,8 +242,7 @@ print(rules)
 ```
 
 We can inspect the top three confidence rules.
-
-```python
+```{python, eval = FALSE}
 rules.sort(by = 'confidence')[0:3].as_df()
 ```
 
@@ -321,14 +315,9 @@ ggsave = packages.importr('ggplot2').ggsave
 ggsave(gg, file = "scatterplot.png")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{scatter} 
-
-}
-
-\caption{Scatter plot of the rules}\label{fig:scatter}
-\end{figure}
+```{r scatter, echo=FALSE, out.width="60%", fig.cap="Scatter plot of the rules", fig.align = 'center'}
+knitr::include_graphics("scatter.png")
+```
 
 Another visualization that is appropriate for large rule sets is a
 matrix visualization grouped by LHS itemsets
@@ -343,14 +332,9 @@ gg = plot(rules, method="grouped")
 image_png(gg)
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{grouped} 
-
-}
-
-\caption{Grouped matrix visualization}\label{fig:grouped}
-\end{figure}
+```{r grouped, echo=FALSE, out.width="80%", fig.cap="Grouped matrix visualization", fig.align = 'center'}
+knitr::include_graphics("grouped.png")
+```
 
 Another popular visualization of a set of rules is as a graph.
 This visualization method is only useful for relatively small rules sets.
@@ -377,14 +361,9 @@ rules_top_100 = arules.sort(type_rules, by = 'confidence')[0:100]
 gg = arulesViz.plot(rules_top_100, method="graph")
 ```
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{graph} 
-
-}
-
-\caption{Plot rules as a graph}\label{fig:graph}
-\end{figure}
+```{r graph, echo=FALSE, out.width="70%", fig.cap="Plot rules as a graph", fig.align = 'center'}
+knitr::include_graphics("graph.png")
+```
 
 ## Interactive Visualizations
 
