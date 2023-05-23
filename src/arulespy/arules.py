@@ -2,6 +2,7 @@
 
 import pandas as pd
 import numpy as np
+from scipy.sparse import csc_array
 
 import rpy2.robjects as ro
 import rpy2.robjects.packages as packages
@@ -47,6 +48,16 @@ class ItemMatrix(ro.RS4):
         """
 
         return np.array(ro.r('function(x) as(x, "matrix")')(self))
+
+    def as_csc_array(self):
+        """convert to scipy sparse matrix
+        """
+        m = self.slots['data']
+        indices = np.array(m.slots['i'])
+        indptr  = np.array(m.slots['p'])
+        data = np.repeat(1, len(indices))
+
+        return   csc_array((data, indices, indptr), tuple(m.slots['Dim']))
 
     def as_dict(self):
         """convert to dictionary
