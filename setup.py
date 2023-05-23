@@ -42,6 +42,8 @@ setuptools.setup(
     ],
     python_requires='>=3.7',
     install_requires=['pandas',
+                      'numpy',
+                      'scipy',
                       'rpy2'                   
                       ],
     # install_requires=['Pillow'],
