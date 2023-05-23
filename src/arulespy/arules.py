@@ -245,7 +245,7 @@ class Itemsets(Associations):
     def new(items, quality = None):
 
         if quality == None:
-             return a2py(methods.new("itemsets", items))
+            return a2py(methods.new("itemsets", items))
         else:
             return a2py(methods.new("itemsets", items, quality))
     
