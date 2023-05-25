@@ -120,6 +120,8 @@ Complete examples:
 
 ## References
 
+- Michael Hahsler. [ARULESPY: Exploring association rules and frequent itemsets in 
+  Python.](http://dx.doi.org/10.48550/arXiv.2305.15263) arXiv:2305.15263 [cs.DB], May 2023. 
 - Michael Hahsler, Sudheer Chelluboina, Kurt Hornik, and Christian
   Buchta. [The arules R-package ecosystem: Analyzing interesting
   patterns from large transaction
