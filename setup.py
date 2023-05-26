@@ -40,7 +40,7 @@ setuptools.setup(
 
         'Topic :: Scientific/Engineering :: Information Analysis'
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.8',
     install_requires=['pandas',
                       'numpy',
                       'scipy',

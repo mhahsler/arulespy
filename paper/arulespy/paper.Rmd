@@ -30,7 +30,7 @@ highlight: pygments
 
 
 ```{r, echo=FALSE}
-options(tinytex.clean=FALSE)
+#options(tinytex.clean=FALSE)
 ```
 
 # Statement of Need
