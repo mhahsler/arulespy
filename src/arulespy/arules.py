@@ -2,7 +2,7 @@
 
 import pandas as pd
 import numpy as np
-from scipy.sparse import csc_array
+from scipy.sparse import csc_matrix
 
 import rpy2.robjects as ro
 import rpy2.robjects.packages as packages
@@ -19,6 +19,63 @@ R = packages.importr('arules')
 methods = packages.importr('methods')
 base = packages.importr('base')
 
+### Sparse matrix helper
+def ngC_to_csc_matrix(m):
+    """convert a ngCMatrix to a scipy csc_matrix"""
+    indices = np.array(m.slots['i'])
+    indptr  = np.array(m.slots['p'])
+    ## all ones for ngCMatrix
+    data = np.array([1]*len(indices))
+    return csc_matrix((data, indices, indptr), tuple(m.slots['Dim']))    
+
+### Conversion functions
+def a2py(x):
+    """convert arules S4 object to python object
+    
+    Conversion rules:
+    - rules: Python Rules object
+    - itemsets: Python Itemsets object
+    - transactions: Python Transactions object
+    - itemMatrix: Python ItemMatrix object
+    - data.frame: pandas dataframe
+    - character: string list
+    - integer: int list
+    - numeric: float list
+    - matrix: numpy matrix
+    """
+
+    if x.rclass[0] == "rules":
+        return Rules(x)
+    elif x.rclass[0] == "itemsets":
+        return Itemsets(x)
+    elif x.rclass[0] == "transactions":
+        return Transactions(x)
+    elif x.rclass[0] == "itemMatrix":
+        return ItemMatrix(x)
+    elif x.rclass[0] == "data.frame":
+        colnames = list(x.colnames)
+        with (ro.default_converter + ro.pandas2ri.converter).context():
+            pd_df = ro.conversion.get_conversion().rpy2py(x)
+
+        if type(pd_df) != pd.core.frame.DataFrame:
+            pd_df = pd.DataFrame(pd_df, columns= colnames)   ### set column name!
+        return pd_df   
+    elif x.rclass[0] in ["character", "integer", "numeric", "logical"]:
+        return list(x)
+    elif x.rclass[0] == "matrix":
+        return np.array(x)
+
+    else:
+        return x
+
+def a2py_decor(function):
+    """decorator to convert arules S4 objects to python objects"""
+
+    def wrapper(*args, **kwargs):
+        return a2py(function(*args, **kwargs))
+    return wrapper
+
+
 ### arules interface code 
 
 def parameters(x):
@@ -32,6 +89,7 @@ class ItemMatrix(ro.RS4):
     
     @staticmethod
     def from_list(items, itemLabels):
+        """convert list of lists into an arules itemMatrix object"""
         items = [ro.StrVector(x) for x in items]
         return ItemMatrix(R.encode(items, itemLabels))
 
@@ -44,24 +102,17 @@ class ItemMatrix(ro.RS4):
         return pd_df
     
     def as_matrix(self):
-        """convert to numpy matrix
-        """
+        """convert to numpy matrix"""
 
         return np.array(ro.r('function(x) as(x, "matrix")')(self))
 
-    def as_csc_array(self):
-        """convert to scipy sparse matrix
-        """
-        m = self.slots['data']
-        indices = np.array(m.slots['i'])
-        indptr  = np.array(m.slots['p'])
-        data = np.repeat(1, len(indices))
+    def as_csc_matrix(self):
+        """convert to scipy sparse matrix"""
 
-        return   csc_array((data, indices, indptr), tuple(m.slots['Dim']))
+        return ngC_to_csc_matrix(self.slots['data'])
 
     def as_dict(self):
-        """convert to dictionary
-        """
+        """convert to dictionary"""
 
         l = ro.r('function(x) as(x, "list")')(self)
         l.names = [*range(0, len(l))]
@@ -70,6 +121,12 @@ class ItemMatrix(ro.RS4):
     def as_list(self):
         """convert to list"""
         return list(self.as_dict().values())  
+    
+    def as_int_list(self):
+        """convert to int list"""
+
+        l = ro.r('function(x) LIST(x, decode = FALSE)')(self)
+        return [list(x) for x in l]
 
     def __getitem__(self, key):
         # prepare subset selection
@@ -134,7 +191,7 @@ class ItemMatrix(ro.RS4):
         Args:
             type: "absolute" or "relative"
         """
-        return np.array(a2py(ro.r('function(x, type) itemFrequency(x, type)')(self, type)))
+        return a2py(ro.r('function(x, type) itemFrequency(x, type)')(self, type))
     
     def itemInfo(self):
         """return item info as dataframe"""
@@ -144,26 +201,41 @@ class ItemMatrix(ro.RS4):
         """returns a list of labels for the sets"""
         return a2py(ro.r('function(x) labels(x)')(self))
     
-    def is_subset(self, x, sparse = False):
+    def itemLabels(self):
+        """returns a list of labels for the sets"""
+        return a2py(ro.r('function(x) itemLabels(x)')(self))
+    
+    def is_subset(self, x, proper = False, sparse = True):
         """check if x is a subset of self
         
         Args:
             x: the other set
-            sparse: return sparse matrix representation?
+            proper: proper subset?
+            sparse: return sparse matrix representation as a scipy.sparse.csc_matrix?
         """    
-        sparse = ro.vectors.BoolVector([sparse])
-        return ro.r('function(x, y, sparse) is.subset(x, y, sparse)')(self, x, sparse)
+        m = ro.r('function(x, y, proper, sparse) is.subset(x, y, proper, sparse)')(self, x, 
+                        ro.vectors.BoolVector([proper]), ro.vectors.BoolVector([sparse]))
+
+        if sparse:
+            return ngC_to_csc_matrix(m)
+        else:
+            return np.array(m)  
     
-    def is_superset(self, x, sparse = False):
+    def is_superset(self, x, proper = False, sparse = True):
         """check if x is a superset of self
         
         Args:
             x: the other set
-            sparse: return sparse matrix representation?
+            proper: proper superset?
+            sparse: return sparse matrix representation as a scipy.sparse.csc_matrix?
         """
-        sparse = ro.vectors.BoolVector([sparse])
-        return ro.r('function(x, y, sparse) is.superset(x, y, sparse)')(self, x, sparse)
-            
+        m = ro.r('function(x, y, proper, sparse) is.superset(x, y, proper, sparse)')(self, x, 
+                        ro.vectors.BoolVector([proper]), ro.vectors.BoolVector([sparse]))
+
+        if sparse:
+            return ngC_to_csc_matrix(m)
+        else:
+            return np.array(m)     
 
 class Associations(ItemMatrix):
     """Superclass for arules associations (rules/itemsets)"""
@@ -272,55 +344,6 @@ class Transactions(ItemMatrix):
             return Transactions(R.transactions(x_r))
         else:
             return Transactions(R.transactions(x_r, itemLabels))
-
-### Conversion functions
-
-def a2py(x):
-    """convert arules S4 object to python object
-    
-    Conversion rules:
-    - rules: Python Rules object
-    - itemsets: Python Itemsets object
-    - transactions: Python Transactions object
-    - itemMatrix: Python ItemMatrix object
-    - data.frame: pandas dataframe
-    - character: string list
-    - integer: int list
-    - numeric: float list
-    - matrix: numpy matrix
-    """
-
-    if x.rclass[0] == "rules":
-        return Rules(x)
-    elif x.rclass[0] == "itemsets":
-        return Itemsets(x)
-    elif x.rclass[0] == "transactions":
-        return Transactions(x)
-    elif x.rclass[0] == "itemMatrix":
-        return ItemMatrix(x)
-    elif x.rclass[0] == "data.frame":
-        colnames = list(x.colnames)
-        with (ro.default_converter + ro.pandas2ri.converter).context():
-            pd_df = ro.conversion.get_conversion().rpy2py(x)
-
-        if type(pd_df) != pd.core.frame.DataFrame:
-            pd_df = pd.DataFrame(pd_df, columns= colnames)   ### set column name!
-        return pd_df   
-    elif x.rclass[0] == "character" or x.rclass[0] == "integer" or x.rclass[0] == "numeric":
-        return list(x)
-    elif x.rclass[0] == "matrix":
-        return np.array(x)
-
-    else:
-        return x
-
-
-def a2py_decor(function):
-    """decorator to convert arules S4 objects to python objects"""
-
-    def wrapper(*args, **kwargs):
-        return a2py(function(*args, **kwargs))
-    return wrapper
 
 
 # package functions

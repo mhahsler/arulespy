@@ -15168,7 +15168,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h2><p>Import the <code>arules</code> module from package <code>arulespy</code>.</p>
+<h2 id="Basic-Usage">Basic Usage<a class="anchor-link" href="#Basic-Usage">&#182;</a></h2><p>Import the <code>arules</code> module from package <code>arulespy</code>.</p>
 
 </div>
 </div>
@@ -15483,6 +15483,45 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 </div>
 
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">itemLabels</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -15490,7 +15529,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We can calculate item frequencies, sample transactions or remove duplicate transactions. All available functions can be found at the end of this document.</p>
+<h3 id="Working-with-transactions">Working with transactions<a class="anchor-link" href="#Working-with-transactions">&#182;</a></h3><p>We can calculate item frequencies, sample transactions or remove duplicate transactions. All available functions can be found at the end of this document.</p>
 
 </div>
 </div>
@@ -15525,7 +15564,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>array([0.8, 0.5, 0.8])</pre>
+<pre>[0.8, 0.5, 0.8]</pre>
 </div>
 
 </div>
@@ -15592,14 +15631,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
       <td>5</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>{A,B,C}</td>
-      <td>2</td>
-    </tr>
-    <tr>
       <th>9</th>
       <td>{B,C}</td>
       <td>8</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{A,B,C}</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -15707,8 +15746,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Create new data that uses the same encoding as an existing transaction set. Note that the following dataframe
-has the columns (items) in reverse order and <code>transactions()</code> copies the itemcoding from <code>trans</code>.</p>
+<p>Create new data that uses the same encoding as an existing transaction set from a pandas dataframe. Note that the following dataframe
+has the columns (items) in reverse order which is fixed when the itemencoding in <code>trans</code> is used.</p>
 
 </div>
 </div>
@@ -15721,83 +15760,14 @@ has the columns (items) in reverse order and <code>transactions()</code> copies 
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="p">(</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans2</span> <span class="o">=</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="p">(</span>
     <span class="p">[</span>
-        <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+        <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+        <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>
     <span class="p">],</span>
-    <span class="n">columns</span><span class="o">=</span><span class="nb">list</span> <span class="p">(</span><span class="s1">&#39;CBA&#39;</span><span class="p">))</span> 
+    <span class="n">columns</span><span class="o">=</span><span class="nb">list</span> <span class="p">(</span><span class="s1">&#39;CBA&#39;</span><span class="p">)),</span> <span class="n">trans</span><span class="p">)</span>
 
-<span class="n">df2</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C</th>
-      <th>B</th>
-      <th>A</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">trans</span><span class="p">)</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<span class="n">trans2</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15846,6 +15816,97 @@ has the columns (items) in reverse order and <code>transactions()</code> copies 
       <td>{B,C}</td>
       <td>0</td>
     </tr>
+    <tr>
+      <th>2</th>
+      <td>{A}</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Create the same transaction, but from a list of lists. Note that the order of the items is fixed to match <code>trans</code>.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans3</span> <span class="o">=</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_list</span><span class="p">([[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">],</span>
+                        <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]],</span> 
+                        <span class="n">trans</span><span class="p">)</span>
+
+<span class="n">trans3</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>items</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{A,B}</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{C}</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -15877,7 +15938,7 @@ has the columns (items) in reverse order and <code>transactions()</code> copies 
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">concat</span><span class="p">([</span><span class="n">trans</span><span class="p">,</span> <span class="n">Transactions</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">trans</span><span class="p">)])</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">concat</span><span class="p">([</span><span class="n">trans</span><span class="p">,</span> <span class="n">trans2</span><span class="p">])</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15976,6 +16037,11 @@ has the columns (items) in reverse order and <code>transactions()</code> copies 
       <td>{B,C}</td>
       <td>0</td>
     </tr>
+    <tr>
+      <th>12</th>
+      <td>{A}</td>
+      <td>1</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -15987,6 +16053,213 @@ has the columns (items) in reverse order and <code>transactions()</code> copies 
 
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Converting-transactions-into-Python-data-strucutres">Converting transactions into Python data strucutres<a class="anchor-link" href="#Converting-transactions-into-Python-data-strucutres">&#182;</a></h3><p>Transactions can be converted into several Python formats inclusing 0-1 matrices, lists of item labels, lists of item idices or a sparse matrix.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>array([[1, 1, 1],
+       [1, 0, 0],
+       [1, 1, 1],
+       [1, 0, 0],
+       [1, 1, 1],
+       [1, 0, 1],
+       [1, 1, 1],
+       [0, 0, 1],
+       [0, 1, 1],
+       [1, 0, 1]], dtype=int32)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;],
+ [&#39;A&#39;],
+ [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;],
+ [&#39;A&#39;],
+ [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;],
+ [&#39;A&#39;, &#39;C&#39;],
+ [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;],
+ [&#39;C&#39;],
+ [&#39;B&#39;, &#39;C&#39;],
+ [&#39;A&#39;, &#39;C&#39;]]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">as_int_list</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[[1, 2, 3],
+ [1],
+ [1, 2, 3],
+ [1],
+ [1, 2, 3],
+ [1, 3],
+ [1, 2, 3],
+ [3],
+ [2, 3],
+ [1, 3]]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span><span class="o">.</span><span class="n">as_csc_matrix</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;3x10 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 21 stored elements in Compressed Sparse Column format&gt;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Mixing-nominal-and-numeric-variables">Mixing nominal and numeric variables<a class="anchor-link" href="#Mixing-nominal-and-numeric-variables">&#182;</a></h3>
+</div>
+</div>
+</div>
 </div>
 <div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -16737,7 +17010,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Accessing-Rules">Accessing Rules<a class="anchor-link" href="#Accessing-Rules">&#182;</a></h2><p>rules can be converted into various Python data structures.</p>
+<h3 id="Accessing-Rules">Accessing Rules<a class="anchor-link" href="#Accessing-Rules">&#182;</a></h3><p>rules can be converted into various Python data structures.</p>
 
 </div>
 </div>
@@ -17083,6 +17356,18 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 
 </div>
 
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The LHS and RHS of rules are of type <code>itemMatrix</code> in the same way are <code>transactions</code> are. Therefore, all conversions (to lists, sparce matrices, etc.) are also availabe.</p>
+
+</div>
+</div>
+</div>
 </div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -17218,7 +17503,7 @@ are specified as <code>dict</code> inside the <code>arules.parameter()</code> fu
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Work-With-Interest-Measures">Work With Interest Measures<a class="anchor-link" href="#Work-With-Interest-Measures">&#182;</a></h2><p>Interest measures are stored as the quality attribute in rules and itemsets.</p>
+<h3 id="Work-With-Interest-Measures">Work With Interest Measures<a class="anchor-link" href="#Work-With-Interest-Measures">&#182;</a></h3><p>Interest measures are stored as the quality attribute in rules and itemsets.</p>
 
 </div>
 </div>
@@ -17587,7 +17872,7 @@ be specified.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Filter-Redundant-Rules">Filter Redundant Rules<a class="anchor-link" href="#Filter-Redundant-Rules">&#182;</a></h2>
+<h3 id="Filter-Redundant-Rules">Filter Redundant Rules<a class="anchor-link" href="#Filter-Redundant-Rules">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -17721,41 +18006,9 @@ be specified.</p>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
 
-        <span>BoolVector with 6 elements.</span>
-        <table>
-        <tbody>
-          <tr>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   1
-            </td>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   1
-            </td>
-          
-            <td>
-                   1
-            </td>
-          
-          </tr>
-        </tbody>
-        </table>
-        
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[False, False, True, False, True, True]</pre>
 </div>
 
 </div>
@@ -17804,595 +18057,9 @@ be specified.</p>
 
 
 
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-
-        <span>BoolVector with 6 elements.</span>
-        <table>
-        <tbody>
-          <tr>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   0
-            </td>
-          
-            <td>
-                   1
-            </td>
-          
-            <td>
-                   1
-            </td>
-          
-          </tr>
-        </tbody>
-        </table>
-        
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Help-for-Functions-Available-via-arulespy">Help for Functions Available via arulespy<a class="anchor-link" href="#Help-for-Functions-Available-via-arulespy">&#182;</a></h2>
-</div>
-</div>
-</div>
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">apriori</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Help on function wrapper in module arulespy.arules:
-
-wrapper(*args, **kwargs)
-    Wrapper around an R function.
-    
-    The docstring below is built from the R documentation.
-    
-    description
-    -----------
-    
-    
-     Mine frequent itemsets, association rules or association hyperedges using
-     the Apriori algorithm.
-     
-    
-    
-    apriori(
-        data,
-        parameter = rinterface.NULL,
-        appearance = rinterface.NULL,
-        control = rinterface.NULL,
-        ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
-    )
-    
-    Args:
-       data :  object of class transactions. Any data structure which can be
-      coerced into transactions (e.g., a binary matrix, a
-      data.frame or a tibble) can also be specified and will be
-      internally coerced to transactions.
-    
-       parameter :  object of class APparameter or named list.  The default
-      behavior is to mine rules with minimum support of 0.1,
-      minimum confidence of 0.8, maximum of 10 items (maxlen), and
-      a maximal time for subset checking of 5 seconds (‘maxtime’).
-    
-       appearance :  object of class APappearance or named list.  With this
-      argument item appearance can be restricted (implements rule
-      templates).  By default all items can appear unrestricted.
-    
-       control :  object of class APcontrol or named list. Controls the
-      algorithmic performance of the mining algorithm (item
-      sorting, report progress (verbose), etc.)
-    
-       ... :  Additional arguments are for convenience added to the
-      parameter list.
-    
-    details
-    -------
-    
-    
-     The Apriori algorithm (Agrawal et al, 1993) employs level-wise search for
-     frequent itemsets. The used C implementation of Apriori by Christian
-     Borgelt (2003) includes some improvements (e.g., a prefix tree and item sorting).
-     
-     Warning about automatic conversion of matrices or data.frames to transactions. 
-     It is preferred to create transactions manually before
-     calling  apriori()  to have control over item coding. This is especially
-     important when you are working with multiple datasets or several subsets of
-     the same dataset. To read about item coding, see  itemCoding .
-     
-     If a data.frame is specified as  x , then the data is automatically
-     converted into transactions by discretizing numeric data using
-     discretizeDF()  and then coercion to transactions. The discretization
-     may fail if the data is not well behaved.
-     
-     Apriori only creates rules with one item in the RHS (Consequent). 
-     The default value in  APparameter  for  minlen  is 1.
-     This meains that rules with only one item (i.e., an empty antecedent/LHS)
-     like
-     
-     \{\} =&gt; \{beer\} {} =&gt; {beer} 
-     
-     will be created.  These rules mean that no matter what other items are
-     involved, the item in the RHS will appear with the probability given by the
-     rule&#39;s confidence (which equals the support).  If you want to avoid these
-     rules then use the argument  parameter = list(minlen = 2) .
-     
-     Notes on run time and memory usage: 
-     If the minimum  support  is
-     chosen too low for the dataset, then the algorithm will try to create an
-     extremely large set of itemsets/rules. This will result in very long run
-     time and eventually the process will run out of memory.  To prevent this,
-     the default maximal length of itemsets/rules is restricted to 10 items (via
-     the parameter element  maxlen = 10 ) and the time for checking subsets is
-     limited to 5 seconds (via  maxtime = 5 ). The output will show if you hit
-     these limits in the &#34;checking subsets&#34; line of the output. The time limit is
-     only checked when the subset size increases, so it may run significantly
-     longer than what you specify in maxtime.  Setting  maxtime = 0  disables
-     the time limit.
-     
-     Interrupting execution with  Control-C/Esc  is not recommended.  Memory
-     cleanup will be prevented resulting in a memory leak. Also, interrupts are
-     only checked when the subset size increases, so it may take some time till
-     the execution actually stops.
-
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Low-level-R-arules-interface">Low-level R arules interface<a class="anchor-link" href="#Low-level-R-arules-interface">&#182;</a></h2><p>arules functions can also be directly called using
-<code>R.&lt;arules R function&gt;()</code>. The result will be a <code>rpy2</code> data type.
-Transactions, itemsets and rules can manually be converted to Python
-classes using.</p>
-
-</div>
-</div>
-</div>
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">Itemsets</span><span class="p">,</span> <span class="n">a2py</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[31], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> from arulespy.arules import R, Itemsets, a2py
-
-<span class="ansi-red-fg">ImportError</span>: cannot import name &#39;a2py&#39; from &#39;arulespy.arules&#39; (/home/hahsler/.virtualenvs/r-reticulate/lib/python3.10/site-packages/arulespy/arules.py)</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
-
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...e914240&gt; [RTYPES.CLOSXP]
-R classes: (&#39;function&#39;,)
-    Wrapper around an R function.
-    
-    The docstring below is built from the R documentation.
-    
-    description
-    -----------
-    
-    
-     Simulate random  transactions  using different methods.
-     
-    
-    
-    random.patterns(
-        nItems,
-        nPats = 2000.0,
-        method = rinterface.NULL,
-        lPats = 4.0,
-        corr = 0.5,
-        cmean = 0.5,
-        cvar = 0.1,
-        iWeight = rinterface.NULL,
-        verbose = False,
-    )
-    
-    Args:
-       nItems :  an integer. Number of items to simulate
-    
-       nTrans :  an integer. Number of transactions to simulate
-    
-       method :  name of the simulation method used (see Details Section).
-    
-       ... :  further arguments used for the specific simulation method
-      (see details).
-    
-       verbose :  report progress?
-    
-       nPats :  number of patterns (potential maximal frequent itemsets)
-      used.
-    
-       lPats :  average length of patterns.
-    
-       corr :  correlation between consecutive patterns.
-    
-       cmean :  mean of the corruption level (normal distribution).
-    
-       cvar :  variance of the corruption level.
-    
-       iWeight :  item selection weights to build patterns.
-    
-    details
-    -------
-    
-    
-     Currently two simulation methods are implemented:
-     
-       &#34;independent&#34;  (Hahsler et al, 2006): All items
-     are treated as independent. The transaction size is determined by
-     rpois(lambda - 1) + 1 , where  lambda  can be specified (defaults to 3).
-     Note that one subtracted from lambda and added to the size to avoid
-     empty transactions. The items in the transactions are randomly chosen using
-     the numeric probability vector  iProb  of length  nItems 
-     (default: 0.01 for each item).
-       &#34;agrawal&#34;  (see Agrawal and Srikant, 1994): This
-     method creates transactions with correlated items using  random.patters() .
-     The simulation is a two-stage process. First, a set of  nPats  patterns
-     (potential maximal frequent itemsets) is generated.  The length of the
-     patterns is Poisson distributed with mean  lPats  and consecutive
-     patterns share some items controlled by the correlation parameter
-     corr .  For later use, for each pattern a pattern weight is generated
-     by drawing from an exponential distribution with a mean of 1 and a
-     corruption level is chosen from a normal distribution with mean  cmean 
-     and variance  cvar .
-     The function returns the patterns as an  itemsets  objects which can be
-     supplied to  random.transactions()  as the argument  patterns .  If
-     no argument  patterns  is supplied, the default values given above are
-     used.
-     
-     In the second step, the transactions are generated using the patterns.  The
-     length the transactions follows a Poisson distribution with mean
-     lPats . For each transaction, patterns are randomly chosen using the
-     pattern weights till the transaction length is reached. For each chosen
-     pattern, the associated corruption level is used to drop some items before
-     adding the pattern to the transaction.
-
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_r</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">its_r</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
-
-
-
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7fac5e992fc0&gt; [RTYPES.S4SXP]
-R classes: (&#39;itemsets&#39;,)</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Since we directly called a R function, we need to manually wrap the R object as a Python object before we use it in Python.</p>
-
-</div>
-</div>
-</div>
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_p</span> <span class="o">=</span> <span class="n">Itemsets</span><span class="p">(</span><span class="n">its_r</span><span class="p">)</span>
-<span class="n">its_p</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>items</th>
-      <th>pWeights</th>
-      <th>pCorrupts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>{item7,item69,item88}</td>
-      <td>0.034279</td>
-      <td>0.824851</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>{item7,item44,item64,item69}</td>
-      <td>0.111544</td>
-      <td>0.381124</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>{item7,item61,item64,item69,item91}</td>
-      <td>0.087359</td>
-      <td>0.499736</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>{item14,item27,item61}</td>
-      <td>0.061234</td>
-      <td>0.389394</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>{item23,item27,item61,item85}</td>
-      <td>0.052248</td>
-      <td>0.370380</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>{item23,item27,item32,item60,item62,item91,ite...</td>
-      <td>0.094193</td>
-      <td>0.444020</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>{item8,item60}</td>
-      <td>0.065692</td>
-      <td>0.562331</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>{item8,item10,item12,item30,item37,item60}</td>
-      <td>0.342727</td>
-      <td>0.169058</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>{item8,item30,item47,item75}</td>
-      <td>0.103304</td>
-      <td>0.470661</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>{item1,item43,item60,item71,item73,item75,item...</td>
-      <td>0.047421</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans_random</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">random_transactions</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-
-<span class="n">trans</span> <span class="o">=</span> <span class="n">Transactions</span><span class="p">(</span><span class="n">trans_random</span><span class="p">)</span>
-<span class="n">trans</span>
-
-<span class="n">a2py</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">crossTable</span><span class="p">(</span><span class="n">trans</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>array([[306,  80,  84,  86, 101, 104, 102, 101,  94,  95],
-       [ 80, 315,  97,  84,  91,  82,  97,  88,  97,  98],
-       [ 84,  97, 310,  87,  94,  81, 104,  96,  87,  93],
-       [ 86,  84,  87, 274,  83,  73,  90,  91,  86,  78],
-       [101,  91,  94,  83, 299,  88,  74,  89,  92,  94],
-       [104,  82,  81,  73,  88, 297,  94,  86,  88, 104],
-       [102,  97, 104,  90,  74,  94, 316,  90,  95, 102],
-       [101,  88,  96,  91,  89,  86,  90, 306,  87,  86],
-       [ 94,  97,  87,  86,  92,  88,  95,  87, 301,  98],
-       [ 95,  98,  93,  78,  94, 104, 102,  86,  98, 315]], dtype=int32)</pre>
+<pre>[False, False, False, False, True, True]</pre>
 </div>
 
 </div>
@@ -18411,6 +18078,7 @@ R classes: (&#39;itemsets&#39;,)</pre>
 <h2 id="Create-Rules-Objects">Create Rules Objects<a class="anchor-link" href="#Create-Rules-Objects">&#182;</a></h2><p>To import rules from other tools or to create rules manually, rules for <code>arules</code> can be created from lists 
 of sets of items. The item labels (i.e., the sparse representation) is
 taken from the transactions <code>trans</code>.</p>
+<p>The LHS and RHS of rules are of tpye <code>itemMatrix</code> and can be created by conversion form pandas data fames of lists of lists.</p>
 
 </div>
 </div>
@@ -18439,11 +18107,10 @@ taken from the transactions <code>trans</code>.</p>
     <span class="p">[</span><span class="s1">&#39;type=mammal&#39;</span><span class="p">],</span>
     <span class="p">[</span><span class="s1">&#39;type=fish&#39;</span><span class="p">]</span>
 <span class="p">]</span>
-                          
-<span class="n">lhs</span> <span class="o">=</span> <span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
-<span class="n">rhs</span> <span class="o">=</span> <span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">)</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">Rules</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Rules</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">),</span> 
+              <span class="n">ItemMatrix</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">itemLabels</span> <span class="o">=</span> <span class="n">trans</span><span class="p">))</span>
+
 <span class="n">r</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
 </pre></div>
 
@@ -18610,6 +18277,777 @@ taken from the transactions <code>trans</code>.</p>
   </tbody>
 </table>
 </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Find-Super-and-Subsets">Find Super and Subsets<a class="anchor-link" href="#Find-Super-and-Subsets">&#182;</a></h2><p>Subset calcualtion returns a large binary matrix. Since this matrix is often sparse, it is represented as a sparse matrix. For example,
+subset can be used to check which transactions contain the items in the LHS of the rules. The result is a number of transactions
+by number of rules sparse matrix.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">superset</span> <span class="o">=</span> <span class="n">trans</span><span class="o">.</span><span class="n">is_superset</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">lhs</span><span class="p">(),</span> <span class="n">sparse</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">superset</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;101x3 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 53 stored elements in Compressed Sparse Column format&gt;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">superset</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>array([[1, 0, 0]])</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Show first row as a dense vector. Transaction 1 is a superset of the LHS of the first rule. That is, transaction 1 contains the items in the LHS of Rule 1.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transaction 1:&quot;</span><span class="p">,</span> <span class="n">trans</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">as_list</span><span class="p">(),</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rule 1:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">as_df</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Transaction 1: [[&#39;hair&#39;, &#39;milk&#39;, &#39;predator&#39;, &#39;toothed&#39;, &#39;backbone&#39;, &#39;breathes&#39;, &#39;legs=[4,8]&#39;, &#39;catsize&#39;, &#39;type=mammal&#39;]] 
+
+Rule 1:
+                     LHS            RHS  support  confidence      lift
+1  {hair,milk,predator}  {type=mammal}  0.19802         1.0  2.463415
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This information can be used to find the LHS support count for the three rules by summing along the columns.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">superset</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>matrix([[20, 16, 17]])</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Online-Help-for-Functions-Available-via-arulespy">Online Help for Functions Available via arulespy<a class="anchor-link" href="#Online-Help-for-Functions-Available-via-arulespy">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">apriori</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Help on function wrapper in module arulespy.arules:
+
+wrapper(*args, **kwargs)
+    Wrapper around an R function.
+    
+    The docstring below is built from the R documentation.
+    
+    description
+    -----------
+    
+    
+     Mine frequent itemsets, association rules or association hyperedges using
+     the Apriori algorithm.
+     
+    
+    
+    apriori(
+        data,
+        parameter = rinterface.NULL,
+        appearance = rinterface.NULL,
+        control = rinterface.NULL,
+        ___ = (was &#34;...&#34;). R ellipsis (any number of parameters),
+    )
+    
+    Args:
+       data :  object of class transactions. Any data structure which can be
+      coerced into transactions (e.g., a binary matrix, a
+      data.frame or a tibble) can also be specified and will be
+      internally coerced to transactions.
+    
+       parameter :  object of class APparameter or named list.  The default
+      behavior is to mine rules with minimum support of 0.1,
+      minimum confidence of 0.8, maximum of 10 items (maxlen), and
+      a maximal time for subset checking of 5 seconds (‘maxtime’).
+    
+       appearance :  object of class APappearance or named list.  With this
+      argument item appearance can be restricted (implements rule
+      templates).  By default all items can appear unrestricted.
+    
+       control :  object of class APcontrol or named list. Controls the
+      algorithmic performance of the mining algorithm (item
+      sorting, report progress (verbose), etc.)
+    
+       ... :  Additional arguments are for convenience added to the
+      parameter list.
+    
+    details
+    -------
+    
+    
+     The Apriori algorithm (Agrawal et al, 1993) employs level-wise search for
+     frequent itemsets. The used C implementation of Apriori by Christian
+     Borgelt (2003) includes some improvements (e.g., a prefix tree and item sorting).
+     
+     Warning about automatic conversion of matrices or data.frames to transactions. 
+     It is preferred to create transactions manually before
+     calling  apriori()  to have control over item coding. This is especially
+     important when you are working with multiple datasets or several subsets of
+     the same dataset. To read about item coding, see  itemCoding .
+     
+     If a data.frame is specified as  x , then the data is automatically
+     converted into transactions by discretizing numeric data using
+     discretizeDF()  and then coercion to transactions. The discretization
+     may fail if the data is not well behaved.
+     
+     Apriori only creates rules with one item in the RHS (Consequent). 
+     The default value in  APparameter  for  minlen  is 1.
+     This meains that rules with only one item (i.e., an empty antecedent/LHS)
+     like
+     
+     \{\} =&gt; \{beer\} {} =&gt; {beer} 
+     
+     will be created.  These rules mean that no matter what other items are
+     involved, the item in the RHS will appear with the probability given by the
+     rule&#39;s confidence (which equals the support).  If you want to avoid these
+     rules then use the argument  parameter = list(minlen = 2) .
+     
+     Notes on run time and memory usage: 
+     If the minimum  support  is
+     chosen too low for the dataset, then the algorithm will try to create an
+     extremely large set of itemsets/rules. This will result in very long run
+     time and eventually the process will run out of memory.  To prevent this,
+     the default maximal length of itemsets/rules is restricted to 10 items (via
+     the parameter element  maxlen = 10 ) and the time for checking subsets is
+     limited to 5 seconds (via  maxtime = 5 ). The output will show if you hit
+     these limits in the &#34;checking subsets&#34; line of the output. The time limit is
+     only checked when the subset size increases, so it may run significantly
+     longer than what you specify in maxtime.  Setting  maxtime = 0  disables
+     the time limit.
+     
+     Interrupting execution with  Control-C/Esc  is not recommended.  Memory
+     cleanup will be prevented resulting in a memory leak. Also, interrupts are
+     only checked when the subset size increases, so it may take some time till
+     the execution actually stops.
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Low-level-R-arules-interface">Low-level R arules interface<a class="anchor-link" href="#Low-level-R-arules-interface">&#182;</a></h2><p>arules functions can also be directly called using
+<code>R.&lt;arules R function&gt;()</code>. The result will be a <code>rpy2</code> data type.
+Transactions, itemsets and rules can manually be converted to Python
+classes using.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">Itemsets</span><span class="p">,</span> <span class="n">a2py</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
+
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...9289340&gt; [RTYPES.CLOSXP]
+R classes: (&#39;function&#39;,)
+    Wrapper around an R function.
+    
+    The docstring below is built from the R documentation.
+    
+    description
+    -----------
+    
+    
+     Simulate random  transactions  using different methods.
+     
+    
+    
+    random.patterns(
+        nItems,
+        nPats = 2000.0,
+        method = rinterface.NULL,
+        lPats = 4.0,
+        corr = 0.5,
+        cmean = 0.5,
+        cvar = 0.1,
+        iWeight = rinterface.NULL,
+        verbose = False,
+    )
+    
+    Args:
+       nItems :  an integer. Number of items to simulate
+    
+       nTrans :  an integer. Number of transactions to simulate
+    
+       method :  name of the simulation method used (see Details Section).
+    
+       ... :  further arguments used for the specific simulation method
+      (see details).
+    
+       verbose :  report progress?
+    
+       nPats :  number of patterns (potential maximal frequent itemsets)
+      used.
+    
+       lPats :  average length of patterns.
+    
+       corr :  correlation between consecutive patterns.
+    
+       cmean :  mean of the corruption level (normal distribution).
+    
+       cvar :  variance of the corruption level.
+    
+       iWeight :  item selection weights to build patterns.
+    
+    details
+    -------
+    
+    
+     Currently two simulation methods are implemented:
+     
+       &#34;independent&#34;  (Hahsler et al, 2006): All items
+     are treated as independent. The transaction size is determined by
+     rpois(lambda - 1) + 1 , where  lambda  can be specified (defaults to 3).
+     Note that one subtracted from lambda and added to the size to avoid
+     empty transactions. The items in the transactions are randomly chosen using
+     the numeric probability vector  iProb  of length  nItems 
+     (default: 0.01 for each item).
+       &#34;agrawal&#34;  (see Agrawal and Srikant, 1994): This
+     method creates transactions with correlated items using  random.patters() .
+     The simulation is a two-stage process. First, a set of  nPats  patterns
+     (potential maximal frequent itemsets) is generated.  The length of the
+     patterns is Poisson distributed with mean  lPats  and consecutive
+     patterns share some items controlled by the correlation parameter
+     corr .  For later use, for each pattern a pattern weight is generated
+     by drawing from an exponential distribution with a mean of 1 and a
+     corruption level is chosen from a normal distribution with mean  cmean 
+     and variance  cvar .
+     The function returns the patterns as an  itemsets  objects which can be
+     supplied to  random.transactions()  as the argument  patterns .  If
+     no argument  patterns  is supplied, the default values given above are
+     used.
+     
+     In the second step, the transactions are generated using the patterns.  The
+     length the transactions follows a Poisson distribution with mean
+     lPats . For each transaction, patterns are randomly chosen using the
+     pattern weights till the transaction length is reached. For each chosen
+     pattern, the associated corruption level is used to drop some items before
+     adding the pattern to the transaction.
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_r</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">its_r</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f9617f26c00&gt; [RTYPES.S4SXP]
+R classes: (&#39;itemsets&#39;,)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Since we directly called a R function, we need to manually wrap the R object as a Python object before we use it in Python.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_p</span> <span class="o">=</span> <span class="n">Itemsets</span><span class="p">(</span><span class="n">its_r</span><span class="p">)</span>
+<span class="n">its_p</span><span class="o">.</span><span class="n">as_df</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>items</th>
+      <th>pWeights</th>
+      <th>pCorrupts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>{item4,item7,item37,item49,item71}</td>
+      <td>0.223341</td>
+      <td>0.623221</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>{item4,item24,item49}</td>
+      <td>0.015358</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>{item4,item49}</td>
+      <td>0.233218</td>
+      <td>0.889576</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>{item4,item6,item46,item49,item98}</td>
+      <td>0.107006</td>
+      <td>0.282404</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>{item53,item64,item99}</td>
+      <td>0.017517</td>
+      <td>0.124565</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>{item1,item20,item24,item46,item64,item99}</td>
+      <td>0.038330</td>
+      <td>0.806562</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>{item24,item70,item99}</td>
+      <td>0.062205</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>{item13,item36,item61,item70,item99}</td>
+      <td>0.066769</td>
+      <td>0.515416</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>{item13,item23,item59,item64,item65,item95}</td>
+      <td>0.144693</td>
+      <td>0.318704</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>{item13,item24,item64}</td>
+      <td>0.091563</td>
+      <td>0.392923</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">a2py</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">random_transactions</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>transactions in sparse format with
+ 1000 transactions (rows) and
+ 10 items (columns)
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div  class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Access directly the sparse representation.</p>
+
+</div>
+</div>
+</div>
+</div><div  class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csc_matrix</span>
+
+<span class="n">trans</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="o">.</span><span class="n">as_csc_matrix</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;10x1000 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 2979 stored elements in Compressed Sparse Column format&gt;</pre>
 </div>
 
 </div>

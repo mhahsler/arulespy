@@ -1,4 +1,4 @@
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 import rpy2.robjects as ro
 import rpy2.robjects.packages as packages
