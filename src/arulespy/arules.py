@@ -41,7 +41,8 @@ def a2py(x):
     - character: string list
     - integer: int list
     - numeric: float list
-    - matrix: numpy matrix
+    - logical: bool list
+    - matrix: numpy array
     """
 
     if x.rclass[0] == "rules":
@@ -70,17 +71,14 @@ def a2py(x):
 
 def a2py_decor(function):
     """decorator to convert arules S4 objects to python objects"""
-
     def wrapper(*args, **kwargs):
         return a2py(function(*args, **kwargs))
     return wrapper
 
 
 ### arules interface code 
-
 def parameters(x):
     """define parameters for apriori and eclat"""
-
     return ro.ListVector(x)
 
 
@@ -103,17 +101,14 @@ class ItemMatrix(ro.RS4):
     
     def as_matrix(self):
         """convert to numpy matrix"""
-
         return np.array(ro.r('function(x) as(x, "matrix")')(self))
 
     def as_csc_matrix(self):
         """convert to scipy sparse matrix"""
-
         return ngC_to_csc_matrix(self.slots['data'])
 
     def as_dict(self):
         """convert to dictionary"""
-
         l = ro.r('function(x) as(x, "list")')(self)
         l.names = [*range(0, len(l))]
         return dict(zip(l.names, map(list,list(l))))
@@ -124,7 +119,6 @@ class ItemMatrix(ro.RS4):
     
     def as_int_list(self):
         """convert to int list"""
-
         l = ro.r('function(x) LIST(x, decode = FALSE)')(self)
         return [list(x) for x in l]
 
@@ -155,7 +149,6 @@ class ItemMatrix(ro.RS4):
     
     def __len__(self):
         """return number of elements in the set"""
-
         return ro.r('function(x) length(x)')(self)[0]
     
     def sort(self, by = "lift", decreasing = True):
@@ -349,7 +342,6 @@ class Transactions(ItemMatrix):
 # package functions
 discretizeDF = a2py_decor(R.discretizeDF)
 discretizeDF.__doc__ = R.discretizeDF.__doc__   
-
 
 apriori = a2py_decor(R.apriori)
 apriori.__doc__ = R.apriori.__doc__

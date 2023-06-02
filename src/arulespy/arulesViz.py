@@ -15,5 +15,3 @@ plot = base.plot
 ### FIXME: Not quite sure why I cannot set __doc__ here
 inspectDT = arulesViz.inspectDT
 #inspectDT.__doc__ = r.inspectDT.__doc__
-
-
