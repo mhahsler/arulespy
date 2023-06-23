@@ -271,6 +271,60 @@ non_redundant_rules.as_df()
 | 11676 | {predator,toothed,  breathes,tail}       | {catsize}        |      0.15 |         0.71 |       0.21 |   1.64 |      15 |
 | 11691 | {eggs,toothed,  breathes,tail}           | {predator}       |      0.04 |         1    |       0.04 |   1.8  |       4 |
 
+## Sparse Representation and Manually Creating Rules
+
+Transactions and association rules are internally represented as sparse matrices. These matrices canbe used
+ in Python as `scipy` sparse matrices. The following code creates a sparse matrix from the transactions.
+
+```python
+from scipy.sparse import csc_array
+
+trans.items().as_csc_array()
+```
+
+```
+## <10x1000 sparse array of type '<class 'numpy.int64'>'
+##  	with 2959 stored elements in Compressed Sparse Column format>
+```
+
+The user can also manually define the contents
+of objects in arules. For example, we create a set of three rules. This 
+translates item labels in Python lists into the sparse representation used internally.
+
+```python
+lhs = [
+    ['hair', 'milk', 'predator'],
+    ['hair', 'tail', 'predator'],
+    ['fins']
+]
+
+rhs = [
+    ['type=mammal'],
+    ['type=mammal'],
+    ['type=fish']
+]
+                          
+r = Rules.new(ItemMatrix.from_list(lhs, itemLabels = trans),
+              ItemMatrix.from_list(rhs, itemLabels = trans))
+```
+
+We also add quality measures to the rules calcualted from the transactions using The 
+`interestMeasure()` function.
+
+```python
+r.addQuality(r.interestMeasure(['support', 'confidence', 'lift'], trans))
+
+r.as_df()
+```
+
+|    | LHS                  | RHS           |   support |   confidence |   lift |
+|---:|:---------------------|:--------------|----------:|-------------:|-------:|
+|  1 | {hair,milk,predator} | {type=mammal} |      0.2  |         1    |   2.46 |
+|  2 | {hair,predator,tail} | {type=mammal} |      0.16 |         1    |   2.46 |
+|  3 | {fins}               | {type=fish}   |      0.13 |         0.76 |   5.94 |
+
+
+
 ## Visualization
 
 The set of rules is still relatively large, but visualization can help analyzing the
@@ -383,20 +437,25 @@ IFrame("datatable.html", "100%", 800)
 
 # Low-level Interface
 
-The `arules` module of `arulepy` exports the rpy2 interface to
-the `arules` library using the symbol `R`. This provides a complete 
+Most functions in arules are accessible using the Python classes and their methods.
+Using the low-level interface will only needed occasionally or when the user wants to
+implement new functionality that performs computation on the underlying data.
+`arulepy` exports the rpy2 interface to
+the arules library as the symbol `R_arules` and arulesVis as `R_arulesViz` . This provides a complete 
 low-level interface to all arules functions (see arules reference manual at https://mhahsler.r-universe.dev/arules#reference). 
 Note that the low-level interface expects all parameters to be R/rpy2 data type 
 and also returns them. Automatic conversion is not provided, but the helper function 
-`a2py()` can be used as a convenient way to convert R data types into Python data types.
+`arules2py()` can be used as a convenient way to convert R data types into Python data types.
 
-In the following, we create a set of 1000 random transactions and convert the 
-R/rpy2 transactions object to a Python object.
+In the following, we use the low-level interface 
+`R_arules.random_transactions()` to
+create a set of 1000 random transactions. Note that the low-level interface always 
+returns R/rpy2 data types, which can be converted to Python object using `arules2py()`.
 
 ```python
-from arulespy.arules import R, r2py
+from arulespy.arules import arules, arules2py
 
-trans = a2py(R.random_transactions(10, 1000))
+trans = arules2py(R_arules.random_transactions(10, 1000))
 print(trans)
 ```
 
@@ -405,57 +464,6 @@ print(trans)
 ##  1000 transactions (rows) and
 ##  10 items (columns)
 ```
-
-The low-level interface also lets the user directly access the sparse representation.
-It is automatically transformed into a `scipy` sparse array.
-
-```python
-from scipy.sparse import csc_array
-
-trans.items().as_csc_array()
-```
-
-```
-## <10x1000 sparse array of type '<class 'numpy.int64'>'
-##  	with 2959 stored elements in Compressed Sparse Column format>
-```
-
-Finally, the low-level interface also lets the user manually define the contents
-of objects in arules. For example, we create a set of three rules. This is a 
-low-level operation, since it translates item labels in Python lists into 
-the sparse representation used internally.
-
-```python
-lhs = [
-    ['hair', 'milk', 'predator'],
-    ['hair', 'tail', 'predator'],
-    ['fins']
-]
-
-rhs = [
-    ['type=mammal'],
-    ['type=mammal'],
-    ['type=fish']
-]
-                          
-r = Rules.new(ItemMatrix.from_list(lhs, itemLabels = trans),
-              ItemMatrix.from_list(rhs, itemLabels = trans))
-
-r.addQuality(r.interestMeasure(['support', 'confidence', 'lift'], trans))
-
-r.as_df()
-```
-
-|    | LHS                  | RHS           |   support |   confidence |   lift |
-|---:|:---------------------|:--------------|----------:|-------------:|-------:|
-|  1 | {hair,milk,predator} | {type=mammal} |      0.2  |         1    |   2.46 |
-|  2 | {hair,predator,tail} | {type=mammal} |      0.16 |         1    |   2.46 |
-|  3 | {fins}               | {type=fish}   |      0.13 |         0.76 |   5.94 |
-
-Most functions in arules are accessible using the Python classes and their methods.
-Using the low-level interface will only needed occasionally or when the user wants to
-implement new functionality that performs computation on the underlying data.
-
 
 # Conclusion
 

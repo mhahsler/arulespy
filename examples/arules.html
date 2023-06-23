@@ -15631,14 +15631,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
       <td>5</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>{B,C}</td>
-      <td>8</td>
+      <th>5</th>
+      <td>{A,B,C}</td>
+      <td>4</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>{A,B,C}</td>
-      <td>2</td>
+      <th>4</th>
+      <td>{A}</td>
+      <td>3</td>
     </tr>
   </tbody>
 </table>
@@ -18635,7 +18635,7 @@ wrapper(*args, **kwargs)
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Low-level-R-arules-interface">Low-level R arules interface<a class="anchor-link" href="#Low-level-R-arules-interface">&#182;</a></h2><p>arules functions can also be directly called using
-<code>R.&lt;arules R function&gt;()</code>. The result will be a <code>rpy2</code> data type.
+<code>R_arules.&lt;arules R function&gt;()</code> and <code>R_arulesViz.&lt;arules R function&gt;()</code>. The result will be a <code>rpy2</code> data type.
 Transactions, itemsets and rules can manually be converted to Python
 classes using.</p>
 
@@ -18650,7 +18650,7 @@ classes using.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R</span><span class="p">,</span> <span class="n">Itemsets</span><span class="p">,</span> <span class="n">a2py</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">arulespy.arules</span> <span class="kn">import</span> <span class="n">R_arules</span><span class="p">,</span> <span class="n">Itemsets</span><span class="p">,</span> <span class="n">arules2py</span>
 </pre></div>
 
      </div>
@@ -18666,7 +18666,7 @@ classes using.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">R_arules</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -18688,7 +18688,7 @@ classes using.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
 
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...9289340&gt; [RTYPES.CLOSXP]
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...b338c80&gt; [RTYPES.CLOSXP]
 R classes: (&#39;function&#39;,)
     Wrapper around an R function.
     
@@ -18790,7 +18790,7 @@ R classes: (&#39;function&#39;,)
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_r</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">its_r</span> <span class="o">=</span> <span class="n">R_arules</span><span class="o">.</span><span class="n">random_patterns</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">its_r</span>
 </pre></div>
 
@@ -18813,7 +18813,7 @@ R classes: (&#39;function&#39;,)
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f9617f26c00&gt; [RTYPES.S4SXP]
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f9b3557e3c0&gt; [RTYPES.S4SXP]
 R classes: (&#39;itemsets&#39;,)</pre>
 </div>
 
@@ -18891,63 +18891,63 @@ R classes: (&#39;itemsets&#39;,)</pre>
   <tbody>
     <tr>
       <th>1</th>
-      <td>{item4,item7,item37,item49,item71}</td>
-      <td>0.223341</td>
-      <td>0.623221</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>{item4,item24,item49}</td>
-      <td>0.015358</td>
+      <td>{item19,item24,item46,item96}</td>
+      <td>0.026273</td>
       <td>1.000000</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>{item14,item32,item38}</td>
+      <td>0.010351</td>
+      <td>0.144293</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>{item4,item49}</td>
-      <td>0.233218</td>
-      <td>0.889576</td>
+      <td>{item12,item14,item32,item38,item79}</td>
+      <td>0.271445</td>
+      <td>0.599655</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>{item4,item6,item46,item49,item98}</td>
-      <td>0.107006</td>
-      <td>0.282404</td>
+      <td>{item28,item38}</td>
+      <td>0.015747</td>
+      <td>1.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>{item53,item64,item99}</td>
-      <td>0.017517</td>
-      <td>0.124565</td>
+      <td>{item38,item70}</td>
+      <td>0.050517</td>
+      <td>0.656328</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>{item1,item20,item24,item46,item64,item99}</td>
-      <td>0.038330</td>
-      <td>0.806562</td>
+      <td>{item38,item68,item70,item81,item97}</td>
+      <td>0.213705</td>
+      <td>0.187046</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>{item24,item70,item99}</td>
-      <td>0.062205</td>
-      <td>0.000000</td>
+      <td>{item38,item96}</td>
+      <td>0.051185</td>
+      <td>0.503915</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>{item13,item36,item61,item70,item99}</td>
-      <td>0.066769</td>
-      <td>0.515416</td>
+      <td>{item33,item37,item38,item42,item61,item81,ite...</td>
+      <td>0.119099</td>
+      <td>0.499398</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>{item13,item23,item59,item64,item65,item95}</td>
-      <td>0.144693</td>
-      <td>0.318704</td>
+      <td>{item68,item81}</td>
+      <td>0.099394</td>
+      <td>0.872439</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>{item13,item24,item64}</td>
-      <td>0.091563</td>
-      <td>0.392923</td>
+      <td>{item7,item16,item44,item68,item81,item82,item96}</td>
+      <td>0.142283</td>
+      <td>0.445775</td>
     </tr>
   </tbody>
 </table>
@@ -18968,7 +18968,7 @@ R classes: (&#39;itemsets&#39;,)</pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">a2py</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">random_transactions</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">trans</span> <span class="o">=</span> <span class="n">arules2py</span><span class="p">(</span><span class="n">R_arules</span><span class="o">.</span><span class="n">random_transactions</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span>
 </pre></div>
@@ -19047,7 +19047,7 @@ R classes: (&#39;itemsets&#39;,)</pre>
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>&lt;10x1000 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 2979 stored elements in Compressed Sparse Column format&gt;</pre>
+	with 3038 stored elements in Compressed Sparse Column format&gt;</pre>
 </div>
 
 </div>
