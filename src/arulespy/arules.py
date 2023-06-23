@@ -350,5 +350,7 @@ eclat = arules2py_decor(R_arules.eclat)
 eclat.__doc__ = R_arules.eclat.__doc__
 
 def concat(list):
+    """Combining Association and Transaction Objects"""
+    
     conc = methods.selectMethod("c", tuple(list[0].rclass)[0])
     return arules2py(conc(*list))
