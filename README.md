@@ -43,6 +43,11 @@ Low-level `arules` functions can also be directly used in the form
 Transactions, itemsets and rules can manually be converted to Python
 classes using the helper function `a2p()`.
 
+To cite the Python module ‘arulespy’ in publications use:
+
+> Michael Hahsler. ARULESPY: Exploring association rules and frequent itemsets in Python. arXiv:2305.15263 [cs.DB], May 2023. DOI: [10.48550/arXiv.2305.15263](https://doi.org/10.48550/arXiv.2305.15263)
+
+
 ## Installation
 
 `arulespy` is based on the python package `rpy2` which requires an R installation. Here are the installation steps:
@@ -122,6 +127,7 @@ Complete examples:
 
 - Michael Hahsler. [ARULESPY: Exploring association rules and frequent itemsets in 
   Python.](http://dx.doi.org/10.48550/arXiv.2305.15263) arXiv:2305.15263 [cs.DB], May 2023. 
+  DOI: 10.48550/arXiv.2305.15263
 - Michael Hahsler, Sudheer Chelluboina, Kurt Hornik, and Christian
   Buchta. [The arules R-package ecosystem: Analyzing interesting
   patterns from large transaction
@@ -130,7 +136,7 @@ Complete examples:
 - Michael Hahsler, Bettina Grün and Kurt Hornik. [arules - A
   Computational Environment for Mining Association Rules and Frequent
   Item Sets.](https://dx.doi.org/10.18637/jss.v014.i15) *Journal of
-  Statistical Software,* 14(15), 2005.
+  Statistical Software,* 14(15), 2005. DOI: 10.18637/jss.v014.i15
 - Hahsler, Michael. [A Probabilistic Comparison of Commonly Used
   Interest Measures for Association
   Rules](https://mhahsler.github.io/arules/docs/measures), 2015, URL:
