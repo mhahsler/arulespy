@@ -41,10 +41,10 @@ setuptools.setup(
         'Topic :: Scientific/Engineering :: Information Analysis'
     ],
     python_requires='>=3.8',
-    install_requires=['pandas',
-                      'numpy',
-                      'scipy',
-                      'rpy2'                   
+    install_requires=['pandas>1.5.3',
+                      'numpy>=1.14.2',
+                      'scipy>=1.10.1',
+                      'rpy2>=3.5.11'                   
                       ],
     # install_requires=['Pillow'],
     extras_require={
