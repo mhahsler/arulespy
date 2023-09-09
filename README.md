@@ -50,9 +50,11 @@ To cite the Python module ‘arulespy’ in publications use:
 
 ## Installation
 
+**Note:** `rpy2` currently does not support Windows and the installation is tricky (see [here](https://rpy2.github.io/doc/v3.5.x/html/overview.html#installation)).  
+
 `arulespy` is based on the python package `rpy2` which requires an R installation. Here are the installation steps:
 
-1. Install the latest version of R from https://www.r-project.org/
+1. Install the latest version of R (>4.0) from https://www.r-project.org/
 
 2. Install required libraries/set path depending on your OS:
    - libcurl is needed by R package [curl](https://cran.r-project.org/web/packages/curl/index.html).
