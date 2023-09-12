@@ -50,18 +50,15 @@ To cite the Python module ‘arulespy’ in publications use:
 
 ## Installation
 
-**Note:** `rpy2` currently does not support Windows and the installation is tricky (see [here](https://rpy2.github.io/doc/v3.5.x/html/overview.html#installation)).  
-
 `arulespy` is based on the python package `rpy2` which requires an R installation. Here are the installation steps:
 
 1. Install the latest version of R (>4.0) from https://www.r-project.org/
 
-2. Install required libraries/set path depending on your OS:
+2. Install required libraries on your OS:
    - libcurl is needed by R package [curl](https://cran.r-project.org/web/packages/curl/index.html).
       - Ubuntu: `sudo apt-get install libcurl4-openssl-dev`
       - MacOS: `brew install curl`
-      - Windows: no installation necessary
-   - Environment variable `R_HOME` may need to be set for Windows
+      - Windows: no installation necessary, but read the Windows section below.
 
 3. Install `arulespy` which will automatically install `rpy2` and `pandas`.
     ``` sh
@@ -76,10 +73,46 @@ To cite the Python module ‘arulespy’ in publications use:
     `install.packages(c("arules", "arulesViz"))`
 
 
-The most likely issue is that `rpy2` does not find R. 
+The most likely issue is that `rpy2` does not find R or R's shared library. 
 This will lead the python kernel to die or exit without explanation when the package `arulespy` is imported.
 Check `python -m rpy2.situation` to see if R and R's libraries are found.
-Details can be found [here](https://pypi.org/project/rpy2/).
+If you use iPython notebooks then you can include the following code block in your notebook to check:
+```python
+from rpy2 import situation
+
+for row in situation.iter_info():
+    print(row)
+```
+
+The output should include a line saying `Loading R library from rpy2: OK`.
+
+### Note for Windows users
+ `rpy2` currently does not fully support Windows and the installation is somewhat tricky. I was able to use it with the following setup:
+
+* Windows 10
+* rpy2 version 3.5.14
+* Python version 3.10.12
+* R version 4.3.1
+
+I use the following code to set the needed environment variables needed by Windows 
+before I import from `arulespy`
+```python
+from rpy2 import situation
+import os
+
+r_home = situation.r_home_from_registry()
+r_bin = r_home + '\\bin\\x64\\'
+os.environ['R_HOME'] = r_home
+os.environ['PATH'] =  r_bin + ";" + os.environ['PATH']
+os.add_dll_directory(r_bin)
+
+for row in situation.iter_info():
+    print(row)
+```
+
+The output should include a line saying `Loading R library from rpy2: OK`
+
+More information on installing `rpy2` can be found [here](https://pypi.org/project/rpy2/).
 
 
 ## Example
