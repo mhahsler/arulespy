@@ -7493,10 +7493,53 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This document is also avaialble as a IPython notebook: <a href="https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb">https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb</a></p>
-<h2 id="Installation">Installation<a class="anchor-link" href="#Installation">¶</a></h2><p>The package can be installed using pip.</p>
+<p>This document is also available as an <a href="https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb">IPython notebook</a> or you can open and run it directly in 
+<a href="https://colab.research.google.com/github/mhahsler/arulespy/blob/main/examples/arules.ipynb">Google Colab</a>.</p>
+<h2 id="Installation">Installation<a class="anchor-link" href="#Installation">¶</a></h2><p>The package can be installed using pip via the terminal</p>
 <pre><code>pip install arulespy
 </code></pre>
+<p>Or using the following magic command (note: use <code>%conda</code> if you use conda)</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install arulespy
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Requirement already satisfied: arulespy in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (0.1.4)
+Requirement already satisfied: pandas&gt;1.5.3 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from arulespy) (2.1.0)
+Requirement already satisfied: numpy&gt;=1.14.2 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from arulespy) (1.25.2)
+Requirement already satisfied: scipy&gt;=1.10.1 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from arulespy) (1.11.2)
+Requirement already satisfied: rpy2&gt;=3.5.11 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from arulespy) (3.5.14)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from pandas&gt;1.5.3-&gt;arulespy) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from pandas&gt;1.5.3-&gt;arulespy) (2023.3.post1)
+Requirement already satisfied: tzdata&gt;=2022.1 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from pandas&gt;1.5.3-&gt;arulespy) (2023.3)
+Requirement already satisfied: cffi&gt;=1.10.0 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from rpy2&gt;=3.5.11-&gt;arulespy) (1.15.1)
+Requirement already satisfied: jinja2 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from rpy2&gt;=3.5.11-&gt;arulespy) (3.1.2)
+Requirement already satisfied: tzlocal in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from rpy2&gt;=3.5.11-&gt;arulespy) (5.0.1)
+Requirement already satisfied: pycparser in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from cffi&gt;=1.10.0-&gt;rpy2&gt;=3.5.11-&gt;arulespy) (2.21)
+Requirement already satisfied: six&gt;=1.5 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;1.5.3-&gt;arulespy) (1.16.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /home/hahsler/baR/arulespy/.venv/lib/python3.10/site-packages (from jinja2-&gt;rpy2&gt;=3.5.11-&gt;arulespy) (2.1.3)
+Note: you may need to restart the kernel to use updated packages.
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -7540,7 +7583,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Basic-Usage">Basic Usage<a class="anchor-link" href="#Basic-Usage">¶</a></h2><p>Import the <code>arules</code> module from package <code>arulespy</code>.</p>
+<h2 id="Basic-Usage">Basic Usage<a class="anchor-link" href="#Basic-Usage">¶</a></h2><p>Import the <code>arules</code> module from package <code>arulespy</code>. This will take a while if you run it for the first time since it needs to install all the needed R packages.</p>
 </div>
 </div>
 </div>
@@ -7931,19 +7974,19 @@ a.anchor-link {
 </thead>
 <tbody>
 <tr>
-<th>7</th>
-<td>{A,B,C}</td>
-<td>6</td>
-</tr>
-<tr>
-<th>9</th>
-<td>{B,C}</td>
-<td>8</td>
+<th>8</th>
+<td>{C}</td>
+<td>7</td>
 </tr>
 <tr>
 <th>10</th>
 <td>{A,C}</td>
 <td>9</td>
+</tr>
+<tr>
+<th>9</th>
+<td>{B,C}</td>
+<td>8</td>
 </tr>
 </tbody>
 </table>
@@ -10567,7 +10610,7 @@ classes using.</p>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>Help on DocumentedSTFunction in module rpy2.robjects.functions:
 
-&lt;rpy2.robjects.functions.DocumentedSTFunction ob...b3ee680&gt; [RTYPES.CLOSXP]
+&lt;rpy2.robjects.functions.DocumentedSTFunction ob...ebe43c0&gt; [RTYPES.CLOSXP]
 R classes: ('function',)
     Wrapper around an R function.
     
@@ -10680,7 +10723,7 @@ R classes: ('function',)
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f91168d3580&gt; [RTYPES.S4SXP]
+<pre>&lt;rpy2.robjects.methods.RS4 object at 0x7f441886f600&gt; [RTYPES.S4SXP]
 R classes: ('itemsets',)</pre>
 </div>
 </div>
@@ -10745,63 +10788,63 @@ R classes: ('itemsets',)</pre>
 <tbody>
 <tr>
 <th>1</th>
-<td>{item20,item23,item61,item70}</td>
-<td>0.064421</td>
-<td>0.824550</td>
+<td>{item51,item53,item55,item59}</td>
+<td>0.016862</td>
+<td>0.000000</td>
 </tr>
 <tr>
 <th>2</th>
-<td>{item22,item23,item37,item70,item79}</td>
-<td>0.008095</td>
-<td>0.827792</td>
+<td>{item7,item10,item51,item62,item78}</td>
+<td>0.094877</td>
+<td>0.479575</td>
 </tr>
 <tr>
 <th>3</th>
-<td>{item86,item93}</td>
-<td>0.262758</td>
-<td>0.501369</td>
+<td>{item62,item91}</td>
+<td>0.136921</td>
+<td>0.030957</td>
 </tr>
 <tr>
 <th>4</th>
-<td>{item56,item86,item93}</td>
-<td>0.063851</td>
-<td>0.839562</td>
+<td>{item53,item62,item76,item98}</td>
+<td>0.116791</td>
+<td>0.770604</td>
 </tr>
 <tr>
 <th>5</th>
-<td>{item1,item56,item77,item86,item87,item93,item98}</td>
-<td>0.345336</td>
-<td>0.237577</td>
+<td>{item53,item61,item74,item78,item93}</td>
+<td>0.184119</td>
+<td>0.689259</td>
 </tr>
 <tr>
 <th>6</th>
-<td>{item1,item56,item93,item98}</td>
-<td>0.023080</td>
-<td>0.384844</td>
+<td>{item53,item61,item74,item93}</td>
+<td>0.261557</td>
+<td>0.808408</td>
 </tr>
 <tr>
 <th>7</th>
-<td>{item1,item27,item53,item56,item75,item76,item...</td>
-<td>0.122761</td>
-<td>0.476697</td>
+<td>{item61,item93}</td>
+<td>0.019522</td>
+<td>0.000000</td>
 </tr>
 <tr>
 <th>8</th>
-<td>{item16,item27,item39,item54,item100}</td>
-<td>0.017322</td>
-<td>1.000000</td>
+<td>{item23,item79,item92}</td>
+<td>0.007628</td>
+<td>0.860331</td>
 </tr>
 <tr>
 <th>9</th>
-<td>{item16,item48,item54}</td>
-<td>0.056433</td>
-<td>0.893743</td>
+<td>{item23,item32,item62,item75,item82,item92}</td>
+<td>0.114453</td>
+<td>0.892963</td>
 </tr>
 <tr>
 <th>10</th>
-<td>{item7,item48,item54}</td>
-<td>0.035943</td>
-<td>0.736063</td>
+<td>{item62,item82}</td>
+<td>0.047270</td>
+<td>0.856183</td>
 </tr>
 </tbody>
 </table>
@@ -10877,7 +10920,7 @@ R classes: ('itemsets',)</pre>
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;10x1000 sparse matrix of type '&lt;class 'numpy.int64'&gt;'
-	with 3010 stored elements in Compressed Sparse Column format&gt;</pre>
+	with 2976 stored elements in Compressed Sparse Column format&gt;</pre>
 </div>
 </div>
 </div>
