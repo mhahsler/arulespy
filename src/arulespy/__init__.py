@@ -21,8 +21,7 @@ packnames = ('arules', 'arulesViz')
 names_to_install = [x for x in packnames if not rpackages.isinstalled(x)]
 if len(names_to_install) > 0:
     print("Installing missing R packages. This may take some time.")
-    utils.install_packages(StrVector(names_to_install), quiet = True)
-
+    utils.install_packages(StrVector(names_to_install), quiet = False)
 
 from .arules import R_arules, arules2py, parameters, Associations, ItemMatrix, Rules, Itemsets, Transactions, concat, apriori, eclat, discretizeDF
 from .arulesViz import R_arulesViz, plot, inspectDT, ruleExplorer
