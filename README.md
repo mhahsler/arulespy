@@ -195,7 +195,7 @@ rules.as_df()
 
 Complete examples:
 
-- [Using arules](https://mhahsler.github.io/arulespy/examples/arules.html)
+- [Using arules](https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb)
 - [Using arulesViz](https://mhahsler.github.io/arulespy/examples/arulesViz.html)
 
 
