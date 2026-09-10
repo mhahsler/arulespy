@@ -59,6 +59,10 @@ import rpy2.robjects.packages as packages
 
 state = {{"installed": False, "install_calls": []}}
 original = packages.importr
+class InstalledPackage:
+    def __getattr__(self, name):
+        return lambda *args, **kwargs: None
+
 def importr(name, *args, **kwargs):
     if name == "utils":
         class Utils:
@@ -69,6 +73,7 @@ def importr(name, *args, **kwargs):
     if name == {missing_name!r}:
         if not state["installed"]:
             raise packages.PackageNotInstalledError(name)
+        return InstalledPackage()
     return original(name, *args, **kwargs)
 
 packages.importr = importr
