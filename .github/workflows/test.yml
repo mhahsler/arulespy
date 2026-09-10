@@ -31,6 +31,7 @@ jobs:
             tox: py314
 
     env:
+      PKG_INCLUDE_LINKINGTO: "TRUE"
       RPY2_CFFI_MODE: ABI
 
     steps:
