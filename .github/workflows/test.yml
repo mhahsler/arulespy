@@ -39,14 +39,24 @@ jobs:
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: release
+          use-public-rspm: true
+      - name: Configure R shared library
+        shell: bash
+        run: |
+          r_home="$(R RHOME)"
+          echo "R_HOME=${r_home}" >> "${GITHUB_ENV}"
+          echo "LD_LIBRARY_PATH=${r_home}/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> "${GITHUB_ENV}"
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
           cache: pip
       - name: Install R dependencies
-        run: install.packages("arules", repos = "https://cloud.r-project.org")
-        shell: Rscript {0}
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::arules
+            any::arulesViz
       - name: Install tox
         run: python -m pip install "tox>=4"
       - name: Run tests
