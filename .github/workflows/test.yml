@@ -15,21 +15,27 @@ permissions:
 
 jobs:
   test:
-    name: Python ${{ matrix.python }}
-    runs-on: ubuntu-latest
+    name: Python ${{ matrix.python }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - python: "3.11"
+          - os: ubuntu-latest
+            python: "3.11"
             tox: py311
           # 3.12 fails on GitHub Actions due to missing libpython3.12.so.1.0 in the system library path, which is required for rpy2 to work properly.
           # - python: "3.12"
           #  tox: py312
-          - python: "3.13"
+          - os: ubuntu-latest
+            python: "3.13"
             tox: py313
-          - python: "3.14"
+          - os: ubuntu-latest
+            python: "3.14"
             tox: py314
+          - os: windows-latest
+            python: "3.13"
+            tox: py313
 
     env:
       PKG_INCLUDE_LINKINGTO: "TRUE"
@@ -43,6 +49,7 @@ jobs:
           r-version: release
           use-public-rspm: true
       - name: Configure R shared library
+        if: runner.os == 'Linux'
         shell: bash
         run: |
           r_home="$(R RHOME)"
