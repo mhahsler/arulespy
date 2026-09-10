@@ -41,18 +41,18 @@ jobs:
         with:
           r-version: release
           use-public-rspm: true
+      - name: Configure R shared library
+        shell: bash
+        run: |
+          r_home="$(R RHOME)"
+          echo "R_HOME=${r_home}" >> "${GITHUB_ENV}"
+          echo "${r_home}/lib" | sudo tee /etc/ld.so.conf.d/arulespy-r.conf > /dev/null
+          sudo ldconfig
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
           cache: pip
-      - name: Configure R shared library
-        shell: bash
-        run: |
-          r_home="$(R RHOME)"
-          python_lib="$(python -c 'import sysconfig; print(sysconfig.get_config_var("LIBDIR"))')"
-          echo "R_HOME=${r_home}" >> "${GITHUB_ENV}"
-          echo "LD_LIBRARY_PATH=${python_lib}:${r_home}/lib${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}" >> "${GITHUB_ENV}"
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
