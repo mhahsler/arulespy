@@ -65,8 +65,10 @@ optional and is needed only for visualization functions.
 Importing `arulespy` by itself does not initialize R or install R packages.
 When `arulespy.arules` is first imported, a missing `arules` package is
 installed automatically from CRAN. Importing `arulespy.arulesViz` likewise
-installs `arulesViz` if needed. This also applies to lazy top-level imports such
-as `from arulespy import Transactions` and `from arulespy import plot`.
+installs `arulesViz` if needed.
+
+Installing R packages from source can take some time. Conda is recommended for
+the compatible Python, R, `arules`, and `rpy2` core environment.
 
 ### Recommended: conda
 
@@ -76,8 +78,7 @@ recommended because it installs compatible versions of Python, R, `arules`,
 and `rpy2` together. Create and activate a dedicated environment:
 
 ```sh
-conda create --name arulespy -c conda-forge \
-    python=3.13 r-base r-arules rpy2 pip
+conda create --name arulespy --override-channels -c conda-forge python=3.13 r-base=4.5 r-arules "rpy2>=3.6.6" pip
 conda activate arulespy
 ```
 
@@ -93,6 +94,10 @@ visualization interface is first imported. To install it in advance, run:
 ```sh
 Rscript -e 'install.packages("arulesViz", repos="https://cloud.r-project.org")'
 ```
+
+Do not add `r-arulesViz` to this Python 3.13 Conda environment if the available
+Conda build requires R 4.3. That conflicts with the newer R required by current
+`rpy2`; installing `arulesViz` from CRAN avoids the incompatible Conda pin.
 
 ### Using an existing R installation
 
