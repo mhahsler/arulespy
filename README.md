@@ -78,7 +78,8 @@ recommended because it installs compatible versions of Python, R, `arules`,
 and `rpy2` together. Create and activate a dedicated environment:
 
 ```sh
-conda create --name arulespy --override-channels -c conda-forge python=3.13 r-base=4.5 r-arules "rpy2>=3.6.6" pip
+conda create --name arulespy -c conda-forge \
+    python=3.13 r-base r-arules rpy2 pip
 conda activate arulespy
 ```
 
@@ -88,16 +89,20 @@ Then install `arulespy` from PyPI:
 python -m pip install arulespy
 ```
 
-The optional `arulesViz` package will be installed automatically when the
-visualization interface is first imported. To install it in advance, run:
+The optional `arulesViz` package can be installed with:
 
 ```sh
+conda install -c conda-forge \
+      r-dt r-ggraph r-igraph r-plotly r-visnetwork
 Rscript -e 'install.packages("arulesViz", repos="https://cloud.r-project.org")'
 ```
 
-Do not add `r-arulesViz` to this Python 3.13 Conda environment if the available
-Conda build requires R 4.3. That conflicts with the newer R required by current
-`rpy2`; installing `arulesViz` from CRAN avoids the incompatible Conda pin.
+Note: `arulesViz` is installed from CRAN since `r-arulesViz` is currently not available for this 
+Python 3.13 Conda environment due to conflicts with the newer R required by current `rpy2`.
+Once it becomes available, then it can be installed with `conda`.
+```sh
+conda install -c conda-forge r-arulesviz
+```
 
 ### Using an existing R installation
 

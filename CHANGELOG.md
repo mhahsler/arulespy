@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-10
+
 ### Added
 
 - Added `install_r_packages()` for explicitly installing missing R dependencies.
@@ -88,7 +90,8 @@
 - Published the initial 0.1 release series.
 - Added examples for manually creating association rules.
 
-[Unreleased]: https://github.com/mhahsler/arulespy/compare/arulespy_0.1.4...HEAD
+[Unreleased]: https://github.com/mhahsler/arulespy/compare/arulespy_0.2.0...HEAD
+[0.2.0]: https://github.com/mhahsler/arulespy/compare/arulespy_0.1.4...arulespy_0.2.0
 [0.1.4]: https://github.com/mhahsler/arulespy/compare/arulespy_0.1.3...arulespy_0.1.4
 [0.1.3]: https://github.com/mhahsler/arulespy/compare/arulespy_0.1.2...arulespy_0.1.3
 [0.1.2]: https://github.com/mhahsler/arulespy/compare/arulespy_0.1.1...arulespy_0.1.2
