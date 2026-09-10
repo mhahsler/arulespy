@@ -10,25 +10,61 @@ on:
       - main
       - master
 
+permissions:
+  contents: read
+
 jobs:
-  build:
+  test:
+    name: Python ${{ matrix.python }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        python: [3.8, 3.9]
+        include:
+          - python: "3.11"
+            tox: py311
+          - python: "3.12"
+            tox: py312
+          - python: "3.13"
+            tox: py313
+          - python: "3.14"
+            tox: py314
+
+    env:
+      RPY2_CFFI_MODE: ABI
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
-      - name: Install libcurl
-        run: sudo apt-get install libcurl4-openssl-dev
-      - name: Install scipy
-        run: sudo apt-get install python3-scipy
-      - name: Install Tox and any other packages
-        run: pip install tox
-      - name: Run Tox
-        # Run tox using the version of Python in `PATH`
-        run: tox -e py
+          cache: pip
+      - name: Install R dependencies
+        run: install.packages("arules", repos = "https://cloud.r-project.org")
+        shell: Rscript {0}
+      - name: Install tox
+        run: python -m pip install "tox>=4"
+      - name: Run tests
+        run: python -m tox run -e ${{ matrix.tox }}
+
+  package:
+    name: Validate distributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install build tools
+        run: python -m pip install build twine
+      - name: Build distributions
+        run: python -m build
+      - name: Check distribution metadata
+        run: python -m twine check dist/*

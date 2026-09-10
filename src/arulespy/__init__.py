@@ -1,30 +1,96 @@
-__version__ = '0.1.4'
+"""Python interface to the R packages arules and arulesViz.
 
-import rpy2.robjects as ro
-import rpy2.robjects.packages as rpackages
-from rpy2.robjects.vectors import StrVector
-import os
+Importing :mod:`arulespy` itself deliberately does not initialize R, change R
+options, or install packages. Core and visualization objects are loaded only
+when they are first accessed.
+"""
 
-os.makedirs(ro.r('Sys.getenv("R_LIBS_USER")')[0], exist_ok=True)
-ro.r('.libPaths(c(Sys.getenv("R_LIBS_USER"), .libPaths()))')
+from importlib import import_module
 
-# just make sure the env is set. R makes up the R_LIBS_USER environment variable if it doesn't exist
-ro.r('Sys.setenv("R_LIBS_USER" = Sys.getenv("R_LIBS_USER")[1])')
 
-# TODO: on Linux, library() complains about an empty directory /usr/local/lib/R/site-library’ contains no packages
-# To disable warnings globally is bad. rpy2 should use installed.packages() instead of library() to check if a package is installed.
-ro.r('options(warn=-1)')
+__version__ = "0.2.0"
 
-utils = rpackages.importr('utils')
+_CORE_EXPORTS = {
+    "R_arules",
+    "arules2py",
+    "arules_to_py",
+    "parameters",
+    "Associations",
+    "ItemMatrix",
+    "Rules",
+    "Itemsets",
+    "Transactions",
+    "concat",
+    "apriori",
+    "eclat",
+    "discretizeDF",
+    "discretize_df",
+}
+_VISUALIZATION_EXPORTS = {
+    "R_arulesViz",
+    "plot",
+    "inspectDT",
+    "inspect_dt",
+    "html_widget",
+    "ruleExplorer",
+    "rule_explorer",
+}
 
-packnames = ('arules', 'arulesViz')
-names_to_install = [x for x in packnames if not rpackages.isinstalled(x)]
-if len(names_to_install) > 0:
-    print("Installing missing R packages. This may take some time.")
-    utils.install_packages(StrVector(names_to_install), quiet = False)
+__all__ = sorted(
+    {"__version__", "install_r_packages"}
+    | _CORE_EXPORTS
+    | _VISUALIZATION_EXPORTS
+)
 
-from .arules import R_arules, arules2py, parameters, Associations, ItemMatrix, Rules, Itemsets, Transactions, concat, apriori, eclat, discretizeDF
-from .arulesViz import R_arulesViz, plot, inspectDT, ruleExplorer
 
-### Enable warnings again
-ro.r('options(warn=0)')
+def install_r_packages(package_names=("arules", "arulesViz"), **kwargs):
+    """Explicitly install missing R packages required by arulespy.
+
+    Args:
+        package_names: Names of R packages to check and install.
+        **kwargs: Additional arguments passed to R's ``install.packages``.
+
+    Returns:
+        A list containing the names of packages that were installed.
+    """
+    import rpy2.robjects.packages as rpackages
+    from rpy2.robjects.vectors import StrVector
+
+    missing = [name for name in package_names if not rpackages.isinstalled(name)]
+    if missing:
+        utils = rpackages.importr("utils")
+        utils.install_packages(StrVector(missing), **kwargs)
+    return missing
+
+
+def _import_or_install_r_package(package_name):
+    """Import an R package, installing it from CRAN when it is missing."""
+    import rpy2.robjects.packages as rpackages
+
+    try:
+        return rpackages.importr(package_name)
+    except rpackages.PackageNotInstalledError:
+        try:
+            install_r_packages(
+                (package_name,), repos="https://cloud.r-project.org"
+            )
+            return rpackages.importr(package_name)
+        except Exception as exc:
+            raise ImportError(
+                f"The R package {package_name!r} is required and could not be "
+                "installed automatically. Install it in R with "
+                f"install.packages({package_name!r})."
+            ) from exc
+
+
+def __getattr__(name):
+    if name in _CORE_EXPORTS:
+        module = import_module(".arules", __name__)
+    elif name in _VISUALIZATION_EXPORTS:
+        module = import_module(".arulesViz", __name__)
+    else:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+    value = getattr(module, name)
+    globals()[name] = value
+    return value

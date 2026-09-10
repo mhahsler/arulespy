@@ -1,3 +1,69 @@
 [build-system]
-requires = ["setuptools>=46.4.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "arulespy"
+dynamic = ["version"]
+description = "Python interface to the R package arules"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+authors = [
+    { name = "Michael Hahsler", email = "mhahsler@lyle.smu.edu" },
+]
+keywords = ["association rules", "frequent itemsets"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: R",
+    "Programming Language :: C++",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "numpy>=1.14.2",
+    "pandas>1.5.3",
+    "rpy2>=3.5.11",
+    "scipy>=1.10.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7",
+]
+dev = [
+    "build>=1.2",
+    "pytest>=7",
+    "twine>=5",
+]
+
+[project.urls]
+Homepage = "https://github.com/mhahsler/arulespy"
+Documentation = "https://github.com/mhahsler/arulespy"
+Changelog = "https://github.com/mhahsler/arulespy/blob/main/CHANGELOG.md"
+Issues = "https://github.com/mhahsler/arulespy/issues"
+Repository = "https://github.com/mhahsler/arulespy"
+
+[tool.hatch.version]
+path = "src/arulespy/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/CHANGELOG.md",
+    "/LICENSE",
+    "/README.md",
+    "/pyproject.toml",
+    "/src",
+    "/tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/arulespy"]
