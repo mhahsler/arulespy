@@ -46,7 +46,7 @@ jobs:
         run: |
           r_home="$(R RHOME)"
           echo "R_HOME=${r_home}" >> "${GITHUB_ENV}"
-          echo "${r_home}/lib" | sudo tee /etc/ld.so.conf.d/arulespy-r.conf > /dev/null
+          sudo ln -sf "${r_home}/lib/libR.so" /usr/local/lib/libR.so
           sudo ldconfig
       - name: Setup Python
         uses: actions/setup-python@v7
