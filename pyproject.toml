@@ -47,7 +47,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/mhahsler/arulespy"
-Documentation = "https://github.com/mhahsler/arulespy"
+Documentation = "https://mhahsler.github.io/arulespy/"
 Changelog = "https://github.com/mhahsler/arulespy/blob/main/CHANGELOG.md"
 Issues = "https://github.com/mhahsler/arulespy/issues"
 Repository = "https://github.com/mhahsler/arulespy"

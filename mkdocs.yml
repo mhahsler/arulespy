@@ -1,0 +1,44 @@
+site_name: arulespy
+site_url: https://mhahsler.github.io/arulespy/
+site_description: Python interface to the R package arules
+repo_url: https://github.com/mhahsler/arulespy
+repo_name: mhahsler/arulespy
+
+nav:
+  - Home: index.md
+  - Examples: examples.md
+
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: white
+    accent: blue
+
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - tables
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            docstring_options:
+              warn_missing_types: false
+            members_order: source
+            show_root_heading: true
+            show_source: true
+            separate_signature: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

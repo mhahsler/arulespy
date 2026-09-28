@@ -46,6 +46,8 @@ available through Python's `help()`. See the
 [arules reference manual](https://mhahsler.r-universe.dev/arules/doc/manual.html)
 for details about the underlying R operations.
 
+The [documentation site](https://mhahsler.github.io/arulespy/) includes examples and installation instructions.
+
 For low-level access, import `R_arules` and call translated R function names,
 for example `R_arules.random_transactions(...)`. These calls return rpy2
 objects. Convert supported R objects into arulespy or standard Python objects
@@ -197,6 +199,22 @@ Complete examples:
 
 - [Using arules](https://github.com/mhahsler/arulespy/blob/main/examples/arules.ipynb)
 - [Using arulesViz](https://mhahsler.github.io/arulespy/examples/arulesViz.html)
+
+## Documentation site
+
+The site is built with Material for MkDocs and deployed to GitHub Pages by the
+[Docs workflow](https://github.com/mhahsler/arulespy/actions/workflows/docs.yml).
+To preview the Markdown pages locally:
+
+```sh
+python -m pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+The workflow builds the site with `python -m mkdocs build --strict` and copies
+the exported HTML examples and `Zoo.csv` into `site/examples/` before publishing.
+In the repository's GitHub Pages settings, select **GitHub Actions** as the
+build and deployment source.
 
 
 ## References
